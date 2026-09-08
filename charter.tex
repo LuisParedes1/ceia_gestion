@@ -1,8 +1,10 @@
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
-%codirector, % Uncomment to add a codirector to the title page
-]{charter} 
+codirector, % Uncomment to add a codirector to the title page
+]{charter}
 
+% Las tablas se rotulan como ``Tabla'' y no como ``Cuadro'' (predeterminado de babel)
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Optimización de sinopsis de libros mediante predicción de keywords con Machine Learning y SEO} 
@@ -25,7 +27,7 @@
 \pertenenciaCoDirector{Penguin Random House Grupo Editorial}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{-}
+\cliente{Victoria O\textquotesingle Donnell}
 \empresaCliente{Penguin Random House Grupo Editorial}
  
 \fechaINICIO{08 de agosto de 2026}		%Fecha de inicio de la cursada de GdP \fechaInicioName
@@ -59,7 +61,7 @@
 \rowcolor[HTML]{C0C0C0} 
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
-%1      & Se completa hasta el punto 5 inclusive                & {día} de {mes} de 202X \\ \hline
+1      & Se completa hasta el punto 5 inclusive                & 07 de septiembre de 2026 \\ \hline
 %2      & Se completa hasta el punto 9 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -106,144 +108,119 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-El objetivo es que el lector, en una o dos páginas, exponga de qué se trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+El proyecto se desarrolla como una iniciativa interna de Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento y a una cuenta paga de la interfaz de programación de aplicaciones (API) de DataForSEO.
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cuál es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+En una tienda en línea, la sinopsis es el principal texto indexable de la ficha de cada libro y determina en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. Sin embargo, ese texto se redacta con criterio editorial y no contempla la demanda real de búsqueda. La selección manual de \textit{keywords}, o palabras clave, exige tiempo de especialistas y no escala a un catálogo de miles de títulos, por lo que en la práctica solo alcanza a las novedades y a los libros más vendidos.
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+La optimización para motores de búsqueda (SEO, por su sigla en inglés) reúne las técnicas que mejoran la posición de un sitio en los resultados de los buscadores, principalmente Google. El tráfico se concentra en los primeros lugares de la página de resultados del buscador (SERP, por su sigla en inglés), de modo que elegir las \textit{keywords} adecuadas para cada contenido es una decisión de alto impacto comercial.
 
-\begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
-\end{itemize}
+Las suites comerciales de SEO informan el volumen de búsqueda y la dificultad estimada de cada \textit{keyword}, pero esas métricas son agregadas y no anticipan cómo posiciona un dominio determinado frente a su competencia directa. Los modelos grandes de lenguaje (LLM, por su sigla en inglés), por su parte, generan con facilidad textos orientados al posicionamiento, aunque sin anclaje en datos propios y sin garantía de fidelidad al contenido del libro. Entre ambas carencias, la decisión final queda librada a la intuición del redactor.
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
+La solución propuesta consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y una \textit{keyword}, la probabilidad de que el dominio de la editorial posicione mejor que el de su competencia, y ordena las palabras clave según ese criterio. En la segunda, un generador basado en un LLM reescribe la sinopsis original e incorpora las \textit{keywords} priorizadas, bajo restricciones de extensión, tono y fidelidad al argumento del libro.
 
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+La propuesta de valor reside en reemplazar una tarea artesanal por un procedimiento sistemático y reproducible, aplicable a la totalidad del catálogo. La innovación pasa por dos aspectos: el modelo se entrena con la señal de competencia observada en la SERP entre dos catálogos que disputan las mismas audiencias, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utilizan los catálogos de Penguin Random House Argentina y de Planeta, que compiten en géneros equivalentes, como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda.
+
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que el flujo parte de tres fuentes de datos: la API de DataForSEO, los datos internos de la editorial y el catálogo de la competencia obtenido mediante \textit{scraping}. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, \textit{keyword}, dirección web y posición histórica. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de palabras clave priorizadas para cada título.
 
 \begin{figure}[htpb]
-\centering 
+\centering
 \includegraphics[width=.65\textwidth]{./Figuras/diagBloques.png}
 \caption{Diagrama en bloques del sistema.}
 \label{fig:diagBloques}
 \end{figure}
 
-\vspace{25px}
-
-El tamaño del texto en TODAS las figuras debe ser adecuado \textbf{para que NO pase lo que ocurre en la figura \ref{fig:diagBloques}}, donde el lector debe esforzarse para poder leer el texto. 
-
-Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama. Se recomienda evitar colores primarios (como rojo, verde o cyan) y usar la gama de colores pastel.
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
+El generador de sinopsis recibe el texto original y esas palabras clave, y produce una versión candidata. Un módulo de verificación automática controla la similitud semántica con el texto original, la extensión y la presencia efectiva de las \textit{keywords}; solo las candidatas que superan esos controles pasan a revisión editorial. Las sinopsis aprobadas se publican en un piloto acotado, cuyo seguimiento de posiciones en la SERP realimenta el conjunto de datos y habilita un nuevo entrenamiento del modelo.
+ 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces \textbf{solo dejarla en el rol más importante}. 
-
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, \textbf{no debe ser colocado también como miembro del equipo}.
-
+En la tabla \ref{tag:interesados} se identifican los interesados del proyecto y el rol que ocupa cada uno.
 
 \begin{table}[ht]
-%\caption{Identificación de los interesados}
-%\label{tab:interesados}
+\caption{Identificación de los interesados.}
+\label{tag:interesados}
 \begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
 \hline
-\rowcolor[HTML]{C0C0C0} 
+\rowcolor[HTML]{C0C0C0}
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
-Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
+Auspiciante   & -   & \empclientename &			\\ \hline
+Cliente       & \clientename      &\empclientename	& Cientifica de Datos \\ \hline
+Responsable   & \authorname       & \empclientename & Machine Learning Engineer 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Final \\ \hline
 \end{tabularx}
+%\caption{Identificación de los interesados.}
 \end{table}
 
-El Director suele ser uno de los orientadores.
+El proyecto se desarrolla internamente por el equipo de Analítica Avanzada de Penguin Random House Grupo Editorial. A continuación se detallan las características de cada interesado que condicionan la planificación.
 
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
- 
-Por ejemplo:
 \begin{itemize}
-	\item Orientador: la Dra. Ing. María Gómez es experta en la temática y va a ayudar con la definición de los requerimientos y el desarrollo del firmware del embebido.
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
+	\item Auspiciante: la editorial aporta las horas de trabajo del responsable, el acceso a los datos internos y el crédito de la API de DataForSEO. Cualquier consumo por encima de lo previsto requiere una autorización expresa, de modo que conviene acotar las consultas al proveedor desde el diseño del conjunto de datos.
+	\item Cliente: valida los entregables y define qué títulos integran el piloto. Su disponibilidad es acotada, por lo que las instancias de validación deben planificarse con anticipación y concentrarse en pocas reuniones.
+	\item Orientadores: el director aporta el encuadre metodológico y la supervisión académica del Trabajo Final; el codirector, el conocimiento del negocio editorial y de los sistemas internos. Este último también fija prioridades dentro de la empresa.
 \end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
-
-Se recomienda que sea solo un párrafo que continúe con la idea de la frase ``el propósito de este proyecto es...'' (omitir la frase, ya que está en el título de la sección).
-\end{consigna}
+Aumentar la visibilidad orgánica del catálogo de la editorial en los resultados de búsqueda mediante sinopsis optimizadas con palabras clave seleccionadas por un modelo de aprendizaje automático. Se busca reemplazar la curaduría manual de \textit{keywords}, hoy limitada a un puñado de títulos, por un procedimiento sistemático, reproducible y aplicable a la escala del catálogo completo, que priorice las palabras clave con mayor probabilidad de posicionamiento y produzca sinopsis fieles al contenido original.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
-
-Se refiere al trabajo que se va a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto. Por ejemplo:
-
 El proyecto incluye:
+
 \begin{itemize}
-	\item Ítem 1.
-	\item Ítem 2.
+	\item La construcción del conjunto de datos de posicionamiento.
 		\begin{itemize}
-		\item Subítem 1.
-		\item Subítem 2.
-		\item ...
+		\item Extracción de datos de SEO de ambos dominios mediante la API de DataForSEO.
+		\item Incorporación de los datos internos de la editorial: catálogo, series históricas de Google Trends y resultados de proyectos de SEO previos.
+		\item Obtención del catálogo de la competencia mediante \textit{scraping} de su sitio web.
+		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
-	\item ...
-	
+	\item El análisis exploratorio de los datos y la construcción de las variables predictoras.
+	\item El desarrollo del modelo de predicción de posicionamiento.
+		\begin{itemize}
+		\item Entrenamiento y comparación de al menos dos algoritmos alternativos.
+		\item Definición de la métrica de priorización de \textit{keywords} por libro.
+		\item Validación contra las posiciones históricas observadas.
+		\end{itemize}
+	\item El desarrollo del generador de sinopsis basado en un LLM comercial, con sus restricciones de extensión, tono y uso de palabras clave.
+	\item El módulo de verificación automática de las sinopsis candidatas: fidelidad semántica respecto del texto original, extensión y presencia efectiva de las \textit{keywords}.
+	\item La ejecución de un piloto acotado sobre un subconjunto del catálogo, con publicación de las sinopsis aprobadas y seguimiento de las posiciones en la SERP durante la ventana de medición acordada.
+	\item La documentación del sistema, el código fuente y la memoria del Trabajo Final.
 \end{itemize}
 
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
+El presente proyecto no incluye:
 
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
+\begin{itemize}
+	\item La integración productiva con el gestor de contenidos de la tienda en línea: la carga de las sinopsis del piloto se realiza por los canales que la editorial ya utiliza.
+	\item El despliegue sobre la totalidad del catálogo ni la puesta en producción del sistema.
+	\item La medición del impacto en ventas o en ingresos, que excede la ventana temporal del proyecto.
+	\item La optimización de otros factores de SEO, tales como el enlazado interno, el rendimiento del sitio o los metadatos distintos de la sinopsis.
+	\item El entrenamiento de un modelo de lenguaje propio.
+	\item La traducción o adaptación de sinopsis a otros mercados de habla hispana.
+	\item El soporte y el mantenimiento posteriores al cierre del proyecto.
+\end{itemize}
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-	\item Supuesto 1.
-	\item Supuesto 2.
-	\item ...
+	\item La editorial mantiene la autorización para utilizar el catálogo, las sinopsis y los datos internos de posicionamiento con fines académicos, y admite la publicación de resultados agregados en la memoria del Trabajo Final.
+	\item El acceso a la API de DataForSEO continúa vigente durante toda la ejecución y el crédito contratado alcanza para el volumen de consultas previsto.
+	\item Se dispone de acceso a una API de LLM comercial, con un costo por consulta compatible con el presupuesto asignado.
+	\item El sitio web de la competencia permite obtener su catálogo mediante \textit{scraping}. Si esa vía no resulta viable, el análisis se limita al catálogo interno de la editorial.
+	\item El área de marketing digital habilita la publicación de las sinopsis del piloto dentro de los plazos planificados.
+	\item El algoritmo de Google no sufre cambios de magnitud durante la ventana de medición del piloto, de modo que las variaciones observadas resultan atribuibles a las sinopsis modificadas.
+	\item Los datos históricos de posicionamiento cubren un período suficiente para entrenar y validar el modelo.
+	\item El responsable dispone de una carga horaria semanal sostenida y compatible con el cronograma, y cuenta con el equipamiento y los servicios de cómputo necesarios.
+	\item Las condiciones macroeconómicas no alteran de forma significativa el costo en pesos de los servicios contratados en moneda extranjera.
 \end{itemize}
-
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
