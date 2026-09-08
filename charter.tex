@@ -118,7 +118,7 @@ Las suites comerciales de SEO informan el volumen de búsqueda y la dificultad e
 
 La solución propuesta consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y una \textit{keyword}, la probabilidad de que el dominio de la editorial posicione mejor que el de su competencia, y ordena las palabras clave según ese criterio. En la segunda, un generador basado en un LLM reescribe la sinopsis original e incorpora las \textit{keywords} priorizadas, bajo restricciones de extensión, tono y fidelidad al argumento del libro.
 
-La propuesta de valor reside en reemplazar una tarea artesanal por un procedimiento sistemático y reproducible, aplicable a la totalidad del catálogo. La innovación pasa por dos aspectos: el modelo se entrena con la señal de competencia observada en la SERP entre dos catálogos que disputan las mismas audiencias, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utilizan los catálogos de Penguin Random House Argentina y de Planeta, que compiten en géneros equivalentes, como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda.
+La propuesta de valor reside en reemplazar una tarea artesanal por un procedimiento sistemático y reproducible, aplicable a cualquier libro del catálogo. La innovación pasa por dos aspectos: el modelo se entrena con la señal de competencia observada en la SERP entre dos catálogos que disputan las mismas audiencias, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utilizan los catálogos de Penguin Random House Argentina y de Planeta, que compiten en géneros equivalentes, como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda.
 
 En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que el flujo parte de tres fuentes de datos: la API de DataForSEO, los datos internos de la editorial y el catálogo de la competencia obtenido mediante \textit{scraping}. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, \textit{keyword}, dirección web y posición histórica. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de palabras clave priorizadas para cada título.
 
@@ -134,7 +134,7 @@ El generador de sinopsis recibe el texto original y esas palabras clave, y produ
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-En la tabla \ref{tag:interesados} se identifican los interesados del proyecto y el rol que ocupa cada uno.
+El proyecto se desarrolla internamente por el equipo de Analítica Avanzada de Penguin Random House Grupo Editorial. En la tabla \ref{tag:interesados} se identifican los interesados del proyecto y el rol que ocupa cada uno.
 
 \begin{table}[ht]
 \caption{Identificación de los interesados.}
@@ -152,7 +152,6 @@ Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Fina
 %\caption{Identificación de los interesados.}
 \end{table}
 
-El proyecto se desarrolla internamente por el equipo de Analítica Avanzada de Penguin Random House Grupo Editorial. A continuación se detallan las características de cada interesado que condicionan la planificación.
 
 \begin{itemize}
 	\item Auspiciante: la editorial aporta las horas de trabajo del responsable, el acceso a los datos internos y el crédito de la API de DataForSEO. Cualquier consumo por encima de lo previsto requiere una autorización expresa, de modo que conviene acotar las consultas al proveedor desde el diseño del conjunto de datos.
