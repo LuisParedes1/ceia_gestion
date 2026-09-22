@@ -226,58 +226,10 @@ El presente proyecto no incluye:
 \end{itemize}
 
 
-\section{6. Requerimientos}
-\label{sec:requerimientos}
-
-Los requerimientos se agrupan por afinidad. Cada uno indica su prioridad: alta, media o baja, y se señala cuando es opcional. Las prioridades altas resultan imprescindibles para cumplir el propósito del proyecto; las medias mejoran el resultado; las bajas y las opcionales se abordan si el tiempo lo permite.
-
-\begin{enumerate}
-	\item Requerimientos funcionales:
-		\begin{enumerate}
-			\item El sistema debe medir la citación de cada título en los cuatro motores generativos definidos, con mediciones repetidas por consulta (prioridad alta).
-			\item El sistema debe consolidar en un único conjunto de datos versionado las señales de citación, los datos de SEO, los datos internos y el catálogo de la competencia (prioridad alta).
-			\item El modelo debe predecir la probabilidad de citación de un título para un grupo de consultas y ordenar las características de contenido según su aporte (prioridad alta).
-			\item El generador debe reescribir la sinopsis e incorporar las características priorizadas, con respeto por el límite de extensión y el tono editorial (prioridad alta).
-			\item El módulo de verificación debe rechazar de forma automática las sinopsis candidatas que no superan los umbrales de fidelidad semántica, extensión y presencia de características (prioridad alta).
-			\item El sistema debe registrar la citación de las sinopsis publicadas durante la ventana del piloto y compararla con la de la competencia (prioridad alta).
-			\item El sistema debería permitir el reentrenamiento del modelo con los datos del piloto (prioridad baja, opcional).
-		\end{enumerate}
-	\item Requerimientos de datos:
-		\begin{enumerate}
-			\item El conjunto de datos debe cubrir los géneros del caso de estudio, con una cantidad mínima de títulos por género acordada con el cliente (prioridad alta).
-			\item Cada registro debe vincular título, consulta, motor, característica de contenido y tasa de citación observada (prioridad alta).
-			\item El conjunto de datos debe estar versionado y ser reproducible (prioridad media).
-		\end{enumerate}
-	\item Requerimientos de calidad y validación:
-		\begin{enumerate}
-			\item Toda mejora que se reporte debe sustentarse en mediciones repetidas, con control de paráfrasis y validación humana de una muestra (prioridad alta).
-			\item El modelo debe alcanzar un umbral mínimo en la métrica de desempeño definida sobre títulos no vistos (prioridad alta).
-			\item La fidelidad semántica de las sinopsis aprobadas debe superar el umbral acordado con el equipo editorial (prioridad alta).
-		\end{enumerate}
-	\item Requerimientos de interoperabilidad:
-		\begin{enumerate}
-			\item El sistema debe integrarse con la API de DataForSEO (prioridad alta).
-			\item El sistema debe integrarse con las API de ChatGPT, Claude y Gemini, y con la fuente de datos de las AI Overviews de Google (prioridad alta).
-			\item El sistema debería exponer los resultados en un formato compatible con las herramientas de la editorial (prioridad baja, opcional).
-		\end{enumerate}
-	\item Requerimientos de documentación:
-		\begin{enumerate}
-			\item Se debe entregar la documentación técnica del sistema y del código (prioridad alta).
-			\item Se debe entregar la memoria del Trabajo Final (prioridad alta).
-		\end{enumerate}
-	\item Requerimientos regulatorios y normativos:
-		\begin{enumerate}
-			\item El uso de los datos internos y del catálogo debe contar con la autorización de la editorial y cumplir la Ley 25.326 de Protección de los Datos Personales (prioridad alta).
-			\item La consulta a los motores generativos y el \textit{scraping} del catálogo de la competencia deben respetar los términos de servicio de cada plataforma (prioridad alta).
-			\item Las sinopsis asistidas por inteligencia artificial deben declararse conforme a la política editorial y respetar la propiedad intelectual del texto original (prioridad alta).
-		\end{enumerate}
-\end{enumerate}
-
-
-\section{7. Historias de usuarios (\textit{Product backlog})}
+\section{6. Product Backlog}
 \label{sec:backlog}
 
-El \textit{product backlog} organiza las historias de usuario en épicas, es decir, grandes bloques funcionales del proyecto. Cada historia sigue el formato: como un determinado rol, se quiere una funcionalidad, para lograr un objetivo. A cada historia se le asigna una ponderación en \textit{story points} y un conjunto de criterios de aceptación que permiten validar su cumplimiento.
+El \textit{product backlog} organiza las historias de usuario en épicas, es decir, grandes bloques funcionales del proyecto. Cada historia sigue el formato: como un determinado rol, se quiere una funcionalidad, para lograr un objetivo. Cada historia indica su prioridad y su ponderación en \textit{story points}. Los criterios de aceptación se detallan en la sección 7.
 
 El criterio para calcular los \textit{story points} pondera tres dimensiones y suma sus pesos:
 
@@ -287,26 +239,47 @@ El criterio para calcular los \textit{story points} pondera tres dimensiones y s
 	\item Incertidumbre, entendida como el riesgo o la novedad: baja vale 2, media vale 3 y alta vale 5.
 \end{itemize}
 
-La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci, esto es 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar, de modo que un valor intermedio se aproxima siempre al número superior.
+La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci, esto es 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar.
 
 \textbf{Épica 1: construcción del conjunto de datos de citación}
 
-\textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta.
+\textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
 
-\textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO, los datos internos y el catálogo de la competencia para disponer de variables predictoras. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
 
-Criterios de aceptación:
+\textbf{Épica 2: predicción de la probabilidad de citación}
+
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad alta (13) e incertidumbre alta (5); la suma es 23 y se redondea a 34.
+
+\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre alta (5); la suma es 13.
+
+\textbf{Épica 3: generación y verificación de sinopsis}
+
+\textbf{HU5.} Como editor, quiero que el sistema reescriba la sinopsis con las características priorizadas para aumentar su probabilidad de citación sin perder fidelidad. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+
+\textbf{HU6.} Como editor, quiero que las sinopsis candidatas se verifiquen de forma automática para revisar solo las que cumplen los criterios. Prioridad media. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre baja (2); la suma es 10 y se redondea a 13.
+
+\textbf{Épica 4: piloto y medición de resultados}
+
+\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a la competencia. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+
+\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media. \textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
+
+\section{7. Criterios de aceptación de historias de usuario}
+\label{sec:criteriosAceptacion}
+
+Cada historia de usuario cuenta con criterios de aceptación medibles y verificables, que definen cuándo la funcionalidad se considera cumplida.
+
+\textbf{Épica 1: construcción del conjunto de datos de citación}
+
+Criterios de aceptación de la HU1:
 \begin{itemize}
 	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con una cantidad mínima de repeticiones por consulta.
 	\item Se registra, para cada respuesta, si el título aparece y si su ficha es citada.
 	\item El conjunto de datos resultante queda versionado y es reproducible.
 \end{itemize}
 
-\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO, los datos internos y el catálogo de la competencia para disponer de variables predictoras. Prioridad alta.
-
-\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU2:
 \begin{itemize}
 	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
 	\item Se integran las señales de DataForSEO, los datos internos y el catálogo de la competencia.
@@ -315,22 +288,14 @@ Criterios de aceptación:
 
 \textbf{Épica 2: predicción de la probabilidad de citación}
 
-\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad alta.
-
-\textit{Story points}: dificultad alta (5), complejidad alta (13) e incertidumbre alta (5); la suma es 23 y se redondea a 34.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU3:
 \begin{itemize}
 	\item Se comparan al menos dos modelos y se selecciona el de mejor desempeño.
 	\item El modelo predice la probabilidad de citación y ordena las características por su aporte.
 	\item El desempeño se mide sobre títulos no vistos con la métrica definida.
 \end{itemize}
 
-\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad alta.
-
-\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre alta (5); la suma es 13 y se mantiene en 13.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU4:
 \begin{itemize}
 	\item La validación usa mediciones repetidas y control de paráfrasis.
 	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
@@ -339,22 +304,14 @@ Criterios de aceptación:
 
 \textbf{Épica 3: generación y verificación de sinopsis}
 
-\textbf{HU5.} Como editor, quiero que el sistema reescriba la sinopsis con las características priorizadas para aumentar su probabilidad de citación sin perder fidelidad. Prioridad alta.
-
-\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU5:
 \begin{itemize}
 	\item La sinopsis generada respeta el límite de extensión y el tono editorial.
 	\item Incorpora las características priorizadas por el modelo.
 	\item Conserva la fidelidad semántica con el texto original por encima del umbral.
 \end{itemize}
 
-\textbf{HU6.} Como editor, quiero que las sinopsis candidatas se verifiquen de forma automática para revisar solo las que cumplen los criterios. Prioridad media.
-
-\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre baja (2); la suma es 10 y se redondea a 13.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU6:
 \begin{itemize}
 	\item Se calculan la similitud semántica, la extensión y la presencia de características.
 	\item Se rechazan de forma automática las candidatas que no superan los umbrales.
@@ -363,297 +320,152 @@ Criterios de aceptación:
 
 \textbf{Épica 4: piloto y medición de resultados}
 
-\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a la competencia. Prioridad alta.
-
-\textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU7:
 \begin{itemize}
 	\item Se mide la citación de las sinopsis publicadas durante la ventana acordada.
 	\item Se compara la participación frente a la competencia.
 	\item Los resultados distinguen la señal del ruido mediante mediciones repetidas.
 \end{itemize}
 
-\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media.
-
-\textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
-
-Criterios de aceptación:
+Criterios de aceptación de la HU8:
 \begin{itemize}
 	\item El informe presenta la mejora de citación con sus intervalos de variabilidad.
 	\item Incluye visualizaciones claras y las limitaciones del análisis.
 	\item Se entrega en un formato que el cliente puede revisar y aprobar.
 \end{itemize}
 
+\section{8. Fases de CRISP-DM}
+\label{sec:crispdm}
 
-\section{8. Entregables principales del proyecto}
-\label{sec:entregables}
+El proyecto adopta la metodología CRISP-DM, adecuada para el ciclo de vida de un proyecto de datos. Sus fases se instancian de la siguiente forma:
 
-Los entregables del proyecto son:
-
-\begin{itemize}
-	\item El conjunto de datos de citación, consolidado y versionado.
-	\item El protocolo de medición reproducible y el conjunto de consultas de descubrimiento.
-	\item El modelo de predicción de la probabilidad de citación, con su documentación.
-	\item El generador de sinopsis basado en un LLM y el módulo de verificación automática.
-	\item El informe del piloto, con el análisis de resultados y su variabilidad.
-	\item El código fuente del sistema, organizado en un repositorio reproducible.
-	\item La documentación técnica del sistema.
-	\item La memoria del Trabajo Final.
-\end{itemize}
-
+\begin{enumerate}
+	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. Las métricas de éxito son la tasa de citación por título y la participación frente a la competencia.
+	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial, el catálogo de la competencia obtenido mediante \textit{scraping} y las mediciones de citación recogidas de los cuatro motores. Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
+	\item Preparación de los datos: consolidación, limpieza y versionado del conjunto, junto con la construcción de las variables predictoras a partir de las características de contenido y de las señales de SEO.
+	\item Modelado: el problema se plantea como la predicción de la probabilidad de citación; se comparan modelos de aprendizaje automático adecuados para datos tabulares.
+	\item Evaluación: el desempeño se mide sobre títulos no vistos con la métrica definida, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
+	\item Despliegue: se ejecuta un piloto acotado con la publicación de las sinopsis aprobadas y el seguimiento de la citación; queda fuera de alcance la puesta en producción.
+\end{enumerate}
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-El desglose del trabajo se organiza según las fases de la metodología CRISP-DM, complementada con las tareas de gestión propias del enfoque PMI y con el cierre documental. Los tiempos se expresan en horas (h) y ninguna tarea supera las 40 h. El total coincide con las 600 h comprometidas en el acta de constitución.
-
-\begin{enumerate}
-	\item Gestión y planificación del proyecto (40 h)
-		\begin{enumerate}
-		\item Planificación del proyecto y acta de constitución (12 h)
-		\item Reuniones de seguimiento y validación con el cliente (16 h)
-		\item Gestión de riesgos y control del avance (12 h)
-		\end{enumerate}
-	\item Comprensión del negocio y estado del arte (40 h)
-		\begin{enumerate}
-		\item Relevamiento del problema y de los objetivos de citación (12 h)
-		\item Revisión del estado del arte de GEO (16 h)
-		\item Definición de las métricas de éxito y del protocolo de medición (12 h)
-		\end{enumerate}
-	\item Comprensión y adquisición de los datos (95 h)
-		\begin{enumerate}
-		\item Diseño del conjunto de consultas de descubrimiento (16 h)
-		\item Integración de la API de DataForSEO (16 h)
-		\item Desarrollo del \textit{scraping} del catálogo de la competencia (20 h)
-		\item Integración de las API de los motores generativos (24 h)
-		\item Incorporación de los datos internos de la editorial (19 h)
-		\end{enumerate}
-	\item Preparación de los datos (90 h)
-		\begin{enumerate}
-		\item Ejecución de la campaña de medición de línea base (32 h)
-		\item Consolidación, limpieza y versionado del conjunto de datos (24 h)
-		\item Análisis exploratorio de los datos (16 h)
-		\item Construcción de las variables predictoras (18 h)
-		\end{enumerate}
-	\item Modelado (90 h)
-		\begin{enumerate}
-		\item Definición de la variable objetivo y partición de los datos (12 h)
-		\item Entrenamiento y comparación de modelos (32 h)
-		\item Optimización de hiperparámetros (20 h)
-		\item Definición de la métrica de priorización de características por libro (14 h)
-		\item Interpretabilidad del modelo (12 h)
-		\end{enumerate}
-	\item Generación y verificación de sinopsis (75 h)
-		\begin{enumerate}
-		\item Diseño de los \textit{prompts} y de las restricciones del generador (16 h)
-		\item Desarrollo del generador basado en un LLM (24 h)
-		\item Desarrollo del módulo de verificación automática (20 h)
-		\item Integración del flujo de generación y verificación (15 h)
-		\end{enumerate}
-	\item Evaluación y piloto (85 h)
-		\begin{enumerate}
-		\item Selección del subconjunto del catálogo y publicación de las sinopsis (16 h)
-		\item Campaña de medición del piloto con mediciones repetidas (32 h)
-		\item Análisis estadístico de los resultados y de su variabilidad (24 h)
-		\item Validación de los resultados con el cliente (13 h)
-		\end{enumerate}
-	\item Documentación y cierre (85 h)
-		\begin{enumerate}
-		\item Documentación del sistema y del código (20 h)
-		\item Redacción de la primera versión de la memoria (32 h)
-		\item Revisión y corrección de la memoria (20 h)
-		\item Preparación de la presentación y de la defensa (13 h)
-		\end{enumerate}
-\end{enumerate}
-
-Cantidad total de horas: 600 h.
-
-
-\section{10. Diagrama de Activity On Node}
-\label{sec:AoN}
-
-\begin{consigna}{red}
-Armar el AoN a partir del WBS definido en la etapa anterior.
-
-Una herramienta simple para desarrollar los diagramas es el Draw.io (\url{https://app.diagrams.net/}).
-\href{https://app.diagrams.net}{Draw.io}
-
-
-\begin{figure}[htpb]
-\centering 
-\includegraphics[width=.8\textwidth]{./Figuras/AoN.png}
-\caption{Diagrama de \textit{Activity on Node}.}
-\label{fig:AoN}
-\end{figure}
-
-Indicar claramente en qué unidades están expresados los tiempos.
-De ser necesario indicar los caminos semi críticos y analizar sus tiempos mediante un cuadro.
-Es recomendable usar colores y un cuadro indicativo describiendo qué representa cada color.
-
-\end{consigna}
-
-\section{11. Diagrama de Gantt}
-\label{sec:gantt}
-
-\begin{consigna}{red}
-Existen muchos programas y recursos \textit{online} para hacer diagramas de Gantt, entre los cuales destacamos:
-
-\begin{itemize}
-\item Planner
-\item GanttProject
-\item Trello + \textit{plugins}. En el siguiente link hay un tutorial oficial: \\ \url{https://blog.trello.com/es/diagrama-de-gantt-de-un-proyecto}
-\item Creately, herramienta online colaborativa. \\\url{https://creately.com/diagram/example/ieb3p3ml/LaTeX}
-\item Se puede hacer en latex con el paquete \textit{pgfgantt}\\ \url{http://ctan.dcc.uchile.cl/graphics/pgf/contrib/pgfgantt/pgfgantt.pdf}
-\end{itemize}
-
-Pegar acá una captura de pantalla del diagrama de Gantt, cuidando que la letra sea suficientemente grande como para ser legible. 
-Si el diagrama queda demasiado ancho, se puede pegar primero la ``tabla'' del Gantt y luego pegar la parte del diagrama de barras del diagrama de Gantt.
-
-Configurar el software para que en la parte de la tabla muestre los códigos del EDT (WBS).\\
-Configurar el software para que al lado de cada barra muestre el nombre de cada tarea.\\
-Revisar que la fecha de finalización coincida con lo indicado en el Acta Constitutiva.
-
-En la figura \ref{fig:gantt}, se muestra un ejemplo de diagrama de gantt realizado con el paquete de \textit{pgfgantt}. 
-En la plantilla pueden ver el código que lo genera y usarlo de base para construir el propio.
-
-Las fechas pueden ser calculadas utilizando alguna de las herramientas antes citadas. Sin embargo, el siguiente ejemplo
-fue elaborado utilizando 
-\href{https://docs.google.com/spreadsheets/d/1fBz8NhSpc4tkkhz3KjJCbh1nR_ltDkfEcZi4tZXduqs}{esta hoja de cálculo}.
-
-Es importante destacar que el ancho del diagrama estará dado por la longitud del texto utilizado para las tareas 
-(Ejemplo: tarea 1, tarea 2, etcétera) y el valor \textit{x unit}. Para mejorar la apariencia del diagrama, es necesario
-ajustar este valor y, quizás, acortar los nombres de las tareas.
-
-\begin{figure}[htpb]
-  \begin{center}
-    \begin{ganttchart}[
-      time slot unit=day,
-      time slot format=isodate,
-      x unit=0.038cm,
-      y unit title=0.7cm,
-      y unit chart=0.6cm,
-      milestone/.append style={xscale=4}
-      ]{2021-03-05}{2021-12-16}
-      \gantttitlecalendar*{2021-03-05}{2021-12-16}{year} \\
-      \gantttitlecalendar*{2021-03-05}{2021-12-16}{month} \\
-      \ganttgroup{Duración Total}{2021-03-05}{2021-12-16} \\
-      %%%%%%%%%%%%%%%%%Organización
-      \ganttgroup{Organización}{2021-03-05}{2021-04-16} \\
-      \ganttbar{Planificación del proyecto}{2021-03-05}{2021-04-15} \\
-      %%%%%%%%%%%%%%%%%Ejecución
-      \ganttgroup{Ejecución}{2021-04-16}{2021-10-21} \\
-      \ganttbar{Tarea 1}{2021-04-16}{2021-04-29} \\
-      \ganttbar{Tarea 2}{2021-04-30}{2021-05-13} \\
-      \ganttbar{Tarea 3}{2021-05-14}{2021-05-27} \\
-      \ganttbar{Tarea 4}{2021-05-28}{2021-07-12} \\
-      \ganttbar{Tarea 5}{2021-07-13}{2021-08-09} \\
-      \ganttbar{Tarea 6}{2021-08-10}{2021-09-23} \\
-      \ganttbar{Tarea 7}{2021-09-24}{2021-09-30} \\
-      \ganttbar{Tarea 8}{2021-10-01}{2021-10-14} \\
-      \ganttbar{Tarea 9}{2021-10-15}{2021-10-21} \\
-      % %%%%%%%%%%%%%%%%%Finalización
-      \ganttgroup{Finalización}{2021-10-22}{2021-12-16} \\
-      \ganttbar{Memoria v1}{2021-10-22}{2021-11-04} \\
-      \ganttbar{Memoria v2}{2021-11-05}{2021-11-18} \\
-      \ganttbar{Memoria final}{2021-11-19}{2021-12-02} \\
-      % La fecha del siguiente milestone es la fecha en que terminamos la memoria
-      \ganttmilestone{Enviar memoria al director}{2021-12-02} \\
-      \ganttbar{Elaborar la presentación}{2021-12-03}{2021-12-16} \\
-      \ganttmilestone{Ensayo de la presentación}{2021-12-16} \\
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{ganttchart}
-  \end{center}
-  \caption{Diagrama de gantt de ejemplo}
-  \label{fig:gantt}
-\end{figure}
-
-
-\begin{landscape}
-\begin{figure}[htpb]
-\centering 
-\includegraphics[height=.85\textheight]{./Figuras/Gantt-2.png}
-\caption{Ejemplo de diagrama de Gantt (apaisado).} %Modificar este título acorde.
-\label{fig:diagGantt}
-\end{figure}
-
-\end{landscape}
-
-\end{consigna}
-
-
-\section{12. Presupuesto detallado del proyecto}
-\label{sec:presupuesto}
-
-\begin{consigna}{red}
-Si el proyecto es complejo entonces separarlo en partes:
-\begin{itemize}
-	\item Un total global, indicando el subtotal acumulado por cada una de las áreas.
-	\item El desglose detallado del subtotal de cada una de las áreas.
-\end{itemize}
-
-IMPORTANTE: No olvidarse de considerar los COSTOS INDIRECTOS.
-
-Incluir la aclaración de si se emplea como moneda el peso argentino (ARS) o si se usa moneda extranjera (USD, EUR, etc). Si es en moneda extranjera se debe indicar la tasa de conversión respecto a la moneda local en una fecha dada.
-
-\end{consigna}
+A partir de cada historia de usuario se descompone el trabajo en tareas técnicas concretas, con una estimación de entre 2 h y 8 h y una prioridad relativa. El desglose se concentra en las funcionalidades clave y sirve de base para la planificación de los sprints.
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|X|c|r|r|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|X|c|c|@{}}
 \hline
-\rowcolor[HTML]{C0C0C0} 
-\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS DIRECTOS} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
-Descripción &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
- &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} &
-  \multicolumn{1}{c|}{} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
-\multicolumn{4}{|c|}{\cellcolor[HTML]{C0C0C0}COSTOS INDIRECTOS} \\ \hline
-\rowcolor[HTML]{C0C0C0} 
-Descripción &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Cantidad} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor unitario} &
-  \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Valor total} \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{1}{|l|}{} &
-   &
-   &
-   \\ \hline
-\multicolumn{3}{|c|}{SUBTOTAL} &
-  \multicolumn{1}{c|}{} \\ \hline
 \rowcolor[HTML]{C0C0C0}
-\multicolumn{3}{|c|}{TOTAL} &
-   \\ \hline
-\end{tabularx}%
+Historia & Tarea técnica & Estimación & Prioridad \\ \hline
+HU1 & Definir el conjunto de consultas y el protocolo de repeticiones & 6 h & Alta \\ \hline
+HU1 & Automatizar la consulta a los cuatro motores y el registro de citación & 8 h & Alta \\ \hline
+HU2 & Integrar la API de DataForSEO y los datos internos & 6 h & Alta \\ \hline
+HU2 & Desarrollar el \textit{scraping} del catálogo de la competencia y consolidar & 8 h & Media \\ \hline
+HU3 & Construir las variables predictoras & 8 h & Alta \\ \hline
+HU3 & Entrenar y comparar modelos de predicción de citación & 8 h & Alta \\ \hline
+HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
+HU4 & Analizar la variabilidad y validar una muestra con criterio humano & 5 h & Media \\ \hline
+HU5 & Diseñar los \textit{prompts} y las restricciones del generador & 5 h & Alta \\ \hline
+HU5 & Desarrollar el generador de sinopsis basado en un LLM & 8 h & Alta \\ \hline
+HU6 & Implementar el cálculo de similitud, extensión y presencia & 6 h & Alta \\ \hline
+HU6 & Integrar el rechazo automático y el pase a revisión editorial & 4 h & Media \\ \hline
+HU7 & Publicar las sinopsis del subconjunto y configurar el seguimiento & 6 h & Alta \\ \hline
+HU7 & Ejecutar la campaña de medición del piloto con repeticiones & 8 h & Alta \\ \hline
+HU8 & Analizar los resultados y calcular los intervalos de variabilidad & 6 h & Media \\ \hline
+HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \hline
+\end{tabularx}
 \end{table}
 
+\section{10. Planificación de Sprints}
+\label{sec:sprints}
+
+Las tareas se organizan en doce sprints de dos semanas que distribuyen las 600 h del proyecto. Cada sprint agrupa las tareas de una historia o de una fase, e incluye las actividades no técnicas de planificación, redacción y defensa. Como referencia flexible, se toma la equivalencia de un \textit{story point} igual a dos horas.
+
+\begin{table}[htpb]
+\centering
+\begin{tabularx}{\linewidth}{@{}|c|l|X|c|l|c|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0}
+Sprint & Fase o HU & Foco & Horas & Responsable & \% \\ \hline
+0 & Planificación & Alcance, cronograma y reuniones con el cliente & 30 h & Alumno & 100 \\ \hline
+1 & Negocio y datos & Estado del arte, métricas y protocolo de medición & 50 h & Alumno & 0 \\ \hline
+2 & HU1 & Conjunto de datos de citación & 50 h & Alumno & 0 \\ \hline
+3 & HU2 & Consolidación de fuentes y \textit{scraping} & 50 h & Alumno & 0 \\ \hline
+4 & HU3 & Variables y modelo de predicción de citación & 55 h & Alumno & 0 \\ \hline
+5 & HU4 & Validación con mediciones repetidas & 45 h & Alumno & 0 \\ \hline
+6 & HU5 & Generador de sinopsis & 50 h & Alumno & 0 \\ \hline
+7 & HU6 & Verificación automática & 45 h & Alumno & 0 \\ \hline
+8 & HU7 & Piloto: publicación y medición & 55 h & Alumno & 0 \\ \hline
+9 & HU8 & Análisis de resultados e informe & 50 h & Alumno & 0 \\ \hline
+10 & Escritura & Redacción de la memoria & 70 h & Alumno & 0 \\ \hline
+11 & Cierre & Revisión de la memoria y preparación de la defensa & 50 h & Alumno & 0 \\ \hline
+\multicolumn{3}{|r|}{Total} & 600 h & & \\ \hline
+\end{tabularx}
+\end{table}
+
+En cuanto al presupuesto, el costo variable dominante es el consumo de las API de los motores generativos y de DataForSEO, proporcional a la cantidad de mediciones repetidas. Por ese motivo, la campaña de medición se acota mediante un conjunto fijo de consultas y una cantidad controlada de repeticiones, y su costo se revisa al cierre de cada sprint del piloto.
+
+\section{11. Diagrama de Gantt (sprints)}
+\label{sec:gantt}
+
+Visualizar en un diagrama de Gantt la planificación temporal del proyecto, tomando como base los sprints definidos en la sección anterior. Debe contemplar todas las horas del proyecto.
+
+Consigna:
+
+\begin{itemize}
+
+\item Elaborar un diagrama de Gantt que muestre la secuencia temporal de los sprints.
+
+\item Cada fila debe representar un sprint (con su número o nombre), y el eje horizontal debe indicar el tiempo (en semanas o fechas concretas).
+
+\item Las tareas técnicas derivadas de HU deben diferenciarse visualmente (por ejemplo, con un color distinto) de las tareas no técnicas (planificación, redacción, defensa).
+
+\item Incluir todas las tareas estimadas en cada sprint.
+\end{itemize}
+
+Recomendaciones para el Gantt:
+
+\begin{itemize}
+
+	\item Podés usar herramientas gratuitas como TeamGantt, ClickUp, GanttProject, [Google Sheets], [Trello + Planyway], entre otras.
+	\item Ordená los sprints de forma cronológica, comenzando con Sprint 0 (planificación) y finalizando con el sprint de defensa.
+	\item Asegurate de reflejar la duración realista de cada sprint según tu disponibilidad y el cronograma general del posgrado.
+	\item Incluí hitos importantes: reuniones, entregas parciales, defensa.
+\end{itemize}
+
+
+Incluir una imagen legible del diagrama de Gantt. Si es muy ancho, presentar primero la tabla y luego el gráfico de barras.
+
+
+
+\section{12. Gobernanza de datos}
+\label{sec:gobernanza}
+
+Esta sección analiza el marco normativo y ético del uso de los datos y del desarrollo de la solución basada en inteligencia artificial. El análisis se divide en el cumplimiento normativo y la ética en el uso de la inteligencia artificial.
+
+\subsection{Cumplimiento normativo}
+
+Los datos del proyecto son mayormente corporativos, licenciados o públicos, y no incluyen datos personales sensibles. Aun así, se contemplan las siguientes condiciones:
+
+\begin{itemize}
+	\item Los datos internos y el catálogo se utilizan con la autorización de la editorial y con fines académicos, conforme a la Ley 25.326 de Protección de los Datos Personales.
+	\item El acceso a la API de DataForSEO y a las API de los motores generativos se rige por sus licencias y términos de servicio, que se respetan en el volumen y en el uso de las consultas.
+	\item El \textit{scraping} del catálogo de la competencia se limita a la información pública y respeta los términos de servicio del sitio.
+	\item La propiedad intelectual del texto original de las sinopsis pertenece a la editorial y a los autores; las versiones generadas se someten a revisión editorial antes de su publicación.
+\end{itemize}
+
+\subsection{Ética en el uso de inteligencia artificial}
+
+El proyecto contempla los riesgos éticos del uso de datos y modelos:
+
+\begin{itemize}
+	\item Sesgos: el modelo puede favorecer a los títulos más populares y reforzar la ventaja de las marcas de mayor tamaño, o introducir sesgos de género o de temática en las sinopsis.
+	\item Riesgos de impacto: la optimización puede homogeneizar las sinopsis, diluir la voz editorial o generar textos poco fieles al contenido del libro.
+	\item Mitigación: la revisión editorial humana es obligatoria antes de publicar, la verificación automática controla la fidelidad, y se mantiene la trazabilidad del origen y de las transformaciones de los datos.
+	\item Reflexión: se prioriza la transparencia, con la declaración del uso de inteligencia artificial, y la equidad en el tratamiento de los títulos del catálogo.
+\end{itemize}
 
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
@@ -725,46 +537,93 @@ Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de
 
 \end{consigna}
 
+\section{14. Sprint Review}
+\label{sec:sprint_review}
 
-\section{14. Gestión de la calidad}
-\label{sec:calidad}
+La revisión de sprint (\emph{Sprint Review}) es una práctica fundamental en metodologías ágiles. Consiste en revisar y evaluar lo que se ha completado al finalizar un sprint. En esta instancia, se presentan los avances y se verifica si las funcionalidades cumplen con los criterios de aceptación establecidos. También se identifican entregables parciales y se consideran ajustes si es necesario.
 
-\begin{consigna}{red}
-Elija al menos diez requerimientos que a su criterio sean los más importantes/críticos/que aportan más valor y para cada uno de ellos indique las acciones de verificación y validación que permitan asegurar su cumplimiento.
+Aunque el proyecto aún se encuentre en etapa de planificación, esta sección permite proyectar cómo se evaluarán las funcionalidades más importantes del backlog. Esta mirada anticipada favorece la planificación enfocada en valor y permite reflexionar sobre posibles obstáculos.
 
-\begin{itemize} 
-\item Req \#1: copiar acá el requerimiento con su correspondiente número.
+\textbf{Objetivo:} anticipar cómo se evaluará el avance del proyecto a medida que se desarrollen las funcionalidades, utilizando como base al menos cuatro historias de usuario del \emph{Product Backlog}.
+
+
+Seleccionar al menos 4 HU del Product Backlog. Para cada una, completar la siguiente tabla de revisión proyectada:
+
+\textbf{Formato sugerido:}
+\begin{table}[htpb]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\raggedright\arraybackslash}m{2.4cm}|
+                >{\raggedright\arraybackslash}m{2.3cm}|
+                >{\raggedright\arraybackslash}m{3cm}|
+                >{\raggedright\arraybackslash}m{3cm}|
+                >{\raggedright\arraybackslash}m{3cm}|}
+\hline
+\rowcolor[HTML]{CCCCCC}
+\textbf{HU seleccionada} & \textbf{Tareas asociadas} & \textbf{Entregable esperado} & \textbf{¿Cómo sabrás que está cumplida?} & \textbf{Observaciones o riesgos} \\
+\hline
+                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
+\multirow{-2}{=}{HU1}    & Tarea 2 & \multirow{-2}{=}{Módulo funcional} & \multirow{-2}{=}{Cumple criterios de aceptación definidos} & \multirow{-2}{=}{Falta validar con el tutor} \\
+\hline
+                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
+\multirow{-2}{=}{HU3}    & Tarea 2 & \multirow{-2}{=}{Reporte generado} & \multirow{-2}{=}{Exportación disponible y clara} & \multirow{-2}{=}{Requiere datos reales} \\
+\hline
+                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
+\multirow{-2}{=}{HU5}    & Tarea 2 & \multirow{-2}{=}{Panel de gestión} & \multirow{-2}{=}{Roles diferenciados operativos} & \multirow{-2}{=}{Riesgo en integración} \\
+\hline
+                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
+\multirow{-2}{=}{HU7}    & Tarea 2 & \multirow{-2}{=}{Informe trimestral} & \multirow{-2}{=}{PDF con gráficos y evolución} & \multirow{-2}{=}{Puede faltar tiempo para ajustes} \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{15. Sprint Retrospective}    
+\label{sec:sprint_retro}
+
+La retrospectiva de sprint es una práctica orientada a la mejora continua. Al finalizar un sprint, el equipo (o el alumno, si trabaja de forma individual) reflexiona sobre lo que funcionó bien, lo que puede mejorarse y qué acciones concretas pueden implementarse para trabajar mejor en el futuro.
+
+Durante la cursada se propuso el uso de la \textbf{Estrella de la Retrospectiva}, que organiza la reflexión en torno a cinco ejes:
 
 \begin{itemize}
-	\item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente. Detallar.
-	\item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido. Detallar. 
+\item  ¿Qué hacer más?
+\item  ¿Qué hacer menos?
+\item  ¿Qué mantener?
+\item  ¿Qué empezar a hacer?
+\item  ¿Qué dejar de hacer?
 \end{itemize}
 
-\end{itemize}
+Aun en una etapa temprana, esta herramienta permite que el alumno planifique su forma de trabajar, identifique anticipadamente posibles dificultades y diseñe estrategias de organización personal.
 
-Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, mediciones, etc.  
+\textbf{Objetivo:} reflexionar sobre las condiciones iniciales del proyecto, identificando fortalezas, posibles dificultades y estrategias de mejora, incluso antes del inicio del desarrollo.
 
-Las acciones de verificación suelen considerar al entregable como ``caja blanca'', es decir se conoce en profundidad su funcionamiento interno.  
 
-En cambio, las acciones de validación suelen considerar al entregable como ``caja negra'', es decir, que no se conocen los detalles de su funcionamiento interno.
+Completar la siguiente tabla tomando como referencia los cinco ejes de la Estrella de la Retrospectiva (\emph{Starfish} o estrella de mar). Esta instancia te ayudará a definir buenas prácticas desde el inicio y prepararte para enfrentar el trabajo de forma organizada y flexible. Se deberá completar la tabla al menos para 3 sprints técnicos y 1 no técnico.
 
-\end{consigna}
+\textbf{Formato sugerido:}
 
-\section{15. Procesos de cierre}    
-\label{sec:cierre}
+\begin{table}[htpb]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{1.8cm}|
+                >{\raggedright\arraybackslash}p{2.3cm}|
+                >{\raggedright\arraybackslash}p{2.3cm}|
+                >{\raggedright\arraybackslash}p{2.3cm}|
+                >{\raggedright\arraybackslash}p{2.3cm}|
+                >{\raggedright\arraybackslash}p{2.3cm}|}
+\hline
+\rowcolor[HTML]{CCCCCC} 
+\textbf{Sprint tipo y N°} & \textbf{¿Qué hacer más?} & \textbf{¿Qué hacer menos?} & \textbf{¿Qué mantener?} & \textbf{¿Qué empezar a hacer?} & \textbf{¿Qué dejar de hacer?} \\
+\hline
+Sprint técnico - 1 & Validaciones continuas con el alumno & Cambios sin versión registrada & Pruebas con datos simulados & Documentar cambios propuestos & Ajustes sin análisis de impacto \\
+\hline
+Sprint técnico - 2 & Verificar configuraciones en múltiples escenarios & Modificar parámetros sin guardar historial & Perfiles reutilizables & Usar logs para configuración & Repetir pruebas manuales innecesarias \\
+\hline
+Sprint técnico - 8 & Comparar correlaciones con casos previos & Cambiar parámetros sin justificar & Revisión cruzada de métricas & Anotar configuraciones usadas & Trabajar sin respaldo de datos \\
+\hline
+Sprint no técnico - 12 (por ej.: ``Defensa'') & Ensayos orales con feedback & Cambiar contenidos en la memoria & Material visual claro & Dividir la presentación por bloques & Agregar gráficos difíciles de explicar \\
+\hline
+\end{tabular}
+\end{table}
 
-\begin{consigna}{red}
-Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
 
-\begin{itemize}
-	\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:\\
-	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar. 
-	\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, los problemas que surgieron y cómo se solucionaron:\\
-	 - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
-	\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:\\
-	  - Indicar esto y quién financiará los gastos correspondientes.
-\end{itemize}
 
-\end{consigna}
 
 \end{document}
