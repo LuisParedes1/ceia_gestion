@@ -274,3 +274,7 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Claude
+CLAUDE.md
+Claude outputs/*

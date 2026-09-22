@@ -1,0 +1,82 @@
+\documentclass[border=8pt,multi,tikz,12pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc}
+
+% Paleta pastel: una familia de color por etapa
+\definecolor{datosFill}{RGB}{207,226,243}
+\definecolor{datosLine}{RGB}{ 88,140,190}
+\definecolor{modeloFill}{RGB}{217,234,211}
+\definecolor{modeloLine}{RGB}{ 96,158,73}
+\definecolor{genFill}{RGB}{252,229,205}
+\definecolor{genLine}{RGB}{214,133,45}
+\definecolor{valFill}{RGB}{228,220,242}
+\definecolor{valLine}{RGB}{125,105,180}
+\definecolor{grupoLine}{RGB}{150,150,150}
+\definecolor{grupoText}{RGB}{ 90, 90, 90}
+
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\large,
+  node distance=9mm and 18mm,
+  bloque/.style={
+    draw, rounded corners=2pt, line width=1pt,
+    text width=48mm, minimum height=16mm,
+    align=center, inner sep=3mm},
+  datos/.style ={bloque, fill=datosFill,  draw=datosLine},
+  modelo/.style={bloque, fill=modeloFill, draw=modeloLine},
+  gen/.style   ={bloque, fill=genFill,    draw=genLine},
+  val/.style   ={bloque, fill=valFill,    draw=valLine},
+  flecha/.style={-{Stealth[length=3.5mm,width=2.5mm]}, line width=1pt, draw=gray!70!black},
+  grupo/.style={draw=grupoLine, dashed, line width=0.8pt, rounded corners=4pt, inner sep=6mm},
+  etiqueta/.style={font=\sffamily\Large\bfseries, text=grupoText}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Columna 1: fuentes de datos
+\node[datos] (api)   {API de DataForSEO};
+\node[datos, below=of api]  (internos) {Datos internos\\de la editorial};
+\node[datos, below=of internos] (comp)  {Catálogo de la\\competencia};
+\node[datos, below=of comp] (citas) {Mediciones de\\citación en motores\\generativos};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Columna 2: datos y modelo
+\node[modelo, right=26mm of comp] (ingesta) {Ingesta y\\consolidación};
+\node[modelo, below=of ingesta] (modelo) {Modelo de predicción\\de la citación};
+\node[modelo, below=of modelo]  (kw)     {Características\\priorizadas por libro};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Columna 3: generación y validación
+\node[gen, right=26mm of ingesta] (sinopsis) {Sinopsis original\\del catálogo};
+\node[gen, below=of sinopsis] (generador) {Generador de\\sinopsis (LLM)};
+\node[val, below=of generador] (verif) {Verificación y\\revisión editorial};
+\node[val, below=of verif] (piloto) {Piloto: publicación\\y seguimiento de citación};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conexiones
+\draw[flecha] (api.east)      -- ++(7mm,0) |- (ingesta.west);
+\draw[flecha] (internos.east) -- ++(7mm,0) |- (ingesta.west);
+\draw[flecha] (comp.east)     -- ++(7mm,0) |- (ingesta.west);
+\draw[flecha] (citas.east)    -- ++(7mm,0) |- (ingesta.west);
+
+\draw[flecha] (ingesta) -- (modelo);
+\draw[flecha] (modelo)  -- (kw);
+
+\draw[flecha] (kw.east) -- ++(13mm,0) |- (generador.west);
+\draw[flecha] (sinopsis)  -- (generador);
+\draw[flecha] (generador) -- (verif);
+\draw[flecha] (verif)     -- (piloto);
+
+% Realimentación: el seguimiento de citación habilita un nuevo entrenamiento
+\draw[flecha, densely dashed]
+  (piloto.south) -- ++(0,-14mm)
+  -| node[pos=0.28, above, font=\sffamily\normalsize, text=gray!55!black] {realimentación}
+  ($(modelo.west)+(-13mm,0)$) -- (modelo.west);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Agrupamientos por etapa
+\begin{scope}[on background layer]
+  \node[grupo, fit=(api)(citas), label={[etiqueta]above:Fuentes de datos}] {};
+  \node[grupo, fit=(ingesta)(kw), label={[etiqueta]above:Datos y modelo}] {};
+  \node[grupo, fit=(sinopsis)(piloto), label={[etiqueta]above:Generación y validación}] {};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
