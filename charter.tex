@@ -63,6 +63,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Se completa hasta el punto 5 inclusive                & 07 de septiembre de 2026 \\ \hline
 2      & Se adapta el proyecto de SEO a GEO segun nuevos requisitos. Se actualiza hasta el punto 5 inclusive & 22 de septiembre de 2026 \\ \hline
+3      & Se completan los puntos 6 a 9 inclusive & 22 de septiembre de 2026 \\ \hline
 %2      & Se completa hasta el punto 9 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -233,110 +234,246 @@ Para el desarrollo del presente proyecto se supone que:
 \section{6. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-Los requerimientos deben enumerarse y de ser posible estar agrupados por afinidad, por ejemplo:
+Los requerimientos se agrupan por afinidad. Cada uno indica su prioridad: alta, media o baja, y se señala cuando es opcional. Las prioridades altas resultan imprescindibles para cumplir el propósito del proyecto; las medias mejoran el resultado; las bajas y las opcionales se abordan si el tiempo lo permite.
 
 \begin{enumerate}
 	\item Requerimientos funcionales:
 		\begin{enumerate}
-			\item El sistema debe...
-			\item Tal componente debe...
-			\item El usuario debe poder...
+			\item El sistema debe medir la citación de cada título en los cuatro motores generativos definidos, con mediciones repetidas por consulta (prioridad alta).
+			\item El sistema debe consolidar en un único conjunto de datos versionado las señales de citación, los datos de SEO, los datos internos y el catálogo de la competencia (prioridad alta).
+			\item El modelo debe predecir la probabilidad de citación de un título para un grupo de consultas y ordenar las características de contenido según su aporte (prioridad alta).
+			\item El generador debe reescribir la sinopsis e incorporar las características priorizadas, con respeto por el límite de extensión y el tono editorial (prioridad alta).
+			\item El módulo de verificación debe rechazar de forma automática las sinopsis candidatas que no superan los umbrales de fidelidad semántica, extensión y presencia de características (prioridad alta).
+			\item El sistema debe registrar la citación de las sinopsis publicadas durante la ventana del piloto y compararla con la de la competencia (prioridad alta).
+			\item El sistema debería permitir el reentrenamiento del modelo con los datos del piloto (prioridad baja, opcional).
+		\end{enumerate}
+	\item Requerimientos de datos:
+		\begin{enumerate}
+			\item El conjunto de datos debe cubrir los géneros del caso de estudio, con una cantidad mínima de títulos por género acordada con el cliente (prioridad alta).
+			\item Cada registro debe vincular título, consulta, motor, característica de contenido y tasa de citación observada (prioridad alta).
+			\item El conjunto de datos debe estar versionado y ser reproducible (prioridad media).
+		\end{enumerate}
+	\item Requerimientos de calidad y validación:
+		\begin{enumerate}
+			\item Toda mejora que se reporte debe sustentarse en mediciones repetidas, con control de paráfrasis y validación humana de una muestra (prioridad alta).
+			\item El modelo debe alcanzar un umbral mínimo en la métrica de desempeño definida sobre títulos no vistos (prioridad alta).
+			\item La fidelidad semántica de las sinopsis aprobadas debe superar el umbral acordado con el equipo editorial (prioridad alta).
+		\end{enumerate}
+	\item Requerimientos de interoperabilidad:
+		\begin{enumerate}
+			\item El sistema debe integrarse con la API de DataForSEO (prioridad alta).
+			\item El sistema debe integrarse con las API de ChatGPT, Claude y Gemini, y con la fuente de datos de las AI Overviews de Google (prioridad alta).
+			\item El sistema debería exponer los resultados en un formato compatible con las herramientas de la editorial (prioridad baja, opcional).
 		\end{enumerate}
 	\item Requerimientos de documentación:
 		\begin{enumerate}
-			\item Requerimiento 1.
-			\item Requerimiento 2 (prioridad menor)
+			\item Se debe entregar la documentación técnica del sistema y del código (prioridad alta).
+			\item Se debe entregar la memoria del Trabajo Final (prioridad alta).
 		\end{enumerate}
-	\item Requerimiento de testing...
-	\item Requerimientos de la interfaz...
-	\item Requerimientos interoperabilidad...
-	\item etc...
+	\item Requerimientos regulatorios y normativos:
+		\begin{enumerate}
+			\item El uso de los datos internos y del catálogo debe contar con la autorización de la editorial y cumplir la Ley 25.326 de Protección de los Datos Personales (prioridad alta).
+			\item La consulta a los motores generativos y el \textit{scraping} del catálogo de la competencia deben respetar los términos de servicio de cada plataforma (prioridad alta).
+			\item Las sinopsis asistidas por inteligencia artificial deben declararse conforme a la política editorial y respetar la propiedad intelectual del texto original (prioridad alta).
+		\end{enumerate}
 \end{enumerate}
 
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
-
-Indicar claramente cuál es la prioridad entre los distintos requerimientos y si hay requerimientos opcionales. 
-
-\textbf{¡¡¡No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!}
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-	\item Ser breve y conciso (nadie lee cosas largas). 
-	\item Ser específico: no dejar lugar a confusiones.
-	\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-Descripción: en esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+El \textit{product backlog} organiza las historias de usuario en épicas, es decir, grandes bloques funcionales del proyecto. Cada historia sigue el formato: como un determinado rol, se quiere una funcionalidad, para lograr un objetivo. A cada historia se le asigna una ponderación en \textit{story points} y un conjunto de criterios de aceptación que permiten validar su cumplimiento.
 
-Se debe indicar explícitamente el criterio para calcular los \textit{story points} de cada historia.
+El criterio para calcular los \textit{story points} pondera tres dimensiones y suma sus pesos:
 
-El formato propuesto es: 
-\begin{enumerate}
-\item ``Como [rol] quiero [tal cosa] para [tal otra cosa]."
+\begin{itemize}
+	\item Dificultad, entendida como la cantidad de trabajo: baja vale 1, media vale 3 y alta vale 5.
+	\item Complejidad, entendida como el nivel técnico: baja vale 1, media vale 5 y alta vale 13.
+	\item Incertidumbre, entendida como el riesgo o la novedad: baja vale 2, media vale 3 y alta vale 5.
+\end{itemize}
 
-\textit{Story points}: 8 (complejidad: 3, dificultad: 2, incertidumbre: 3)
-\end{enumerate}
-\end{consigna}
+La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci, esto es 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar, de modo que un valor intermedio se aproxima siempre al número superior.
+
+\textbf{Épica 1: construcción del conjunto de datos de citación}
+
+\textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta.
+
+\textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con una cantidad mínima de repeticiones por consulta.
+	\item Se registra, para cada respuesta, si el título aparece y si su ficha es citada.
+	\item El conjunto de datos resultante queda versionado y es reproducible.
+\end{itemize}
+
+\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO, los datos internos y el catálogo de la competencia para disponer de variables predictoras. Prioridad alta.
+
+\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
+	\item Se integran las señales de DataForSEO, los datos internos y el catálogo de la competencia.
+	\item Se documentan el origen y las transformaciones de cada variable.
+\end{itemize}
+
+\textbf{Épica 2: predicción de la probabilidad de citación}
+
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad alta.
+
+\textit{Story points}: dificultad alta (5), complejidad alta (13) e incertidumbre alta (5); la suma es 23 y se redondea a 34.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item Se comparan al menos dos modelos y se selecciona el de mejor desempeño.
+	\item El modelo predice la probabilidad de citación y ordena las características por su aporte.
+	\item El desempeño se mide sobre títulos no vistos con la métrica definida.
+\end{itemize}
+
+\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad alta.
+
+\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre alta (5); la suma es 13 y se mantiene en 13.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item La validación usa mediciones repetidas y control de paráfrasis.
+	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
+	\item Las conclusiones incluyen la validación humana de una muestra.
+\end{itemize}
+
+\textbf{Épica 3: generación y verificación de sinopsis}
+
+\textbf{HU5.} Como editor, quiero que el sistema reescriba la sinopsis con las características priorizadas para aumentar su probabilidad de citación sin perder fidelidad. Prioridad alta.
+
+\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item La sinopsis generada respeta el límite de extensión y el tono editorial.
+	\item Incorpora las características priorizadas por el modelo.
+	\item Conserva la fidelidad semántica con el texto original por encima del umbral.
+\end{itemize}
+
+\textbf{HU6.} Como editor, quiero que las sinopsis candidatas se verifiquen de forma automática para revisar solo las que cumplen los criterios. Prioridad media.
+
+\textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre baja (2); la suma es 10 y se redondea a 13.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item Se calculan la similitud semántica, la extensión y la presencia de características.
+	\item Se rechazan de forma automática las candidatas que no superan los umbrales.
+	\item Solo las candidatas aprobadas pasan a la revisión editorial.
+\end{itemize}
+
+\textbf{Épica 4: piloto y medición de resultados}
+
+\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a la competencia. Prioridad alta.
+
+\textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item Se mide la citación de las sinopsis publicadas durante la ventana acordada.
+	\item Se compara la participación frente a la competencia.
+	\item Los resultados distinguen la señal del ruido mediante mediciones repetidas.
+\end{itemize}
+
+\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media.
+
+\textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
+
+Criterios de aceptación:
+\begin{itemize}
+	\item El informe presenta la mejora de citación con sus intervalos de variabilidad.
+	\item Incluye visualizaciones claras y las limitaciones del análisis.
+	\item Se entrega en un formato que el cliente puede revisar y aprobar.
+\end{itemize}
+
 
 \section{8. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
-Los entregables del proyecto son (ejemplo):
+Los entregables del proyecto son:
 
 \begin{itemize}
-	\item Manual de usuario.
-	\item Diagrama de circuitos esquemáticos.
-	\item Código fuente del firmware.
-	\item Diagrama de instalación.
-	\item Memoria del trabajo final.
-	\item etc...
+	\item El conjunto de datos de citación, consolidado y versionado.
+	\item El protocolo de medición reproducible y el conjunto de consultas de descubrimiento.
+	\item El modelo de predicción de la probabilidad de citación, con su documentación.
+	\item El generador de sinopsis basado en un LLM y el módulo de verificación automática.
+	\item El informe del piloto, con el análisis de resultados y su variabilidad.
+	\item El código fuente del sistema, organizado en un repositorio reproducible.
+	\item La documentación técnica del sistema.
+	\item La memoria del Trabajo Final.
 \end{itemize}
-\end{consigna}
+
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
-El WBS debe tener relación directa o indirecta con los requerimientos.  Son todas las actividades que se harán en el proyecto para dar cumplimiento a los requerimientos. Se recomienda mostrar el WBS mediante una lista indexada:
+El desglose del trabajo se organiza según las fases de la metodología CRISP-DM, complementada con las tareas de gestión propias del enfoque PMI y con el cierre documental. Los tiempos se expresan en horas (h) y ninguna tarea supera las 40 h. El total coincide con las 600 h comprometidas en el acta de constitución.
 
 \begin{enumerate}
-\item Grupo de tareas 1 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\end{enumerate}
-\item Grupo de tareas 2 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\end{enumerate}
-\item Grupo de tareas 3 (suma h)
-	\begin{enumerate}
-	\item Tarea 1 (tantas h)
-	\item Tarea 2 (tantas h)
-	\item Tarea 3 (tantas h)
-	\item Tarea 4 (tantas h)
-	\item Tarea 5 (tantas h)
-	\end{enumerate}
+	\item Gestión y planificación del proyecto (40 h)
+		\begin{enumerate}
+		\item Planificación del proyecto y acta de constitución (12 h)
+		\item Reuniones de seguimiento y validación con el cliente (16 h)
+		\item Gestión de riesgos y control del avance (12 h)
+		\end{enumerate}
+	\item Comprensión del negocio y estado del arte (40 h)
+		\begin{enumerate}
+		\item Relevamiento del problema y de los objetivos de citación (12 h)
+		\item Revisión del estado del arte de GEO (16 h)
+		\item Definición de las métricas de éxito y del protocolo de medición (12 h)
+		\end{enumerate}
+	\item Comprensión y adquisición de los datos (95 h)
+		\begin{enumerate}
+		\item Diseño del conjunto de consultas de descubrimiento (16 h)
+		\item Integración de la API de DataForSEO (16 h)
+		\item Desarrollo del \textit{scraping} del catálogo de la competencia (20 h)
+		\item Integración de las API de los motores generativos (24 h)
+		\item Incorporación de los datos internos de la editorial (19 h)
+		\end{enumerate}
+	\item Preparación de los datos (90 h)
+		\begin{enumerate}
+		\item Ejecución de la campaña de medición de línea base (32 h)
+		\item Consolidación, limpieza y versionado del conjunto de datos (24 h)
+		\item Análisis exploratorio de los datos (16 h)
+		\item Construcción de las variables predictoras (18 h)
+		\end{enumerate}
+	\item Modelado (90 h)
+		\begin{enumerate}
+		\item Definición de la variable objetivo y partición de los datos (12 h)
+		\item Entrenamiento y comparación de modelos (32 h)
+		\item Optimización de hiperparámetros (20 h)
+		\item Definición de la métrica de priorización de características por libro (14 h)
+		\item Interpretabilidad del modelo (12 h)
+		\end{enumerate}
+	\item Generación y verificación de sinopsis (75 h)
+		\begin{enumerate}
+		\item Diseño de los \textit{prompts} y de las restricciones del generador (16 h)
+		\item Desarrollo del generador basado en un LLM (24 h)
+		\item Desarrollo del módulo de verificación automática (20 h)
+		\item Integración del flujo de generación y verificación (15 h)
+		\end{enumerate}
+	\item Evaluación y piloto (85 h)
+		\begin{enumerate}
+		\item Selección del subconjunto del catálogo y publicación de las sinopsis (16 h)
+		\item Campaña de medición del piloto con mediciones repetidas (32 h)
+		\item Análisis estadístico de los resultados y de su variabilidad (24 h)
+		\item Validación de los resultados con el cliente (13 h)
+		\end{enumerate}
+	\item Documentación y cierre (85 h)
+		\begin{enumerate}
+		\item Documentación del sistema y del código (20 h)
+		\item Redacción de la primera versión de la memoria (32 h)
+		\item Revisión y corrección de la memoria (20 h)
+		\item Preparación de la presentación y de la defensa (13 h)
+		\end{enumerate}
 \end{enumerate}
 
-Cantidad total de horas: tantas.
+Cantidad total de horas: 600 h.
 
-\textbf{¡Importante!:} la unidad de horas es h y va separada por espacio del número. Es incorrecto escribir ``23hs".
-
-\textbf{Se recomienda que no haya ninguna tarea que lleve más de 40 h.} De ser así se recomienda dividirla en tareas de menor duración.
-
-\end{consigna}
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
