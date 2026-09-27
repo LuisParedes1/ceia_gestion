@@ -37,11 +37,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Columna 1: fuentes de datos
 \node[datos] (api)   {API de DataForSEO};
 \node[datos, below=of api]  (internos) {Datos internos\\de la editorial};
-\node[datos, below=of internos] (comp)  {Catálogo de la\\competencia};
-\node[datos, below=of comp] (citas) {Mediciones de\\citación en motores\\generativos};
+\node[datos, below=of internos] (citas) {Mediciones de\\citación en motores\\generativos};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Columna 2: datos y modelo
-\node[modelo, right=26mm of comp] (ingesta) {Ingesta y\\consolidación};
+\node[modelo, right=26mm of internos] (ingesta) {Ingesta y\\consolidación};
 \node[modelo, below=of ingesta] (modelo) {Modelo de predicción\\de la citación};
 \node[modelo, below=of modelo]  (kw)     {Características\\priorizadas por libro};
 
@@ -49,12 +48,11 @@
 \node[gen, right=26mm of ingesta] (sinopsis) {Sinopsis original\\del catálogo};
 \node[gen, below=of sinopsis] (generador) {Generador de\\sinopsis (LLM)};
 \node[val, below=of generador] (verif) {Verificación y\\revisión editorial};
-\node[val, below=of verif] (piloto) {Piloto: publicación\\y seguimiento de citación};
+\node[val, below=of verif] (piloto) {Piloto controlado:\\publicación y\\medición de citación};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conexiones
 \draw[flecha] (api.east)      -- ++(7mm,0) |- (ingesta.west);
 \draw[flecha] (internos.east) -- ++(7mm,0) |- (ingesta.west);
-\draw[flecha] (comp.east)     -- ++(7mm,0) |- (ingesta.west);
 \draw[flecha] (citas.east)    -- ++(7mm,0) |- (ingesta.west);
 
 \draw[flecha] (ingesta) -- (modelo);

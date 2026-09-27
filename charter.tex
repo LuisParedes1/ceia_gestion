@@ -245,7 +245,7 @@ La suma de los tres pesos se redondea al siguiente número de la serie de Fibona
 
 \textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
 
-\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO, los datos internos y el catálogo de la competencia para disponer de variables predictoras. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO y los datos internos para disponer de variables predictoras. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
 
 \textbf{Épica 2: predicción de la probabilidad de citación}
 
@@ -261,7 +261,7 @@ La suma de los tres pesos se redondea al siguiente número de la serie de Fibona
 
 \textbf{Épica 4: piloto y medición de resultados}
 
-\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a la competencia. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
 
 \textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media. \textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
 
@@ -274,15 +274,16 @@ Cada historia de usuario cuenta con criterios de aceptación medibles y verifica
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
-	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con una cantidad mínima de repeticiones por consulta.
-	\item Se registra, para cada respuesta, si el título aparece y si su ficha es citada.
+	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con la búsqueda web habilitada y una cantidad mínima de repeticiones por consulta.
+	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web.
+	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
 	\item El conjunto de datos resultante queda versionado y es reproducible.
 \end{itemize}
 
 Criterios de aceptación de la HU2:
 \begin{itemize}
 	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
-	\item Se integran las señales de DataForSEO, los datos internos y el catálogo de la competencia.
+	\item Se integran las señales de DataForSEO y los datos internos.
 	\item Se documentan el origen y las transformaciones de cada variable.
 \end{itemize}
 
@@ -322,14 +323,15 @@ Criterios de aceptación de la HU6:
 
 Criterios de aceptación de la HU7:
 \begin{itemize}
-	\item Se mide la citación de las sinopsis publicadas durante la ventana acordada.
-	\item Se compara la participación frente a la competencia.
+	\item Se conforman un grupo experimental y un grupo de control con títulos comparables por género y popularidad.
+	\item Se mide la citación de ambos grupos durante la ventana acordada.
+	\item Se estima el efecto de la reescritura como la diferencia en la evolución de la citación entre ambos grupos.
 	\item Los resultados distinguen la señal del ruido mediante mediciones repetidas.
 \end{itemize}
 
 Criterios de aceptación de la HU8:
 \begin{itemize}
-	\item El informe presenta la mejora de citación con sus intervalos de variabilidad.
+	\item El informe presenta la mejora de citación respecto del grupo de control, con sus intervalos de variabilidad.
 	\item Incluye visualizaciones claras y las limitaciones del análisis.
 	\item Se entrega en un formato que el cliente puede revisar y aprobar.
 \end{itemize}
@@ -340,12 +342,12 @@ Criterios de aceptación de la HU8:
 El proyecto adopta la metodología CRISP-DM, adecuada para el ciclo de vida de un proyecto de datos. Sus fases se instancian de la siguiente forma:
 
 \begin{enumerate}
-	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. Las métricas de éxito son la tasa de citación por título y la participación frente a la competencia.
-	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial, el catálogo de la competencia obtenido mediante \textit{scraping} y las mediciones de citación recogidas de los cuatro motores. Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
+	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. La métrica de éxito es la tasa de citación por título en las respuestas con búsqueda web y su variación respecto de un grupo de control de títulos comparables.
+	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los cuatro motores. Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
 	\item Preparación de los datos: consolidación, limpieza y versionado del conjunto, junto con la construcción de las variables predictoras a partir de las características de contenido y de las señales de SEO.
 	\item Modelado: el problema se plantea como la predicción de la probabilidad de citación; se comparan modelos de aprendizaje automático adecuados para datos tabulares.
 	\item Evaluación: el desempeño se mide sobre títulos no vistos con la métrica definida, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
-	\item Despliegue: se ejecuta un piloto acotado con la publicación de las sinopsis aprobadas y el seguimiento de la citación; queda fuera de alcance la puesta en producción.
+	\item Despliegue: se ejecuta un piloto controlado, con la publicación de las sinopsis aprobadas en el grupo experimental y el seguimiento de la citación de ambos grupos; queda fuera de alcance la puesta en producción.
 \end{enumerate}
 
 \section{9. Desglose del trabajo en tareas}
@@ -362,7 +364,7 @@ Historia & Tarea técnica & Estimación & Prioridad \\ \hline
 HU1 & Definir el conjunto de consultas y el protocolo de repeticiones & 6 h & Alta \\ \hline
 HU1 & Automatizar la consulta a los cuatro motores y el registro de citación & 8 h & Alta \\ \hline
 HU2 & Integrar la API de DataForSEO y los datos internos & 6 h & Alta \\ \hline
-HU2 & Desarrollar el \textit{scraping} del catálogo de la competencia y consolidar & 8 h & Media \\ \hline
+HU2 & Consolidar, limpiar y versionar el conjunto de datos & 8 h & Media \\ \hline
 HU3 & Construir las variables predictoras & 8 h & Alta \\ \hline
 HU3 & Entrenar y comparar modelos de predicción de citación & 8 h & Alta \\ \hline
 HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
@@ -371,7 +373,8 @@ HU5 & Diseñar los \textit{prompts} y las restricciones del generador & 5 h & Al
 HU5 & Desarrollar el generador de sinopsis basado en un LLM & 8 h & Alta \\ \hline
 HU6 & Implementar el cálculo de similitud, extensión y presencia & 6 h & Alta \\ \hline
 HU6 & Integrar el rechazo automático y el pase a revisión editorial & 4 h & Media \\ \hline
-HU7 & Publicar las sinopsis del subconjunto y configurar el seguimiento & 6 h & Alta \\ \hline
+HU7 & Seleccionar los títulos comparables y asignar los grupos experimental y de control & 5 h & Alta \\ \hline
+HU7 & Publicar las sinopsis del grupo experimental y configurar el seguimiento de ambos grupos & 6 h & Alta \\ \hline
 HU7 & Ejecutar la campaña de medición del piloto con repeticiones & 8 h & Alta \\ \hline
 HU8 & Analizar los resultados y calcular los intervalos de variabilidad & 6 h & Media \\ \hline
 HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \hline
@@ -392,12 +395,12 @@ Sprint & Fase o HU & Foco & Horas & Responsable & \% \\ \hline
 0 & Planificación & Alcance, cronograma y reuniones con el cliente & 30 h & Alumno & 100 \\ \hline
 1 & Negocio y datos & Estado del arte, métricas y protocolo de medición & 50 h & Alumno & 0 \\ \hline
 2 & HU1 & Conjunto de datos de citación & 50 h & Alumno & 0 \\ \hline
-3 & HU2 & Consolidación de fuentes y \textit{scraping} & 50 h & Alumno & 0 \\ \hline
+3 & HU2 & Consolidación de fuentes & 50 h & Alumno & 0 \\ \hline
 4 & HU3 & Variables y modelo de predicción de citación & 55 h & Alumno & 0 \\ \hline
 5 & HU4 & Validación con mediciones repetidas & 45 h & Alumno & 0 \\ \hline
 6 & HU5 & Generador de sinopsis & 50 h & Alumno & 0 \\ \hline
 7 & HU6 & Verificación automática & 45 h & Alumno & 0 \\ \hline
-8 & HU7 & Piloto: publicación y medición & 55 h & Alumno & 0 \\ \hline
+8 & HU7 & Piloto controlado: publicación y medición & 55 h & Alumno & 0 \\ \hline
 9 & HU8 & Análisis de resultados e informe & 50 h & Alumno & 0 \\ \hline
 10 & Escritura & Redacción de la memoria & 70 h & Alumno & 0 \\ \hline
 11 & Cierre & Revisión de la memoria y preparación de la defensa & 50 h & Alumno & 0 \\ \hline
@@ -452,7 +455,6 @@ Los datos del proyecto son mayormente corporativos, licenciados o públicos, y n
 \begin{itemize}
 	\item Los datos internos y el catálogo se utilizan con la autorización de la editorial y con fines académicos, conforme a la Ley 25.326 de Protección de los Datos Personales.
 	\item El acceso a la API de DataForSEO y a las API de los motores generativos se rige por sus licencias y términos de servicio, que se respetan en el volumen y en el uso de las consultas.
-	\item El \textit{scraping} del catálogo de la competencia se limita a la información pública y respeta los términos de servicio del sitio.
 	\item La propiedad intelectual del texto original de las sinopsis pertenece a la editorial y a los autores; las versiones generadas se someten a revisión editorial antes de su publicación.
 \end{itemize}
 
