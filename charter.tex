@@ -179,8 +179,7 @@ Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Fina
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-Aumentar la visibilidad y la tasa de citación del catálogo de la editorial en las respuestas de los motores de búsqueda generativos, sin resignar el posicionamiento orgánico ya consolidado. Se busca reemplazar la curaduría manual de \textit{keywords}, hoy limitada a un puñado de títulos, por un procedimiento sistemático y reproducible, aplicable a la escala del catálogo, que priorice las características de contenido con mayor probabilidad de citación y produzca sinopsis fieles al contenido original.
-
+El propósito de este proyecto es aumentar la visibilidad del catálogo de la editorial en los motores generativos, medida como la tasa de citación de sus fichas en las respuestas, sin resignar el posicionamiento orgánico ya consolidado.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
@@ -191,8 +190,11 @@ El proyecto incluye:
 	\item La construcción del conjunto de datos de citación.
 		\begin{itemize}
 		\item Diseño del conjunto de consultas de descubrimiento y del protocolo de medición.
-		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de cuatro motores generativos: ChatGPT, Claude, Gemini y las AI Overviews de Google, mediante sus API.
-		\item Extracción de datos de SEO del dominio de la editorial mediante la API de DataForSEO, en calidad de variables predictoras.
+		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores generativos. 
+			\begin{itemize}
+				\item Para el motor generativo de ChatGPT se utiliza la API de OpenAI.
+				\item Para el motor generativo AI Overviews de Google se utiliza la API de DataForSEO.
+			\end{itemize}
 		\item Incorporación de los datos internos de la editorial: catálogo, series históricas de Google Trends y resultados de proyectos de SEO previos.
 		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
@@ -206,7 +208,7 @@ El proyecto incluye:
 	\item El desarrollo del generador de sinopsis basado en un LLM comercial, con sus restricciones de extensión, tono y fidelidad, que aplica las técnicas de GEO compatibles con una sinopsis.
 	\item El módulo de verificación automática de las sinopsis candidatas: fidelidad semántica respecto del texto original, extensión y presencia efectiva de las características priorizadas.
 	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad, dividido en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales, con seguimiento de la citación de ambos grupos durante la ventana de medición acordada.
-	\item La documentación del sistema, el código fuente y la memoria del Trabajo Final.
+	\item La documentación del sistema, el código fuente y la memoria del trabajo final.
 \end{itemize}
 
 El presente proyecto no incluye:
@@ -220,17 +222,17 @@ El presente proyecto no incluye:
 	\item El despliegue sobre la totalidad del catálogo ni la puesta en producción del sistema.
 	\item La medición del impacto en ventas o en ingresos, que excede la ventana temporal del proyecto.
 	\item La regionalización hacia otros mercados distintos de Argentina.
-	\item La comparación con catálogos de otras editoriales, que queda como trabajo futuro.
+	\item La comparación con catálogos de otras editoriales.
 \end{itemize}
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-Para el desarrollo del presente proyecto se supone que:
+Para el desarrollo del presente proyecto se asume que:
 
 \begin{itemize}
-	\item La editorial mantiene la autorización para utilizar el catálogo, las sinopsis y los datos internos de posicionamiento con fines académicos, y admite la publicación de resultados agregados en la memoria del Trabajo Final.
+	\item La editorial mantiene la autorización para utilizar el catálogo, las sinopsis y los datos internos de posicionamiento con fines académicos, y admite la publicación de resultados agregados en la memoria del trabajo final.
 	\item El acceso a la API de DataForSEO continúa vigente durante toda la ejecución y el crédito contratado alcanza para el volumen de consultas previsto.
 	\item Se dispone de acceso a las API de los cuatro motores generativos evaluados, con un crédito suficiente para el volumen de mediciones repetidas previsto y un costo por consulta compatible con el presupuesto asignado.
 	\item Las API utilizadas informan si cada respuesta incluyó una búsqueda web y cuáles fueron las fuentes citadas.
