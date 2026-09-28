@@ -6,6 +6,13 @@ codirector, % Uncomment to add a codirector to the title page
 % Las tablas se rotulan como ``Tabla'' y no como ``Cuadro'' (predeterminado de babel)
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 
+% Notas al pie numeradas entre corchetes: [1] en el texto y al pie de página
+\makeatletter
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\renewcommand{\@makefnmark}{\hbox{\normalfont~[\@thefnmark]}}
+\renewcommand{\@makefntext}[1]{\noindent\normalfont[\@thefnmark]~#1}
+\makeatother
+
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Optimización de sinopsis de libros para motores de búsqueda generativos (GEO) mediante la predicción de la probabilidad de citación con aprendizaje automático} 
 
@@ -63,6 +70,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Se completa hasta el punto 5 inclusive                & 07 de septiembre de 2026 \\ \hline
 2      & Se adapta el proyecto de SEO a GEO segun nuevos requisitos. Se actualiza hasta el punto 5 inclusive & 22 de septiembre de 2026 \\ \hline
+3      & Se completan los puntos 6 a 9 inclusive & 28 de septiembre de 2026 \\ \hline
 %2      & Se completa hasta el punto 9 inclusive
 %		  Se puede agregar algo más \newline
 %		  En distintas líneas \newline
@@ -109,21 +117,23 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-El proyecto se desarrolla como una iniciativa interna de Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento, a una cuenta paga de la interfaz de programación de aplicaciones (API) de DataForSEO y a las API de los motores generativos utilizados en el proyecto.
+El proyecto se desarrolla en conjunto con Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento, a una cuenta paga de la interfaz de programación de aplicaciones (API, por su sigla en inglés) de DataForSEO y a las API de los motores generativos utilizados en el proyecto.
 
-En una tienda en línea, la sinopsis es el principal texto indexable de la ficha de cada libro y determina en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. Ese texto se redacta con criterio editorial y no contempla la demanda real de búsqueda. La selección manual de \textit{keywords}, o palabras clave, exige tiempo de especialistas y no escala a un catálogo de miles de títulos, por lo que en la práctica solo alcanza a las novedades y a los libros más vendidos.
+En la tienda en línea de la editorial\footnote{\url{https://www.penguinlibros.com/ar/}}, la sinopsis y las palabras clave (\textit{keywords}) constituyen el principal contenido indexable de la ficha de cada libro y determinan en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. El texto de la sinopsis se redacta con criterio editorial y no contempla la demanda real de búsqueda.
 
-La optimización para motores de búsqueda (SEO, por su sigla en inglés) reúne las técnicas que mejoran la posición de un sitio en los resultados de los buscadores. Durante años, el tráfico se concentró en los primeros lugares de la página de resultados (SERP, por su sigla en inglés). Sin embargo, los buscadores incorporaron respuestas generadas por inteligencia artificial que resumen la información y citan un conjunto acotado de fuentes. Cuando aparece una de estas respuestas, el primer resultado orgánico pierde alrededor del 34,5 \% de sus clics, y esas respuestas ya se presentan en cerca del 16 \% de las búsquedas.\footnote{Datos de Ahrefs, \textit{Generative Engine Optimization: Growth Strategies and Metrics For the AI Era}, 2026.}
+La optimización para motores de búsqueda (SEO, por su sigla en inglés) reúne las técnicas que mejoran la posición de un sitio dentro de la página de resultados (SERP, por su sigla en inglés) de los buscadores tradicionales. Durante años, el tráfico se concentró en los primeros lugares de la SERP, lo que otorgaba alta visibilidad a los sitios mejor posicionados.
 
-La optimización para motores generativos (GEO, por su sigla en inglés) reúne las técnicas que aumentan la probabilidad de que un contenido sea citado o mencionado en esas respuestas. A diferencia del SEO, su unidad de éxito no es la posición en la SERP, sino la aparición dentro del texto que genera el motor. La solución propuesta traslada el foco hacia esa unidad, sobre la base de la autoridad temática que la editorial ya consolidó en SEO.
+Sin embargo, recientemente cobraron auge los motores generativos, como ChatGPT y AI Overviews de Google, que responden a las consultas con un texto redactado por inteligencia artificial. Para construir esas respuestas, el motor puede realizar varias búsquedas web, recuperar un conjunto acotado de páginas y sintetizar su contenido en un texto que las cita como fuentes. Este mecanismo se conoce como generación aumentada por recuperación (RAG, por su sigla en inglés).
 
-Las suites comerciales de SEO informan el volumen de búsqueda y la dificultad estimada de cada \textit{keyword}, pero esas métricas son agregadas y no anticipan si un contenido será citado en una respuesta generativa. Los modelos grandes de lenguaje (LLM, por su sigla en inglés) generan con facilidad textos orientados al posicionamiento, aunque sin anclaje en datos propios y sin garantía de fidelidad al contenido del libro. Además, las respuestas generativas presentan alta variabilidad entre ejecuciones y favorecen a las marcas de mayor tamaño, lo que reduce la visibilidad de un catálogo de nicho. Entre estas carencias, la decisión final queda librada a la intuición del redactor.
+La optimización para motores generativos (GEO, por su sigla en inglés) reúne las técnicas que aumentan la probabilidad de que un contenido sea citado en esas respuestas. A diferencia del SEO, su unidad de éxito no es la posición en la SERP, sino la aparición en la respuesta del motor generativo. En este proyecto, esa aparición se mide como citación, es decir, como la inclusión de la ficha del libro entre las fuentes de la respuesta. La citación solo ocurre cuando el motor busca en la web, y no cuando responde a partir de lo aprendido en su entrenamiento.
 
-La solución consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y un grupo de consultas de descubrimiento, la probabilidad de que el título sea citado en las respuestas de los motores generativos, y ordena las características de contenido según su aporte a esa probabilidad. En la segunda, un generador basado en un LLM reescribe la sinopsis original e incorpora esas características, bajo restricciones de extensión, tono y fidelidad al argumento del libro.
+Las suites comerciales de SEO estiman el volumen de búsqueda y la dificultad de cada \textit{keyword}, y orientan la optimización hacia la posición en la SERP. Ese enfoque no alcanza en GEO, un canal nuevo y distinto, que requiere otra unidad de éxito y otras estrategias. Una buena posición orgánica no garantiza que el motor cite la página, y la elección de \textit{keywords} no indica qué contenido favorece la citación. En consecuencia, estas herramientas no anticipan qué títulos del catálogo serán citados ni qué conviene modificar en sus sinopsis.
 
-La propuesta de valor reside en reemplazar una tarea artesanal por un procedimiento sistemático y reproducible, aplicable a cualquier libro del catálogo, que preserva el posicionamiento orgánico ya alcanzado. La innovación pasa por dos aspectos: el modelo se entrena con la señal de citación observada en varios motores generativos, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utilizan los catálogos de Penguin Random House Argentina y de Planeta, que compiten en géneros equivalentes, como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda.
+La solución propuesta traslada el foco hacia la citación, sobre la base de la autoridad temática que la editorial ya consolidó en SEO. Consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y un grupo de consultas de descubrimiento, la probabilidad de que la ficha del libro sea citada en las respuestas de los motores generativos, y ordena las características de contenido según su aporte a esa probabilidad. En la segunda, un generador basado en un modelo grande de lenguaje (LLM, por su sigla en inglés) reescribe la sinopsis e incorpora esas características, bajo restricciones de extensión, tono y fidelidad a la sinopsis original.
 
-En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. El flujo parte de cuatro fuentes de datos: la API de DataForSEO, los datos internos de la editorial, el catálogo de la competencia obtenido mediante \textit{scraping} y las mediciones de citación recogidas de los motores generativos. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, consulta, característica de contenido y tasa de citación observada. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de características priorizadas para cada título.
+La propuesta de valor radica en mejorar la visibilidad del catálogo en los motores generativos, un canal emergente para el descubrimiento de libros, sin afectar el posicionamiento orgánico ya alcanzado. La innovación pasa por dos aspectos: el modelo se entrena con la señal de citación observada en varios motores generativos, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utiliza un conjunto de títulos del catálogo de la editorial, en géneros como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda. En ese conjunto se prueban las sinopsis reescritas y se mide su impacto en la citación.
+
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. El flujo parte de tres fuentes de datos: la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los motores generativos. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, consulta, motor, característica de contenido y tasa de citación observada. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de características priorizadas para cada título.
 
 \begin{figure}[htpb]
 \centering
@@ -132,7 +142,9 @@ En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistem
 \label{fig:diagBloques}
 \end{figure}
 
-El generador de sinopsis recibe el texto original y esas características, y produce una versión candidata. Un módulo de verificación automática controla la similitud semántica con el texto original, la extensión y la presencia efectiva de las características priorizadas; solo las candidatas que superan estos controles pasan a revisión editorial. Las sinopsis aprobadas se publican en un piloto acotado, cuyo seguimiento de citación en los motores generativos, con mediciones repetidas para atenuar la variabilidad, realimenta el conjunto de datos y habilita un nuevo entrenamiento del modelo.
+El generador de sinopsis recibe el texto original y esas características, y produce una versión candidata. Un módulo de verificación automática controla la similitud semántica con el texto original, la extensión y la presencia efectiva de las características priorizadas; solo las candidatas que superan estos controles pasan a revisión editorial.
+
+Las sinopsis aprobadas se publican en un piloto controlado sobre un conjunto de títulos comparables por género y popularidad. Una parte de esos títulos recibe la sinopsis reescrita, como grupo experimental, y el resto conserva la original, como grupo de control. El seguimiento de ambos grupos, con mediciones repetidas, permite estimar el efecto de la reescritura y descontar los cambios de comportamiento de los motores. Esas mediciones realimentan el conjunto de datos y habilitan un nuevo entrenamiento del modelo.
 
 
 \section{2. Identificación y análisis de los interesados}
@@ -160,15 +172,14 @@ Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Fina
 \begin{itemize}
 	\item Auspiciante: la editorial aporta las horas de trabajo del responsable, el acceso a los datos internos y el crédito de la API de DataForSEO. Cualquier consumo por encima de lo previsto requiere una autorización expresa, de modo que conviene acotar las consultas al proveedor desde el diseño del conjunto de datos.
 	\item Cliente: valida los entregables y define qué títulos integran el piloto. Su disponibilidad es acotada, por lo que las instancias de validación deben planificarse con anticipación y concentrarse en pocas reuniones.
-	\item Orientadores: el director aporta el encuadre metodológico y la supervisión académica del Trabajo Final; el codirector, el conocimiento del negocio editorial y de los sistemas internos. Este último también fija prioridades dentro de la empresa.
+	\item Orientadores: el director aporta el encuadre metodológico y la supervisión académica del trabajo final. El codirector aporta el conocimiento del negocio editorial y de los sistemas internos. Este último también fija prioridades dentro de la empresa.
 \end{itemize}
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-Aumentar la visibilidad y la tasa de citación del catálogo de la editorial en las respuestas de los motores de búsqueda generativos, sin resignar el posicionamiento orgánico ya consolidado. Se busca reemplazar la curaduría manual de \textit{keywords}, hoy limitada a un puñado de títulos, por un procedimiento sistemático y reproducible, aplicable a la escala del catálogo, que priorice las características de contenido con mayor probabilidad de citación y produzca sinopsis fieles al contenido original.
-
+El propósito de este proyecto es aumentar la visibilidad del catálogo de la editorial en los motores generativos, medida como la tasa de citación de sus fichas en las respuestas, sin resignar el posicionamiento orgánico ya consolidado.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
@@ -179,10 +190,12 @@ El proyecto incluye:
 	\item La construcción del conjunto de datos de citación.
 		\begin{itemize}
 		\item Diseño del conjunto de consultas de descubrimiento y del protocolo de medición.
-		\item Medición repetida de la citación de ambos catálogos en cuatro motores generativos: ChatGPT, Claude, Gemini y las AI Overviews de Google, mediante sus API.
-		\item Extracción de datos de SEO de ambos dominios mediante la API de DataForSEO, en calidad de variables predictoras.
+		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores generativos. 
+			\begin{itemize}
+				\item Para el motor generativo de ChatGPT se utiliza la API de OpenAI.
+				\item Para el motor generativo AI Overviews de Google se utiliza la API de DataForSEO.
+			\end{itemize}
 		\item Incorporación de los datos internos de la editorial: catálogo, series históricas de Google Trends y resultados de proyectos de SEO previos.
-		\item Obtención del catálogo de la competencia mediante \textit{scraping} de su sitio web.
 		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
 	\item El análisis exploratorio de los datos y la construcción de las variables predictoras.
@@ -194,39 +207,22 @@ El proyecto incluye:
 		\end{itemize}
 	\item El desarrollo del generador de sinopsis basado en un LLM comercial, con sus restricciones de extensión, tono y fidelidad, que aplica las técnicas de GEO compatibles con una sinopsis.
 	\item El módulo de verificación automática de las sinopsis candidatas: fidelidad semántica respecto del texto original, extensión y presencia efectiva de las características priorizadas.
-	\item La ejecución de un piloto acotado sobre un subconjunto del catálogo, con publicación de las sinopsis aprobadas y seguimiento de la citación en los motores generativos durante la ventana de medición acordada.
-	\item La documentación del sistema, el código fuente y la memoria del Trabajo Final.
+	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad, dividido en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales, con seguimiento de la citación de ambos grupos durante la ventana de medición acordada.
+	\item La documentación del sistema, el código fuente y la memoria del trabajo final.
 \end{itemize}
 
 El presente proyecto no incluye:
 
 \begin{itemize}
 	\item La optimización de otros factores de GEO distintos de la sinopsis, tales como la estructura del sitio, los datos estructurados, las páginas de autor o de género y la presencia en fuentes externas de alta citación.
+	\item Las respuestas que los motores generan sin realizar una búsqueda web, sobre las que la sinopsis publicada no tiene influencia.
 	\item El entrenamiento o el alojamiento de un modelo de lenguaje propio, dado que se utilizan API comerciales.
 	\item Cualquier intervención sobre los corpus de entrenamiento de los motores o la colocación paga en sus respuestas.
 	\item La integración productiva con el gestor de contenidos de la tienda en línea: la carga de las sinopsis del piloto se realiza por los canales que la editorial ya utiliza.
 	\item El despliegue sobre la totalidad del catálogo ni la puesta en producción del sistema.
 	\item La medición del impacto en ventas o en ingresos, que excede la ventana temporal del proyecto.
 	\item La regionalización hacia otros mercados distintos de Argentina.
-\end{itemize}
-
-
-\section{5. Supuestos del proyecto}
-\label{sec:supuestos}
-
-Para el desarrollo del presente proyecto se supone que:
-
-\begin{itemize}
-	\item La editorial mantiene la autorización para utilizar el catálogo, las sinopsis y los datos internos de posicionamiento con fines académicos, y admite la publicación de resultados agregados en la memoria del Trabajo Final.
-	\item El acceso a la API de DataForSEO continúa vigente durante toda la ejecución y el crédito contratado alcanza para el volumen de consultas previsto.
-	\item Se dispone de acceso a las API de los cuatro motores generativos evaluados, con un crédito suficiente para el volumen de mediciones repetidas previsto y un costo por consulta compatible con el presupuesto asignado.
-	\item El conjunto acotado de consultas de descubrimiento representa de forma adecuada las intenciones reales de los lectores para los géneros incluidos en el estudio.
-	\item El sitio web de la competencia permite obtener su catálogo mediante \textit{scraping}. Si esa vía no resulta viable, el análisis se limita al catálogo interno de la editorial.
-	\item El área de marketing digital habilita la publicación de las sinopsis del piloto dentro de los plazos planificados.
-	\item Los motores generativos evaluados no modifican de forma sustancial su comportamiento durante la ventana de medición del piloto. Este supuesto es más débil que en el SEO, por lo que las mediciones se repiten para atenuar la variabilidad y aislar el efecto de las sinopsis modificadas.
-	\item Los datos históricos de posicionamiento cubren un período suficiente para entrenar y validar el modelo.
-	\item El responsable dispone de una carga horaria semanal sostenida y compatible con el cronograma, y cuenta con el equipamiento y los servicios de cómputo necesarios.
-	\item Las condiciones macroeconómicas no alteran de forma significativa el costo en pesos de los servicios contratados en moneda extranjera.
+	\item La comparación con catálogos de otras editoriales.
 \end{itemize}
 
 
