@@ -191,6 +191,7 @@ El proyecto incluye:
 				\item Para el motor generativo de ChatGPT se utiliza la API de OpenAI.
 				\item Para el motor generativo AI Overviews de Google se utiliza la API de DataForSEO.
 			\end{itemize}
+		\item Obtención de la posición de las fichas en las búsquedas que realizan los motores, mediante la API de DataForSEO, en calidad de variables de control.
 		\item Incorporación de los datos internos de la editorial: catálogo, series históricas de Google Trends y resultados de proyectos de SEO previos.
 		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
@@ -245,7 +246,13 @@ Para el desarrollo del presente proyecto se asume que:
 \section{6. Product Backlog}
 \label{sec:backlog}
 
-El \textit{product backlog} organiza las historias de usuario en épicas, es decir, grandes bloques funcionales del proyecto. Cada historia sigue el formato: como un determinado rol, se quiere una funcionalidad, para lograr un objetivo. Cada historia indica su prioridad y su ponderación en \textit{story points}. Los criterios de aceptación se detallan en la sección 7.
+El \textit{product backlog} organiza las historias de usuario en bloques funcionales del proyecto llamadas épicas. Cada historia sigue el formato: 
+
+\begin{quote}
+Como \textless rol\textgreater, quiero \textless funcionalidad\textgreater, para \textless motivo/valor\textgreater.
+\end{quote}
+
+Cada historia indica su prioridad y su ponderación en \textit{story points}. Los criterios de aceptación se detallan en la sección 7.
 
 El criterio para calcular los \textit{story points} pondera tres dimensiones y suma sus pesos:
 
@@ -255,31 +262,31 @@ El criterio para calcular los \textit{story points} pondera tres dimensiones y s
 	\item Incertidumbre, entendida como el riesgo o la novedad: baja vale 2, media vale 3 y alta vale 5.
 \end{itemize}
 
-La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci, esto es 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar.
+La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci. Esto es: 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar.
 
 \textbf{Épica 1: construcción del conjunto de datos de citación}
 
-\textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+\textbf{HU1.} Como \textit{Machine Learning Engineer}, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
 
-\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO y los datos internos para disponer de variables predictoras. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+\textbf{HU2.} Como \textit{Machine Learning Engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
 \textbf{Épica 2: predicción de la probabilidad de citación}
 
-\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad alta (13) e incertidumbre alta (5); la suma es 23 y se redondea a 34.
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
 
-\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre alta (5); la suma es 13.
+\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
 
 \textbf{Épica 3: generación y verificación de sinopsis}
 
-\textbf{HU5.} Como editor, quiero que el sistema reescriba la sinopsis con las características priorizadas para aumentar su probabilidad de citación sin perder fidelidad. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+\textbf{HU5.} Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores generativos para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
-\textbf{HU6.} Como editor, quiero que las sinopsis candidatas se verifiquen de forma automática para revisar solo las que cumplen los criterios. Prioridad media. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre baja (2); la suma es 10 y se redondea a 13.
+\textbf{HU6.} Como editor, quiero que las sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarlo en la tienda en linea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
 
 \textbf{Épica 4: piloto y medición de resultados}
 
-\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
 
-\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media. \textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
+\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 1, incertidumbre: 2; la suma es 6 y se redondea a 8.
 
 \section{7. Criterios de aceptación de historias de usuario}
 \label{sec:criteriosAceptacion}
@@ -290,16 +297,17 @@ Cada historia de usuario cuenta con criterios de aceptación medibles y verifica
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
-	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con la búsqueda web habilitada y una cantidad mínima de repeticiones por consulta.
-	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web.
+	\item Se consulta cada título con un conjunto fijo de consultas en los motores generativos, con la búsqueda web habilitada y una cantidad mínima de repeticiones por consulta.
+	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y, cuando la API lo informa, qué búsquedas ejecutó.
 	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
-	\item El conjunto de datos resultante queda versionado y es reproducible.
+	\item El conjunto de datos resultante queda versionado.
 \end{itemize}
 
 Criterios de aceptación de la HU2:
 \begin{itemize}
 	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
-	\item Se integran las señales de DataForSEO y los datos internos.
+	\item Se obtiene, mediante DataForSEO, la posición de las fichas en las búsquedas registradas de cada motor.
+	\item Se integran los datos internos de popularidad y los metadatos del catálogo.
 	\item Se documentan el origen y las transformaciones de cada variable.
 \end{itemize}
 
@@ -309,7 +317,8 @@ Criterios de aceptación de la HU3:
 \begin{itemize}
 	\item Se comparan al menos dos modelos y se selecciona el de mejor desempeño.
 	\item El modelo predice la probabilidad de citación y ordena las características por su aporte.
-	\item El desempeño se mide sobre títulos no vistos con la métrica definida.
+	\item El desempeño se mide sobre títulos excluidos del entrenamiento, mediante validación cruzada agrupada por título, con dos métricas: el error cuadrático medio entre la tasa de citación predicha y la observada, ponderado por la cantidad de respuestas, y la correlación de Spearman entre ambas tasas.
+	\item Se reporta cuánto mejoran esas métricas al agregar las características de contenido a un modelo que solo usa variables de control.
 \end{itemize}
 
 Criterios de aceptación de la HU4:
@@ -359,10 +368,10 @@ El proyecto adopta la metodología CRISP-DM, adecuada para el ciclo de vida de u
 
 \begin{enumerate}
 	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. La métrica de éxito es la tasa de citación por título en las respuestas con búsqueda web y su variación respecto de un grupo de control de títulos comparables.
-	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los cuatro motores. Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
+	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los motores generativos.  Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
 	\item Preparación de los datos: consolidación, limpieza y versionado del conjunto, junto con la construcción de las variables predictoras a partir de las características de contenido y de las señales de SEO.
 	\item Modelado: el problema se plantea como la predicción de la probabilidad de citación; se comparan modelos de aprendizaje automático adecuados para datos tabulares.
-	\item Evaluación: el desempeño se mide sobre títulos no vistos con la métrica definida, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
+	\item Evaluación: el desempeño se mide sobre títulos excluidos del entrenamiento, con el error cuadrático medio ponderado y la correlación de Spearman frente a un modelo de referencia, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
 	\item Despliegue: se ejecuta un piloto controlado, con la publicación de las sinopsis aprobadas en el grupo experimental y el seguimiento de la citación de ambos grupos; queda fuera de alcance la puesta en producción.
 \end{enumerate}
 
@@ -378,9 +387,9 @@ A partir de cada historia de usuario se descompone el trabajo en tareas técnica
 \rowcolor[HTML]{C0C0C0}
 Historia & Tarea técnica & Estimación & Prioridad \\ \hline
 HU1 & Definir el conjunto de consultas y el protocolo de repeticiones & 6 h & Alta \\ \hline
-HU1 & Automatizar la consulta a los cuatro motores y el registro de citación & 8 h & Alta \\ \hline
-HU2 & Integrar la API de DataForSEO y los datos internos & 6 h & Alta \\ \hline
-HU2 & Consolidar, limpiar y versionar el conjunto de datos & 8 h & Media \\ \hline
+HU1 & Automatizar la consulta a los motores generativos y el registro de citación & 8 h & Alta \\ \hline
+HU2 & Obtener la posición de las fichas en las búsquedas de los motores mediante DataForSEO & 6 h & Alta \\ \hline
+HU2 & Integrar los datos internos de popularidad y consolidar el conjunto de datos & 8 h & Media \\ \hline
 HU3 & Construir las variables predictoras & 8 h & Alta \\ \hline
 HU3 & Entrenar y comparar modelos de predicción de citación & 8 h & Alta \\ \hline
 HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
