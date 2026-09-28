@@ -272,7 +272,7 @@ La suma de los tres pesos se redondea al siguiente número de la serie de Fibona
 
 \textbf{Épica 2: predicción de la probabilidad de citación}
 
-\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores generadores, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
 
 \textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
 
@@ -298,7 +298,7 @@ Cada historia de usuario cuenta con criterios de aceptación medibles y verifica
 Criterios de aceptación de la HU1:
 \begin{itemize}
 	\item Se consulta cada título con un conjunto fijo de consultas en los motores generativos, con la búsqueda web habilitada y diez repeticiones por consulta.
-	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y, cuando la API lo informa, qué búsquedas ejecutó.
+	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y cuando la API lo informa, qué búsquedas ejecutó.
 	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
 \end{itemize}
 
@@ -314,6 +314,7 @@ Criterios de aceptación de la HU2:
 
 Criterios de aceptación de la HU3:
 \begin{itemize}
+	\item Las características de contenido se extraen de cada sinopsis y su concordancia se valida sobre una muestra etiquetada en forma manual.
 	\item Se comparan al menos dos modelos y se selecciona el de mejor desempeño.
 	\item El modelo predice la probabilidad de citación y ordena las características por su aporte.
 	\item El desempeño se mide sobre títulos excluidos del entrenamiento, mediante validación cruzada agrupada por título, con dos métricas: el error cuadrático medio entre la tasa de citación predicha y la observada, ponderado por la cantidad de respuestas, y la correlación de Spearman entre ambas tasas.
@@ -434,23 +435,32 @@ A partir de cada historia de usuario se descompone el trabajo en tareas técnica
 \hline
 \rowcolor[HTML]{C0C0C0}
 Historia & Tarea técnica & Estimación & Prioridad \\ \hline
-HU1 & Definir el conjunto de consultas y el protocolo de repeticiones & 6 h & Alta \\ \hline
-HU1 & Automatizar la consulta a los motores generativos y el registro de citación & 8 h & Alta \\ \hline
+HU1 & Definir el conjunto de consultas y el protocolo de diez repeticiones & 6 h & Alta \\ \hline
+HU1 & Automatizar la consulta a ChatGPT y a las AI Overviews con la búsqueda web habilitada & 8 h & Alta \\ \hline
+HU1 & Registrar las búsquedas ejecutadas y asociar las fuentes citadas con la ficha de cada título & 8 h & Alta \\ \hline
 HU2 & Obtener la posición de las fichas en las búsquedas de los motores mediante DataForSEO & 6 h & Alta \\ \hline
 HU2 & Integrar los datos internos de popularidad y consolidar el conjunto de datos & 8 h & Media \\ \hline
-HU3 & Construir las variables predictoras & 8 h & Alta \\ \hline
-HU3 & Entrenar y comparar modelos de predicción de citación & 8 h & Alta \\ \hline
+HU3 & Definir las características de contenido y extraerlas con un LLM & 6 h & Alta \\ \hline
+HU3 & Etiquetar una muestra en forma manual y medir la concordancia con el LLM & 6 h & Alta \\ \hline
+HU3 & Entrenar y comparar al menos dos modelos con validación cruzada agrupada por título & 8 h & Alta \\ \hline
+HU3 & Calcular las métricas de desempeño y el aporte de las características de contenido & 5 h & Alta \\ \hline
+HU3 & Implementar la priorización de características por título & 6 h & Alta \\ \hline
 HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
-HU4 & Analizar la variabilidad y validar una muestra con criterio humano & 5 h & Media \\ \hline
-HU5 & Diseñar los \textit{prompts} y las restricciones del generador & 5 h & Alta \\ \hline
+HU4 & Reentrenar el modelo por ronda de medición y reportar la variabilidad de las predicciones & 5 h & Media \\ \hline
+HU5 & Diseñar los \textit{prompts} del generador a partir de las características priorizadas y de los grupos de consultas de cada título & 5 h & Alta \\ \hline
 HU5 & Desarrollar el generador de sinopsis basado en un LLM & 8 h & Alta \\ \hline
-HU6 & Implementar el cálculo de similitud, extensión y presencia & 6 h & Alta \\ \hline
+HU5 & Estimar con el modelo la probabilidad de citación de la sinopsis sugerida frente a la original & 4 h & Alta \\ \hline
+HU6 & Implementar el control de similitud semántica, extensión y presencia de las características priorizadas & 6 h & Alta \\ \hline
+HU6 & Definir el umbral de fidelidad con una muestra revisada por el equipo editorial & 4 h & Media \\ \hline
 HU6 & Integrar el rechazo automático y el pase a revisión editorial & 4 h & Media \\ \hline
 HU7 & Seleccionar los títulos comparables y asignar los grupos experimental y de control & 5 h & Alta \\ \hline
 HU7 & Publicar las sinopsis del grupo experimental y configurar el seguimiento de ambos grupos & 6 h & Alta \\ \hline
 HU7 & Ejecutar la campaña de medición del piloto con repeticiones & 8 h & Alta \\ \hline
-HU8 & Analizar los resultados y calcular los intervalos de variabilidad & 6 h & Media \\ \hline
+HU7 & Estimar el efecto de la reescritura como la diferencia en la evolución de la citación entre grupos & 6 h & Alta \\ \hline
+HU7 & Registrar en cada ronda de medición la posición orgánica de las fichas de ambos grupos, a partir de las páginas de resultados de DataForSEO & 3 h & Media \\ \hline
+HU8 & Calcular los intervalos de variabilidad del efecto estimado & 4 h & Media \\ \hline
 HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \hline
+HU8 & Presentar el informe al cliente e incorporar sus observaciones & 3 h & Media \\ \hline
 \end{tabularx}
 \end{table}
 
