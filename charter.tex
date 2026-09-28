@@ -249,150 +249,157 @@ Para el desarrollo del presente proyecto se asume que:
 \section{6. Product Backlog}
 \label{sec:backlog}
 
-El Product Backlog debe organizarse en cuatro \textbf{\textit{\'{e}picas}} fundamentales del proyecto. Cada \'{e}pica debe contener al menos dos historias de usuario que describan funcionalidades clave.
+El \textit{product backlog} organiza las historias de usuario en épicas, es decir, grandes bloques funcionales del proyecto. Cada historia sigue el formato: como un determinado rol, se quiere una funcionalidad, para lograr un objetivo. Cada historia indica su prioridad y su ponderación en \textit{story points}. Los criterios de aceptación se detallan en la sección 7.
 
-El Product Backlog debe permitir interpretar cómo será el proyecto y su funcionalidad. Se deben indicar claramente las prioridades entre las historias de usuario y si hay alguna opcional.
-
-Las historias de usuario deben ser breves, claras y medibles, expresando el rol, la necesidad y el propósito de cada funcionalidad. También deben tener una prioridad definida para facilitar la planificación de los sprints.
-
-Cada historia de usuario debe incluir una ponderación en \textit{Story Points}, un número entero que representa el tama\~no relativo de la historia. El criterio para calcular los Story Points debe indicarse explícitamente.
-
-Las historias deben seguir el formato: ``\textit{Como [rol], quiero [tal cosa] para [tal otra cosa]}''.
-
-Las \'{e}picas deben estructurarse de la siguiente forma:
+El criterio para calcular los \textit{story points} pondera tres dimensiones y suma sus pesos:
 
 \begin{itemize}
-  \item \textbf{\'{E}pica 1}
-    \begin{itemize}
-      \item HU1
-      \item HU2
-    \end{itemize}
-  \item \textbf{\'{E}pica 2}
-    \begin{itemize}
-      \item HU3
-      \item HU4
-    \end{itemize}
-  \item \textbf{\'{E}pica 3}
-    \begin{itemize}
-      \item HU5
-      \item HU6
-    \end{itemize}
-  \item \textbf{\'{E}pica 4}
-    \begin{itemize}
-      \item HU7
-      \item HU8
-    \end{itemize}
+	\item Dificultad, entendida como la cantidad de trabajo: baja vale 1, media vale 3 y alta vale 5.
+	\item Complejidad, entendida como el nivel técnico: baja vale 1, media vale 5 y alta vale 13.
+	\item Incertidumbre, entendida como el riesgo o la novedad: baja vale 2, media vale 3 y alta vale 5.
 \end{itemize}
 
-\textbf{Reglas para definir historias de usuario:}
-\begin{itemize}
-  \item Ser concisas y claras.
-  \item Expresarlas en términos cuantificables y medibles.
-  \item No dejar margen para interpretaciones ambiguas.
-  \item Indicar claramente su prioridad y si son opcionales.
-  \item Considerar regulaciones y normas vigentes.
-\end{itemize}
+La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci, esto es 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar.
+
+\textbf{Épica 1: construcción del conjunto de datos de citación}
+
+\textbf{HU1.} Como ingeniero de aprendizaje automático, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+
+\textbf{HU2.} Como ingeniero de aprendizaje automático, quiero consolidar las señales de SEO y los datos internos para disponer de variables predictoras. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+
+\textbf{Épica 2: predicción de la probabilidad de citación}
+
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que prediga la probabilidad de citación de un título para priorizar las características de contenido. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad alta (13) e incertidumbre alta (5); la suma es 23 y se redondea a 34.
+
+\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre alta (5); la suma es 13.
+
+\textbf{Épica 3: generación y verificación de sinopsis}
+
+\textbf{HU5.} Como editor, quiero que el sistema reescriba la sinopsis con las características priorizadas para aumentar su probabilidad de citación sin perder fidelidad. Prioridad alta. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre media (3); la suma es 11 y se redondea a 13.
+
+\textbf{HU6.} Como editor, quiero que las sinopsis candidatas se verifiquen de forma automática para revisar solo las que cumplen los criterios. Prioridad media. \textit{Story points}: dificultad media (3), complejidad media (5) e incertidumbre baja (2); la suma es 10 y se redondea a 13.
+
+\textbf{Épica 4: piloto y medición de resultados}
+
+\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad alta. \textit{Story points}: dificultad alta (5), complejidad media (5) e incertidumbre alta (5); la suma es 15 y se redondea a 21.
+
+\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad media. \textit{Story points}: dificultad media (3), complejidad baja (1) e incertidumbre baja (2); la suma es 6 y se redondea a 8.
 
 \section{7. Criterios de aceptación de historias de usuario}
 \label{sec:criteriosAceptacion}
 
-Los criterios de aceptación deben establecerse para cada historia de usuario, asegurando que se cumplan las condiciones necesarias para que la funcionalidad sea validada correctamente.
+Cada historia de usuario cuenta con criterios de aceptación medibles y verificables, que definen cuándo la funcionalidad se considera cumplida.
 
-Cada historia debe tener criterios medibles, específicos y verificables. Deben permitir validar que se cumple con las necesidades del usuario.
+\textbf{Épica 1: construcción del conjunto de datos de citación}
 
-Se estructuran de forma análoga a las \'{e}picas del backlog:
-
+Criterios de aceptación de la HU1:
 \begin{itemize}
-  \item \textbf{\'{E}pica 1}
-    \begin{itemize}
-      \item Criterios de aceptación HU1
-      \item Criterios de aceptación HU2
-    \end{itemize}
-  \item \textbf{\'{E}pica 2}
-    \begin{itemize}
-      \item Criterios de aceptación HU3
-      \item Criterios de aceptación HU4
-    \end{itemize}
-  \item \textbf{\'{E}pica 3}
-    \begin{itemize}
-      \item Criterios de aceptación HU5
-      \item Criterios de aceptación HU6
-    \end{itemize}
-  \item \textbf{\'{E}pica 4}
-    \begin{itemize}
-      \item Criterios de aceptación HU7
-      \item Criterios de aceptación HU8
-    \end{itemize}
+	\item Se consulta cada título con un conjunto fijo de consultas en los cuatro motores, con la búsqueda web habilitada y una cantidad mínima de repeticiones por consulta.
+	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web.
+	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
+	\item El conjunto de datos resultante queda versionado y es reproducible.
 \end{itemize}
 
-\textbf{Reglas para definir criterios de aceptación:}
+Criterios de aceptación de la HU2:
 \begin{itemize}
-  \item Medibles y verificables.
-  \item Especificar cuándo una historia se considera completada.
-  \item Incluir condiciones específicas.
-  \item No ambiguos.
-  \item Probables de testear funcional o técnicamente.
-  \item Mínimo 3 criterios por HU.
+	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
+	\item Se integran las señales de DataForSEO y los datos internos.
+	\item Se documentan el origen y las transformaciones de cada variable.
+\end{itemize}
+
+\textbf{Épica 2: predicción de la probabilidad de citación}
+
+Criterios de aceptación de la HU3:
+\begin{itemize}
+	\item Se comparan al menos dos modelos y se selecciona el de mejor desempeño.
+	\item El modelo predice la probabilidad de citación y ordena las características por su aporte.
+	\item El desempeño se mide sobre títulos no vistos con la métrica definida.
+\end{itemize}
+
+Criterios de aceptación de la HU4:
+\begin{itemize}
+	\item La validación usa mediciones repetidas y control de paráfrasis.
+	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
+	\item Las conclusiones incluyen la validación humana de una muestra.
+\end{itemize}
+
+\textbf{Épica 3: generación y verificación de sinopsis}
+
+Criterios de aceptación de la HU5:
+\begin{itemize}
+	\item La sinopsis generada respeta el límite de extensión y el tono editorial.
+	\item Incorpora las características priorizadas por el modelo.
+	\item Conserva la fidelidad semántica con el texto original por encima del umbral.
+\end{itemize}
+
+Criterios de aceptación de la HU6:
+\begin{itemize}
+	\item Se calculan la similitud semántica, la extensión y la presencia de características.
+	\item Se rechazan de forma automática las candidatas que no superan los umbrales.
+	\item Solo las candidatas aprobadas pasan a la revisión editorial.
+\end{itemize}
+
+\textbf{Épica 4: piloto y medición de resultados}
+
+Criterios de aceptación de la HU7:
+\begin{itemize}
+	\item Se conforman un grupo experimental y un grupo de control con títulos comparables por género y popularidad.
+	\item Se mide la citación de ambos grupos durante la ventana acordada.
+	\item Se estima el efecto de la reescritura como la diferencia en la evolución de la citación entre ambos grupos.
+	\item Los resultados distinguen la señal del ruido mediante mediciones repetidas.
+\end{itemize}
+
+Criterios de aceptación de la HU8:
+\begin{itemize}
+	\item El informe presenta la mejora de citación respecto del grupo de control, con sus intervalos de variabilidad.
+	\item Incluye visualizaciones claras y las limitaciones del análisis.
+	\item Se entrega en un formato que el cliente puede revisar y aprobar.
 \end{itemize}
 
 \section{8. Fases de CRISP-DM}
+\label{sec:crispdm}
+
+El proyecto adopta la metodología CRISP-DM, adecuada para el ciclo de vida de un proyecto de datos. Sus fases se instancian de la siguiente forma:
 
 \begin{enumerate}
-  \item \textbf{Comprensión del negocio:} objetivo, valor agregado de IA, métricas de éxito.
-  \item \textbf{Comprensión de los datos:} tipo, origen, cantidad, calidad.
-  \item \textbf{Preparación de los datos:} características clave, transformaciones necesarias.
-  \item \textbf{Modelado:} tipo de problema, algoritmos posibles.
-  \item \textbf{Evaluación del modelo:} métricas de rendimiento.
-  \item \textbf{Despliegue del modelo (opcional):} tipo de despliegue y herramientas.
+	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. La métrica de éxito es la tasa de citación por título en las respuestas con búsqueda web y su variación respecto de un grupo de control de títulos comparables.
+	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los cuatro motores. Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
+	\item Preparación de los datos: consolidación, limpieza y versionado del conjunto, junto con la construcción de las variables predictoras a partir de las características de contenido y de las señales de SEO.
+	\item Modelado: el problema se plantea como la predicción de la probabilidad de citación; se comparan modelos de aprendizaje automático adecuados para datos tabulares.
+	\item Evaluación: el desempeño se mide sobre títulos no vistos con la métrica definida, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
+	\item Despliegue: se ejecuta un piloto controlado, con la publicación de las sinopsis aprobadas en el grupo experimental y el seguimiento de la citación de ambos grupos; queda fuera de alcance la puesta en producción.
 \end{enumerate}
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-A partir de cada Historia de Usuario (HU) definida en la sección 6, descomponer el trabajo en tareas técnicas concretas, medibles y acotadas en el tiempo.
-
-\begin{itemize}
-\item Seleccionar entre 2 y 3 tareas por cada historia de usuario.
-\item Cada tarea debe estar claramente formulada, ser técnica, accionable y con una estimación horaria entre 2 y 8 horas.
-\item Evitar tareas genéricas (como ''desarrollar funcionalidad´´) o demasiado amplias.
-\item Si una tarea supera las 8 horas, debe dividirse en subtareas.
-\item Indicar la prioridad relativa de cada tarea (Alta, Media o Baja).
-\end{itemize}
+A partir de cada historia de usuario se descompone el trabajo en tareas técnicas concretas, con una estimación de entre 2 h y 8 h y una prioridad relativa. El desglose se concentra en las funcionalidades clave y sirve de base para la planificación de los sprints.
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|X|X|c|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|X|c|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
-Historia de usuario & Tarea técnica & Estimación & Prioridad \\ \hline
-HU1 & Tarea 1 HU1 & 6 h & Alta \\ \hline
-HU1 & Tarea 2 HU1 & 8 h & Alta \\ \hline
-HU2 & Tarea 1 HU2 & 5 h & Media \\ \hline
-HU2 & Tarea 2 HU2 & 6 h & Alta \\ \hline
-... & ... & ... & ... \\ \hline
+Historia & Tarea técnica & Estimación & Prioridad \\ \hline
+HU1 & Definir el conjunto de consultas y el protocolo de repeticiones & 6 h & Alta \\ \hline
+HU1 & Automatizar la consulta a los cuatro motores y el registro de citación & 8 h & Alta \\ \hline
+HU2 & Integrar la API de DataForSEO y los datos internos & 6 h & Alta \\ \hline
+HU2 & Consolidar, limpiar y versionar el conjunto de datos & 8 h & Media \\ \hline
+HU3 & Construir las variables predictoras & 8 h & Alta \\ \hline
+HU3 & Entrenar y comparar modelos de predicción de citación & 8 h & Alta \\ \hline
+HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
+HU4 & Analizar la variabilidad y validar una muestra con criterio humano & 5 h & Media \\ \hline
+HU5 & Diseñar los \textit{prompts} y las restricciones del generador & 5 h & Alta \\ \hline
+HU5 & Desarrollar el generador de sinopsis basado en un LLM & 8 h & Alta \\ \hline
+HU6 & Implementar el cálculo de similitud, extensión y presencia & 6 h & Alta \\ \hline
+HU6 & Integrar el rechazo automático y el pase a revisión editorial & 4 h & Media \\ \hline
+HU7 & Seleccionar los títulos comparables y asignar los grupos experimental y de control & 5 h & Alta \\ \hline
+HU7 & Publicar las sinopsis del grupo experimental y configurar el seguimiento de ambos grupos & 6 h & Alta \\ \hline
+HU7 & Ejecutar la campaña de medición del piloto con repeticiones & 8 h & Alta \\ \hline
+HU8 & Analizar los resultados y calcular los intervalos de variabilidad & 6 h & Media \\ \hline
+HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \hline
 \end{tabularx}
 \end{table}
-
-\textbf{Criterios para estimar tiempos:}
-\begin{itemize}
-  \item Considerar la complejidad técnica, el nivel de incertidumbre y la experiencia previa.
-  \item Evitar subestimar el esfuerzo: estimar el tiempo realista que llevaría implementar, testear y documentar cada tarea.
-  \item Basar la estimación en la experiencia propia o en referencias de tareas similares.
-\end{itemize}
-
-\textbf{Sobre la prioridad:}
-\begin{itemize}
-  \item Asignar una prioridad relativa (Alta, Media o Baja) según la relevancia funcional de la tarea y su impacto en los entregables.
-  \item Priorizar tareas que estén vinculadas a criterios de aceptación de las HU o que sean necesarias para desbloquear otras.
-  \item Incluir tareas opcionales solo si están bien justificadas.
-\end{itemize}
-
-\textbf{Recomendaciones generales:}
-\begin{itemize}
-  \item -Enfocarse en tareas que surgen directamente de las HU planteadas.
-  \item No es necesario cubrir las 600 horas del proyecto en esta sección: el foco está en el desglose de funcionalidades clave.
-  \item Este trabajo será la base para organizar algunos de los sprints y elaborar el cronograma del proyecto, por lo que debe ser claro y realista.
-\end{itemize}
 
 \section{10. Planificación de Sprints}
 
