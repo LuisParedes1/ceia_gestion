@@ -362,15 +362,65 @@ Criterios de aceptación de la HU8:
 \section{8. Fases de CRISP-DM}
 \label{sec:crispdm}
 
-El proyecto adopta la metodología CRISP-DM, adecuada para el ciclo de vida de un proyecto de datos. Sus fases se instancian de la siguiente forma:
-
 \begin{enumerate}
-	\item Comprensión del negocio: aumentar la visibilidad y la tasa de citación del catálogo en los motores generativos, sin resignar el posicionamiento orgánico. La métrica de éxito es la tasa de citación por título en las respuestas con búsqueda web y su variación respecto de un grupo de control de títulos comparables.
-	\item Comprensión de los datos: las fuentes son la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los motores generativos.  Los datos combinan información tabular y textual, y presentan alta variabilidad entre ejecuciones.
-	\item Preparación de los datos: consolidación, limpieza y versionado del conjunto, junto con la construcción de las variables predictoras a partir de las características de contenido y de las señales de SEO.
-	\item Modelado: el problema se plantea como la predicción de la probabilidad de citación; se comparan modelos de aprendizaje automático adecuados para datos tabulares.
-	\item Evaluación: el desempeño se mide sobre títulos excluidos del entrenamiento, con el error cuadrático medio ponderado y la correlación de Spearman frente a un modelo de referencia, y se valida con mediciones repetidas y control de paráfrasis para contemplar la variabilidad.
-	\item Despliegue: se ejecuta un piloto controlado, con la publicación de las sinopsis aprobadas en el grupo experimental y el seguimiento de la citación de ambos grupos; queda fuera de alcance la puesta en producción.
+	\item \textbf{Comprensión del negocio}
+	\begin{itemize}
+		\item Objetivo: aumentar la visibilidad del catálogo de la editorial en los motores generativos, medida como la tasa de citación de las fichas en las respuestas con búsqueda web.
+		\item Valor agregado: presencia del catálogo en un canal emergente para el descubrimiento de libros, sin resignar el posicionamiento orgánico ya consolidado, mediante un procedimiento basado en datos y aplicable a todo el catálogo.
+		\item Métricas de éxito del negocio, con valores a consensuar con el cliente:
+		\begin{itemize}
+			\item Tasa de citación del grupo experimental respecto del grupo de control: aumento relativo $\geq$ 20~\%, con significación estadística.
+			\item Posición orgánica de las fichas del grupo experimental: sin caída respecto del grupo de control.
+			\item Sinopsis candidatas aprobadas en la revisión editorial: $\geq$ 70~\%.
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Comprensión de los datos}
+	\begin{itemize}
+		\item Tipo: respuestas de los motores, con su texto, sus fuentes citadas y las búsquedas ejecutadas; sinopsis y metadatos del catálogo; posiciones de las fichas en los buscadores e indicadores de popularidad.
+		\item Origen: API de OpenAI para ChatGPT con búsqueda web; API de DataForSEO para las AI Overviews de Google y para las posiciones en los buscadores; datos internos de la editorial para el catálogo, las ventas y las series de Google Trends.
+		\item Cantidad esperada: del orden de miles de respuestas por ronda de medición, sobre cientos de títulos elegibles de los géneros del estudio.
+		\item Calidad: alta variabilidad entre ejecuciones y entre paráfrasis de una misma consulta, citas escasas y fuentes que deben asociarse a cada título. Se requieren mediciones repetidas y control de calidad del procesamiento.
+	\end{itemize}
+
+	\item \textbf{Preparación de los datos}
+	\begin{itemize}
+		\item Características clave: variables de contenido de la sinopsis, extraídas con un LLM y validadas sobre una muestra etiquetada en forma manual; coincidencia entre la sinopsis y cada grupo de consultas; variables de control de posición, popularidad y metadatos.
+		\item Transformaciones:
+		\begin{itemize}
+			\item Descarte de las respuestas sin búsqueda web y asociación de las fuentes citadas con la ficha de cada título.
+			\item Agregación por título, grupo de consultas y motor: tasa de citación y cantidad de respuestas.
+			\item Restricción a los pares elegibles, en los que el título es una respuesta pertinente para el grupo de consultas.
+			\item Partición agrupada por título, sin fuga de información entre entrenamiento y prueba.
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Modelado}
+	\begin{itemize}
+		\item Tipo de problema: regresión de una proporción, es decir, de la cantidad de citas sobre la cantidad de respuestas con búsqueda, para estimar la probabilidad de citación por título, grupo de consultas y motor.
+		\item Algoritmos posibles:
+		\begin{itemize}
+			\item Regresión logística regularizada, como modelo lineal interpretable.
+			\item Árboles de decisión potenciados por gradiente, como LightGBM o CatBoost, con función de pérdida binomial ponderada por la cantidad de respuestas.
+		\end{itemize}
+		\item Priorización: para cada título, se estima la variación de la probabilidad predicha al modificar cada característica de contenido, y se ordenan las características según esa ganancia.
+		\item Selección y ajuste: búsqueda de hiperparámetros con validación cruzada agrupada por título, regularización y registro de la versión del modelo.
+	\end{itemize}
+
+	\item \textbf{Evaluación del modelo}
+	\begin{itemize}
+		\item Métricas técnicas: error cuadrático medio, ponderado por la cantidad de respuestas, y correlación de Spearman entre la tasa de citación predicha y la observada, sobre títulos excluidos del entrenamiento.
+		\item Criterios mínimos: el modelo seleccionado obtiene menor error y mayor correlación que un modelo de referencia que predice la tasa media de cada grupo de consultas y motor. Además, se reporta el aporte de las características de contenido respecto de un modelo que solo usa variables de control.
+		\item Estabilidad: correlación de las tasas de citación entre rondas de medición y desempeño sobre paráfrasis no vistas.
+		\item Verificación humana: revisión de una muestra de respuestas procesadas, de características extraídas y de prioridades asignadas.
+	\end{itemize}
+
+	\item \textbf{Despliegue}
+	\begin{itemize}
+		\item Tipo de despliegue: piloto controlado sobre un conjunto de títulos comparables por género y popularidad, con publicación de las sinopsis aprobadas en el grupo experimental por los canales que la editorial ya utiliza.
+		\item Herramientas: repositorio de código, versionado del conjunto de datos y del modelo, y registro de las respuestas de los motores y de las sinopsis publicadas.
+		\item Operación del piloto: mediciones repetidas en ambos grupos durante la ventana acordada, sinopsis del grupo de control sin cambios y nuevo entrenamiento con los datos obtenidos. La puesta en producción queda fuera de alcance.
+	\end{itemize}
 \end{enumerate}
 
 \section{9. Desglose del trabajo en tareas}
