@@ -14,7 +14,7 @@ codirector, % Uncomment to add a codirector to the title page
 \makeatother
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Optimización de sinopsis de libros para motores de búsqueda generativos (GEO) mediante la predicción de la probabilidad de citación con aprendizaje automático} 
+\titulo{Optimización de sinopsis de libros para motores de búsqueda generativa (GEO) mediante la predicción de la probabilidad de citación con aprendizaje automático} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
 %\posgrado{Carrera de Especialización en Sistemas Embebidos} 
@@ -69,7 +69,7 @@ codirector, % Uncomment to add a codirector to the title page
 Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha      \\ \hline
 0      & Creación del documento                                 &\fechaInicioName \\ \hline
 1      & Se completa hasta el punto 5 inclusive                & 07 de septiembre de 2026 \\ \hline
-2      & Se adapta el proyecto de SEO a GEO segun nuevos requisitos. Se actualiza hasta el punto 5 inclusive & 22 de septiembre de 2026 \\ \hline
+2      & Se adapta el proyecto de SEO a GEO según nuevos requisitos. Se actualiza hasta el punto 5 inclusive & 22 de septiembre de 2026 \\ \hline
 3      & Se completan los puntos 6 a 9 inclusive & 28 de septiembre de 2026 \\ \hline
 %4      & Se completa hasta el punto 12 inclusive                & {día} de {mes} de 202X \\ \hline
 %5      & Se completa el plan	                                 & {día} de {mes} de 202X \\ \hline
@@ -92,7 +92,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativos, mediante un modelo de aprendizaje automático que predice la probabilidad de citación de cada título y un generador basado en un modelo grande de lenguaje que reescribe las sinopsis conforme a esa predicción}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa, mediante un modelo de aprendizaje automático que predice la probabilidad de citación de cada título y un generador basado en un modelo grande de lenguaje que reescribe las sinopsis conforme a esa predicción}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -113,23 +113,23 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-El proyecto se desarrolla en conjunto con Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento, a una cuenta paga de la interfaz de programación de aplicaciones (API, por su sigla en inglés) de DataForSEO y a las API de los motores generativos utilizados en el proyecto.
+El proyecto se desarrolla en conjunto con Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento, a una cuenta paga de la interfaz de programación de aplicaciones (API, por su sigla en inglés) de DataForSEO y a las API de los motores de búsqueda generativa utilizados en el proyecto.
 
 En la tienda en línea de la editorial\footnote{\url{https://www.penguinlibros.com/ar/}}, la sinopsis y las palabras clave (\textit{keywords}) constituyen el principal contenido indexable de la ficha de cada libro y determinan en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. El texto de la sinopsis se redacta con criterio editorial y no contempla la demanda real de búsqueda.
 
 La optimización para motores de búsqueda (SEO, por su sigla en inglés) reúne las técnicas que mejoran la posición de un sitio dentro de la página de resultados (SERP, por su sigla en inglés) de los buscadores tradicionales. Durante años, el tráfico se concentró en los primeros lugares de la SERP, lo que otorgaba alta visibilidad a los sitios mejor posicionados.
 
-Sin embargo, recientemente cobraron auge los motores generativos, como ChatGPT y AI Overviews de Google, que responden a las consultas con un texto redactado por inteligencia artificial. Para construir esas respuestas, el motor puede realizar varias búsquedas web, recuperar un conjunto acotado de páginas y sintetizar su contenido en un texto que las cita como fuentes. Este mecanismo se conoce como generación aumentada por recuperación (RAG, por su sigla en inglés).
+Sin embargo, recientemente cobraron auge los motores de búsqueda generativa, como ChatGPT y AI Overviews de Google, que responden a las consultas con un texto redactado por inteligencia artificial. Para construir esas respuestas, el motor puede realizar varias búsquedas web, recuperar un conjunto acotado de páginas y sintetizar su contenido en un texto que las cita como fuentes. Este mecanismo se conoce como generación aumentada por recuperación (RAG, por su sigla en inglés).
 
-La optimización para motores generativos (GEO, por su sigla en inglés) reúne las técnicas que aumentan la probabilidad de que un contenido sea citado en esas respuestas. A diferencia del SEO, su unidad de éxito no es la posición en la SERP, sino la aparición en la respuesta del motor generativo. En este proyecto, esa aparición se mide como citación, es decir, como la inclusión de la ficha del libro entre las fuentes de la respuesta. La citación solo ocurre cuando el motor busca en la web, y no cuando responde a partir de lo aprendido en su entrenamiento.
+La optimización para motores de búsqueda generativa (GEO, por su sigla en inglés) reúne las técnicas que aumentan la probabilidad de que un contenido sea citado en esas respuestas. A diferencia del SEO, su unidad de éxito no es la posición en la SERP, sino la aparición en la respuesta del motor de búsqueda generativa. En este proyecto, esa aparición se mide como citación, es decir, como la inclusión de la ficha del libro entre las fuentes de la respuesta. La citación solo ocurre cuando el motor busca en la web, y no cuando responde a partir de lo aprendido en su entrenamiento.
 
 Las suites comerciales de SEO estiman el volumen de búsqueda y la dificultad de cada \textit{keyword}, y orientan la optimización hacia la posición en la SERP. Ese enfoque no alcanza en GEO, un canal nuevo y distinto, que requiere otra unidad de éxito y otras estrategias. Una buena posición orgánica no garantiza que el motor cite la página, y la elección de \textit{keywords} no indica qué contenido favorece la citación. En consecuencia, estas herramientas no anticipan qué títulos del catálogo serán citados ni qué conviene modificar en sus sinopsis.
 
-La solución propuesta traslada el foco hacia la citación, sobre la base de la autoridad temática que la editorial ya consolidó en SEO. Consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y un grupo de consultas de descubrimiento, la probabilidad de que la ficha del libro sea citada en las respuestas de los motores generativos, y ordena las características de contenido según su aporte a esa probabilidad. En la segunda, un generador basado en un modelo grande de lenguaje (LLM, por su sigla en inglés) reescribe la sinopsis e incorpora esas características, bajo restricciones de extensión, tono y fidelidad a la sinopsis original.
+La solución propuesta traslada el foco hacia la citación, sobre la base de la autoridad temática que la editorial ya consolidó en SEO. Consta de dos etapas. En la primera, un modelo de aprendizaje automático (ML, por su sigla en inglés) estima, para cada par formado por un libro y un grupo de consultas de descubrimiento, la probabilidad de que la ficha del libro sea citada en las respuestas de los motores de búsqueda generativa, y ordena las características de contenido según su aporte a esa probabilidad. En la segunda, un generador basado en un modelo grande de lenguaje (LLM, por su sigla en inglés) reescribe la sinopsis e incorpora esas características, bajo restricciones de extensión, tono y fidelidad a la sinopsis original.
 
-La propuesta de valor radica en mejorar la visibilidad del catálogo en los motores generativos, un canal emergente para el descubrimiento de libros, sin afectar el posicionamiento orgánico ya alcanzado. La innovación pasa por dos aspectos: el modelo se entrena con la señal de citación observada en varios motores generativos, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utiliza un conjunto de títulos del catálogo de la editorial, en géneros como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda. En ese conjunto se prueban las sinopsis reescritas y se mide su impacto en la citación.
+La propuesta de valor radica en mejorar la visibilidad del catálogo en los motores de búsqueda generativa, un canal emergente para el descubrimiento de libros, sin afectar el posicionamiento orgánico ya alcanzado. La innovación pasa por dos aspectos: el modelo se entrena con la señal de citación observada en los motores de búsqueda generativa evaluados, y la generación queda condicionada por esa señal y verificada de forma automática antes de la revisión editorial. Como caso de estudio se utiliza un conjunto de títulos del catálogo de la editorial, en géneros como la novela romántica, la fantasía juvenil, la no ficción y la autoayuda. En ese conjunto se prueban las sinopsis reescritas y se mide su impacto en la citación.
 
-En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. El flujo parte de tres fuentes de datos: la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los motores generativos. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, consulta, motor, característica de contenido y tasa de citación observada. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de características priorizadas para cada título.
+En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. El flujo parte de tres fuentes de datos: la API de DataForSEO, los datos internos de la editorial y las mediciones de citación recogidas de los motores de búsqueda generativa. El bloque de ingesta consolida esa información en un conjunto de datos único que vincula libro, consulta, motor, característica de contenido y tasa de citación observada. Sobre ese conjunto se construyen las variables que alimentan al modelo de predicción, cuya salida es la lista de características priorizadas para cada título.
 
 \begin{figure}[htpb]
 \centering
@@ -156,7 +156,7 @@ El proyecto se desarrolla internamente por el equipo de Analítica Avanzada de P
 \rowcolor[HTML]{C0C0C0}
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Auspiciante   & -   & \empclientename &			\\ \hline
-Cliente       & \clientename      &\empclientename	& Cientifica de Datos \\ \hline
+Cliente       & \clientename      &\empclientename	& Científica de datos \\ \hline
 Responsable   & \authorname       & \empclientename & Machine Learning Engineer 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
 Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Final \\ \hline
@@ -175,7 +175,7 @@ Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Fina
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-El propósito de este proyecto es aumentar la visibilidad del catálogo de la editorial en los motores generativos, medida como la tasa de citación de sus fichas en las respuestas, sin resignar el posicionamiento orgánico ya consolidado.
+El propósito de este proyecto es aumentar la visibilidad del catálogo de la editorial en los motores de búsqueda generativa, medida como la tasa de citación de sus fichas en las respuestas, sin resignar el posicionamiento orgánico ya consolidado.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
@@ -186,16 +186,16 @@ El proyecto incluye:
 	\item La construcción del conjunto de datos de citación.
 		\begin{itemize}
 		\item Diseño del conjunto de consultas de descubrimiento y del protocolo de medición.
-		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores generativos. 
+		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores de búsqueda generativa. 
 			\begin{itemize}
-				\item Para el motor generativo de ChatGPT se utiliza la API de OpenAI.
-				\item Para el motor generativo AI Overviews de Google se utiliza la API de DataForSEO.
+				\item Para el motor de búsqueda generativa de ChatGPT se utiliza la API de OpenAI.
+				\item Para el motor de búsqueda generativa AI Overviews de Google se utiliza la API de DataForSEO.
 			\end{itemize}
 		\item Obtención de la posición de las fichas en las búsquedas que realizan los motores, mediante la API de DataForSEO, en calidad de variables de control.
-		\item Incorporación de los datos internos de la editorial: catálogo, series históricas de Google Trends y resultados de proyectos de SEO previos.
+		\item Incorporación de los datos internos de la editorial: catálogo y metadatos; indicadores de popularidad, como las ventas y las series históricas de Google Trends; y resultados de proyectos de SEO previos.
 		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
-	\item El análisis exploratorio de los datos y la construcción de las variables predictoras.
+	\item El análisis exploratorio de los datos y la construcción de las variables predictoras, incluida la extracción de las características de contenido con un LLM y su validación sobre una muestra etiquetada en forma manual.
 	\item El desarrollo del modelo de predicción de la probabilidad de citación.
 		\begin{itemize}
 		\item Entrenamiento y comparación entre modelos de aprendizaje automático.
@@ -204,7 +204,7 @@ El proyecto incluye:
 		\end{itemize}
 	\item El desarrollo del generador de sinopsis basado en un LLM comercial, con sus restricciones de extensión, tono y fidelidad, que aplica las técnicas de GEO compatibles con una sinopsis.
 	\item El módulo de verificación automática de las sinopsis candidatas: fidelidad semántica respecto del texto original, extensión y presencia efectiva de las características priorizadas.
-	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad, dividido en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales, con seguimiento de la citación de ambos grupos durante la ventana de medición acordada.
+	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad, dividido en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales, con seguimiento de la citación y de la posición orgánica de ambos grupos durante la ventana de medición acordada.
 	\item La documentación del sistema, el código fuente y la memoria del trabajo final.
 \end{itemize}
 
@@ -230,14 +230,15 @@ Para el desarrollo del presente proyecto se asume que:
 \begin{itemize}
 	\item La editorial mantiene la autorización para utilizar el catálogo, las sinopsis y los datos internos de posicionamiento con fines académicos, y admite la publicación de resultados agregados en la memoria del trabajo final.
 	\item El acceso a la API de DataForSEO continúa vigente durante toda la ejecución y el crédito contratado alcanza para el volumen de consultas previsto.
-	\item Se dispone de acceso a las API de los motores generativos evaluados, con un crédito suficiente para el volumen de mediciones repetidas previsto y un costo por consulta compatible con el presupuesto asignado.
+	\item Se dispone de acceso a las API de los motores de búsqueda generativa evaluados, con un crédito suficiente para el volumen de mediciones repetidas previsto y un costo por consulta compatible con el presupuesto asignado.
 	\item Las API utilizadas informan si cada respuesta incluyó una búsqueda web y cuáles fueron las fuentes citadas.
 	\item El comportamiento de búsqueda de los motores consultados mediante sus API es representativo del que observan los usuarios en las aplicaciones de cada motor.
 	\item El conjunto acotado de consultas de descubrimiento representa de forma adecuada las intenciones reales de los lectores para los géneros incluidos en el estudio.
 	\item El catálogo contiene suficientes títulos comparables por género y popularidad para conformar un grupo experimental y un grupo de control de tamaño adecuado, y la editorial admite mantener sin cambios las sinopsis del grupo de control durante la ventana de medición.
 	\item El área de marketing digital habilita la publicación de las sinopsis del piloto dentro de los plazos planificados.
-	\item Los cambios de comportamiento de los motores generativos durante la ventana de medición afectan por igual al grupo experimental y al grupo de control, de modo que la comparación entre ambos aísla el efecto de las sinopsis modificadas. Las mediciones se repiten para atenuar la variabilidad entre ejecuciones.
-	\item Los datos históricos de posicionamiento cubren un período suficiente para entrenar y validar el modelo.
+	\item El equipo editorial dispone de tiempo para revisar las sinopsis candidatas y la muestra con la que se define el umbral de fidelidad.
+	\item Los cambios de comportamiento de los motores de búsqueda generativa durante la ventana de medición afectan por igual al grupo experimental y al grupo de control, de modo que la comparación entre ambos aísla el efecto de las sinopsis modificadas. Las mediciones se repiten para atenuar la variabilidad entre ejecuciones.
+	\item La cantidad de citas observadas en las rondas de medición es suficiente para entrenar y validar el modelo.
 	\item El responsable dispone de una carga horaria semanal sostenida y compatible con el cronograma, y cuenta con el equipamiento y los servicios de cómputo necesarios.
 	\item Las condiciones macroeconómicas no alteran de forma significativa el costo en pesos de los servicios contratados en moneda extranjera.
 \end{itemize}
@@ -266,21 +267,21 @@ La suma de los tres pesos se redondea al siguiente número de la serie de Fibona
 
 \textbf{Épica 1: construcción del conjunto de datos de citación}
 
-\textbf{HU1.} Como \textit{Machine Learning Engineer}, quiero medir la citación de los títulos en los motores generativos para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
+\textbf{HU1.} Como \textit{Machine Learning Engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
 
 \textbf{HU2.} Como \textit{Machine Learning Engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
 \textbf{Épica 2: predicción de la probabilidad de citación}
 
-\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores generadores, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
+\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
 
 \textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
 
 \textbf{Épica 3: generación y verificación de sinopsis}
 
-\textbf{HU5.} Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores generativos para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
+\textbf{HU5.} Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
-\textbf{HU6.} Como editor, quiero que las sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarlo en la tienda en linea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
+\textbf{HU6.} Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
 
 \textbf{Épica 4: piloto y medición de resultados}
 
@@ -297,14 +298,14 @@ Cada historia de usuario cuenta con criterios de aceptación medibles y verifica
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
-	\item Se consulta cada título con un conjunto fijo de consultas en los motores generativos, con la búsqueda web habilitada y diez repeticiones por consulta.
-	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y cuando la API lo informa, qué búsquedas ejecutó.
+	\item Se consulta cada título con un conjunto fijo de consultas en los motores de búsqueda generativa, con la búsqueda web habilitada y diez repeticiones por consulta.
+	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y, cuando la API lo informa, qué búsquedas ejecutó.
 	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
 \end{itemize}
 
 Criterios de aceptación de la HU2:
 \begin{itemize}
-	\item Cada registro vincula título, consulta, motor, característica de contenido y tasa de citación.
+	\item Cada registro vincula título, consulta, motor, variables de control y tasa de citación.
 	\item Se obtiene, mediante DataForSEO, la posición de las fichas en las búsquedas registradas de cada motor.
 	\item Se integran los datos internos de popularidad y los metadatos del catálogo.
 	\item Se documentan el origen y las transformaciones de cada variable.
@@ -331,8 +332,8 @@ Criterios de aceptación de la HU4:
 
 Criterios de aceptación de la HU5:
 \begin{itemize}
-	\item La sinopsis sugerida tiene mayor probabilidad de ser citado por motores generativos con busqueda web activa.
-	\item Para cada titulo, se optimiza para la misma consulta con la que se construyo el conjunto de datos de citación.
+	\item La sinopsis sugerida tiene mayor probabilidad de ser citada por los motores de búsqueda generativa con búsqueda web activa.
+	\item Para cada título, se optimiza para los mismos grupos de consultas con los que se construyó el conjunto de datos de citación.
 \end{itemize}
 
 Criterios de aceptación de la HU6:
@@ -349,13 +350,14 @@ Criterios de aceptación de la HU7:
 \begin{itemize}
 	\item Se conforman un grupo experimental y un grupo de control con títulos comparables por género y popularidad.
 	\item Se mide la citación de ambos grupos durante la ventana acordada.
+	\item Se registra la posición orgánica de las fichas de ambos grupos en cada ronda de medición.
 	\item Se estima el efecto de la reescritura como la diferencia en la evolución de la citación entre ambos grupos.
 	\item Los resultados distinguen la señal del ruido mediante mediciones repetidas.
 \end{itemize}
 
 Criterios de aceptación de la HU8:
 \begin{itemize}
-	\item El informe presenta los resultados del experimento del grupo de control, con sus intervalos de variabilidad.
+	\item El informe presenta los resultados del piloto frente al grupo de control, con sus intervalos de variabilidad.
 	\item Incluye visualizaciones claras y las limitaciones del análisis.
 	\item Se entrega en un formato que el cliente puede revisar y aprobar.
 \end{itemize}
@@ -366,7 +368,7 @@ Criterios de aceptación de la HU8:
 \begin{enumerate}
 	\item \textbf{Comprensión del negocio}
 	\begin{itemize}
-		\item Objetivo: aumentar la visibilidad del catálogo de la editorial en los motores generativos, medida como la tasa de citación de las fichas en las respuestas con búsqueda web.
+		\item Objetivo: aumentar la visibilidad del catálogo de la editorial en los motores de búsqueda generativa, medida como la tasa de citación de las fichas en las respuestas con búsqueda web.
 		\item Valor agregado: presencia del catálogo en un canal emergente para el descubrimiento de libros, sin resignar el posicionamiento orgánico ya consolidado, mediante un procedimiento basado en datos y aplicable a todo el catálogo.
 		\item Métricas de éxito del negocio, con valores a consensuar con el cliente:
 		\begin{itemize}
@@ -379,7 +381,7 @@ Criterios de aceptación de la HU8:
 	\item \textbf{Comprensión de los datos}
 	\begin{itemize}
 		\item Tipo: respuestas de los motores, con su texto, sus fuentes citadas y las búsquedas ejecutadas; sinopsis y metadatos del catálogo; posiciones de las fichas en los buscadores e indicadores de popularidad.
-		\item Origen: API de OpenAI para ChatGPT con búsqueda web; API de DataForSEO para las AI Overviews de Google y para las posiciones en los buscadores; datos internos de la editorial para el catálogo, las ventas y las series de Google Trends.
+		\item Origen: API de OpenAI para ChatGPT con búsqueda web; API de DataForSEO para AI Overviews de Google y para las posiciones en los buscadores; datos internos de la editorial para el catálogo, las ventas y las series de Google Trends.
 		\item Cantidad esperada: del orden de miles de respuestas por ronda de medición, sobre cientos de títulos elegibles de los géneros del estudio.
 		\item Calidad: alta variabilidad entre ejecuciones y entre paráfrasis de una misma consulta, citas escasas y fuentes que deben asociarse a cada título. Se requieren mediciones repetidas y control de calidad del procesamiento.
 	\end{itemize}
@@ -436,7 +438,7 @@ A partir de cada historia de usuario se descompone el trabajo en tareas técnica
 \rowcolor[HTML]{C0C0C0}
 Historia & Tarea técnica & Estimación & Prioridad \\ \hline
 HU1 & Definir el conjunto de consultas y el protocolo de diez repeticiones & 6 h & Alta \\ \hline
-HU1 & Automatizar la consulta a ChatGPT y a las AI Overviews con la búsqueda web habilitada & 8 h & Alta \\ \hline
+HU1 & Automatizar la consulta a ChatGPT y a AI Overviews con la búsqueda web habilitada & 8 h & Alta \\ \hline
 HU1 & Registrar las búsquedas ejecutadas y asociar las fuentes citadas con la ficha de cada título & 8 h & Alta \\ \hline
 HU2 & Obtener la posición de las fichas en las búsquedas de los motores mediante DataForSEO & 6 h & Alta \\ \hline
 HU2 & Integrar los datos internos de popularidad y consolidar el conjunto de datos & 8 h & Media \\ \hline
