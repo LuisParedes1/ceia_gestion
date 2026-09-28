@@ -297,10 +297,9 @@ Cada historia de usuario cuenta con criterios de aceptación medibles y verifica
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
-	\item Se consulta cada título con un conjunto fijo de consultas en los motores generativos, con la búsqueda web habilitada y una cantidad mínima de repeticiones por consulta.
+	\item Se consulta cada título con un conjunto fijo de consultas en los motores generativos, con la búsqueda web habilitada y diez repeticiones por consulta.
 	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y, cuando la API lo informa, qué búsquedas ejecutó.
 	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
-	\item El conjunto de datos resultante queda versionado.
 \end{itemize}
 
 Criterios de aceptación de la HU2:
@@ -325,24 +324,23 @@ Criterios de aceptación de la HU4:
 \begin{itemize}
 	\item La validación usa mediciones repetidas y control de paráfrasis.
 	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
-	\item Las conclusiones incluyen la validación humana de una muestra.
 \end{itemize}
 
 \textbf{Épica 3: generación y verificación de sinopsis}
 
 Criterios de aceptación de la HU5:
 \begin{itemize}
+	\item La sinopsis sugerida tiene mayor probabilidad de ser citado por motores generativos con busqueda web activa.
+	\item Para cada titulo, se optimiza para la misma consulta con la que se construyo el conjunto de datos de citación.
+\end{itemize}
+
+Criterios de aceptación de la HU6:
+\begin{itemize}
 	\item La sinopsis generada respeta el límite de extensión y el tono editorial.
 	\item Incorpora las características priorizadas por el modelo.
 	\item Conserva la fidelidad semántica con el texto original por encima del umbral.
 \end{itemize}
 
-Criterios de aceptación de la HU6:
-\begin{itemize}
-	\item Se calculan la similitud semántica, la extensión y la presencia de características.
-	\item Se rechazan de forma automática las candidatas que no superan los umbrales.
-	\item Solo las candidatas aprobadas pasan a la revisión editorial.
-\end{itemize}
 
 \textbf{Épica 4: piloto y medición de resultados}
 
@@ -356,7 +354,7 @@ Criterios de aceptación de la HU7:
 
 Criterios de aceptación de la HU8:
 \begin{itemize}
-	\item El informe presenta la mejora de citación respecto del grupo de control, con sus intervalos de variabilidad.
+	\item El informe presenta los resultados del experimento del grupo de control, con sus intervalos de variabilidad.
 	\item Incluye visualizaciones claras y las limitaciones del análisis.
 	\item Se entrega en un formato que el cliente puede revisar y aprobar.
 \end{itemize}
