@@ -526,6 +526,7 @@ Sprint 7 & HU7 & Publicar las sinopsis y configurar el seguimiento & 12 h & Ing.
 Sprint 8 & HU7 & Ejecutar la campaña de medición del piloto & 28 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 8 & HU7 & Registrar la posición orgánica de ambos grupos & 8 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 8 & HU7 & Estimar el efecto de la reescritura entre grupos & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -537,7 +538,6 @@ Sprint 8 & HU7 & Estimar el efecto de la reescritura entre grupos & 16 h & Ing. 
 Sprint & HU o fase & Tarea & Horas & Responsable & Avance \\ \hline
 Sprint 9 & HU8 & Calcular los intervalos de variabilidad del efecto estimado & 12 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 9 & HU8 & Elaborar el informe con visualizaciones y limitaciones & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 10 & Escritura & Redactar la memoria: introducción y estado del arte & 32 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 10 & Escritura & Redactar la memoria: desarrollo y resultados & 30 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 11 & Escritura & Incorporar el \textit{feedback} del director & 12 h & Ing. Paredes & 0~\% \\ \hline
@@ -566,17 +566,17 @@ Sprint 2 & 28/10/2026 & 10/11/2026 & 2 & HU2 y HU3 & 50 h \\ \hline
 Sprint 3 & 11/11/2026 & 24/11/2026 & 2 & HU3 & 50 h \\ \hline
 Sprint 4 & 25/11/2026 & 08/12/2026 & 2 & HU4 y HU5 & 48 h \\ \hline
 Sprint 5 & 09/12/2026 & 22/12/2026 & 2 & HU5 y HU6 & 48 h \\ \hline
-Receso & 23/12/2026 & 05/01/2027 & 2 & Receso de fin de año & -- \\ \hline
-Sprint 6 & 06/01/2027 & 19/01/2027 & 2 & HU6 y pruebas & 50 h \\ \hline
-Sprint 7 & 20/01/2027 & 02/02/2027 & 2 & Pruebas y HU7 & 50 h \\ \hline
-Sprint 8 & 03/02/2027 & 02/03/2027 & 4 & HU7 & 52 h \\ \hline
-Sprint 9 & 03/03/2027 & 16/03/2027 & 2 & HU8 y documentación & 50 h \\ \hline
-Sprint 10 & 17/03/2027 & 20/04/2027 & 5 & Escritura & 62 h \\ \hline
-Sprint 11 & 21/04/2027 & 15/05/2027 & 3,5 & Escritura y defensa & 42 h \\ \hline
+Receso & 23/12/2026 & 29/12/2026 & 1 & Receso de fin de año & -- \\ \hline
+Sprint 6 & 30/12/2026 & 12/01/2027 & 2 & HU6 y pruebas & 50 h \\ \hline
+Sprint 7 & 13/01/2027 & 26/01/2027 & 2 & Pruebas y HU7 & 50 h \\ \hline
+Sprint 8 & 27/01/2027 & 23/02/2027 & 4 & HU7 y documentación & 74 h \\ \hline
+Sprint 9 & 24/02/2027 & 02/03/2027 & 1 & HU8 & 28 h \\ \hline
+Sprint 10 & 03/03/2027 & 06/04/2027 & 5 & Escritura & 62 h \\ \hline
+Sprint 11 & 07/04/2027 & 30/04/2027 & 3,5 & Escritura y defensa & 42 h \\ \hline
 \end{tabularx}
 \end{table}
 
-Según lo recomendado en la asignatura, se finaliza la etapa técnica 2 meses antes dos meses antes de la defensa. Las tareas recaen en un único responsable, por lo que se encadenan en forma secuencial y conforman el camino crítico.
+La defensa pública se prevé para la ultima semana de Abril. Según lo recomendado en la asignatura, se finaliza la etapa técnica dos meses antes de la defensa. Las tareas recaen en un único responsable, por lo que se encadenan en forma secuencial y conforman el camino crítico.
 
 \begin{figure}[htpb]
 \centering
@@ -587,7 +587,7 @@ Según lo recomendado en la asignatura, se finaliza la etapa técnica 2 meses an
 \begin{ganttchart}[
   time slot unit=day,
   time slot format=isodate,
-  x unit=0.033cm,
+  x unit=0.035cm,
   y unit title=0.42cm,
   y unit chart=0.37cm,
   title/.append style={draw=black!30, fill=black!6},
@@ -611,9 +611,9 @@ Según lo recomendado en la asignatura, se finaliza la etapa técnica 2 meses an
   milestone/.append style={draw=none, fill=ganttHito, xscale=6},
   milestone label font=\scriptsize,
   newline shortcut=false
-]{2026-08-08}{2027-05-15}
-\gantttitle{2026}{146} \gantttitle{2027}{135} \ganttnewline
-\gantttitle{ago}{24} \gantttitle{sep}{30} \gantttitle{oct}{31} \gantttitle{nov}{30} \gantttitle{dic}{31} \gantttitle{ene}{31} \gantttitle{feb}{28} \gantttitle{mar}{31} \gantttitle{abr}{30} \gantttitle{may}{15} \ganttnewline
+]{2026-08-08}{2027-04-30}
+\gantttitle{2026}{146} \gantttitle{2027}{120} \ganttnewline
+\gantttitle{ago}{24} \gantttitle{sep}{30} \gantttitle{oct}{31} \gantttitle{nov}{30} \gantttitle{dic}{31} \gantttitle{ene}{31} \gantttitle{feb}{28} \gantttitle{mar}{31} \gantttitle{abr}{30} \ganttnewline
 \ganttgroup{Sprint 0}{2026-08-08}{2026-10-13} \ganttnewline
 \ganttbar[bar/.append style={fill=ganttNoTec}]{Estado del arte de GEO}{2026-08-08}{2026-09-06} \ganttnewline
 \ganttbar[bar/.append style={fill=ganttNoTec}]{Reorientación de SEO a GEO}{2026-09-07}{2026-09-22} \ganttnewline
@@ -642,37 +642,37 @@ Según lo recomendado en la asignatura, se finaliza la etapa técnica 2 meses an
 \ganttbar{Generador de sinopsis}{2026-12-09}{2026-12-14} \ganttnewline
 \ganttbar{Probabilidad de citación}{2026-12-15}{2026-12-17} \ganttnewline
 \ganttbar{Controles de verificación}{2026-12-18}{2026-12-22} \ganttnewline
-\ganttbar[bar/.append style={fill=black!15}]{Receso de fin de año}{2026-12-23}{2027-01-05} \ganttnewline
-\ganttgroup{Sprint 6}{2027-01-06}{2027-01-19} \ganttnewline
-\ganttbar{Umbral de fidelidad}{2027-01-06}{2027-01-08} \ganttnewline
-\ganttbar{Rechazo automático y revisión}{2027-01-09}{2027-01-11} \ganttnewline
-\ganttbar{Pruebas integradas}{2027-01-12}{2027-01-19} \ganttnewline
-\ganttgroup{Sprint 7}{2027-01-20}{2027-02-02} \ganttnewline
-\ganttbar{Corrección de errores}{2027-01-20}{2027-01-27} \ganttnewline
-\ganttbar{Grupos del piloto}{2027-01-28}{2027-01-30} \ganttnewline
-\ganttbar{Publicación y seguimiento}{2027-01-31}{2027-02-02} \ganttnewline
-\ganttmilestone{Publicación de las sinopsis}{2027-02-02} \ganttnewline
-\ganttgroup{Sprint 8}{2027-02-03}{2027-03-02} \ganttnewline
-\ganttbar{Campaña de medición del piloto}{2027-02-03}{2027-02-23} \ganttnewline
-\ganttbar{Posición orgánica de ambos grupos}{2027-02-03}{2027-02-23} \ganttnewline
-\ganttbar{Estimación del efecto}{2027-02-24}{2027-03-02} \ganttnewline
-\ganttgroup{Sprint 9}{2027-03-03}{2027-03-16} \ganttnewline
-\ganttbar{Intervalos de variabilidad}{2027-03-03}{2027-03-05} \ganttnewline
-\ganttbar{Informe del piloto}{2027-03-06}{2027-03-10} \ganttnewline
-\ganttbar{Documentación técnica}{2027-03-11}{2027-03-16} \ganttnewline
-\ganttmilestone{Fin de la etapa técnica}{2027-03-16} \ganttnewline
-\ganttgroup{Sprint 10}{2027-03-17}{2027-04-20} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: introducción}{2027-03-17}{2027-04-03} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: desarrollo y resultados}{2027-04-04}{2027-04-20} \ganttnewline
-\ganttmilestone{Revisión integral de la memoria con el director}{2027-04-20} \ganttnewline
-\ganttgroup{Sprint 11}{2027-04-21}{2027-05-15} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Incorporación del \textit{feedback} del director}{2027-04-21}{2027-04-26} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: conclusiones y versión final}{2027-04-27}{2027-04-30} \ganttnewline
-\ganttmilestone{Entrega de la memoria}{2027-04-30} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Preparación de la defensa}{2027-05-01}{2027-05-14} \ganttnewline
-\ganttmilestone{Defensa pública}{2027-05-15} \ganttnewline[thick, black!40]
-\ganttmilestone{Revisiones con el director}{2026-10-27} \ganttmilestone{}{2026-11-10} \ganttmilestone{}{2026-11-24} \ganttmilestone{}{2026-12-08} \ganttmilestone{}{2026-12-22} \ganttmilestone{}{2027-01-19} \ganttmilestone{}{2027-02-02} \ganttmilestone{}{2027-03-02} \ganttmilestone{}{2027-03-16} \ganttmilestone{}{2027-04-20} \ganttnewline
-\ganttmilestone{Reuniones con el cliente}{2026-10-13} \ganttmilestone{}{2027-01-30} \ganttmilestone{}{2027-03-16}
+\ganttbar[bar/.append style={fill=black!15}]{Receso de fin de año}{2026-12-23}{2026-12-29} \ganttnewline
+\ganttgroup{Sprint 6}{2026-12-30}{2027-01-12} \ganttnewline
+\ganttbar{Umbral de fidelidad}{2026-12-30}{2027-01-01} \ganttnewline
+\ganttbar{Rechazo automático y revisión}{2027-01-02}{2027-01-04} \ganttnewline
+\ganttbar{Pruebas integradas}{2027-01-05}{2027-01-12} \ganttnewline
+\ganttgroup{Sprint 7}{2027-01-13}{2027-01-26} \ganttnewline
+\ganttbar{Corrección de errores}{2027-01-13}{2027-01-20} \ganttnewline
+\ganttbar{Grupos del piloto}{2027-01-21}{2027-01-23} \ganttnewline
+\ganttbar{Publicación y seguimiento}{2027-01-24}{2027-01-26} \ganttnewline
+\ganttmilestone{Publicación de las sinopsis}{2027-01-26} \ganttnewline
+\ganttgroup{Sprint 8}{2027-01-27}{2027-02-23} \ganttnewline
+\ganttbar{Campaña de medición del piloto}{2027-01-27}{2027-02-16} \ganttnewline
+\ganttbar{Posición orgánica de ambos grupos}{2027-01-27}{2027-02-16} \ganttnewline
+\ganttbar{Documentación técnica}{2027-01-27}{2027-02-16} \ganttnewline
+\ganttbar{Estimación del efecto}{2027-02-17}{2027-02-23} \ganttnewline
+\ganttgroup{Sprint 9}{2027-02-24}{2027-03-02} \ganttnewline
+\ganttbar{Intervalos de variabilidad}{2027-02-24}{2027-02-26} \ganttnewline
+\ganttbar{Informe del piloto}{2027-02-27}{2027-03-02} \ganttnewline
+\ganttmilestone{Fin de la etapa técnica}{2027-03-02} \ganttnewline
+\ganttgroup{Sprint 10}{2027-03-03}{2027-04-06} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: introducción}{2027-03-03}{2027-03-19} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: desarrollo y resultados}{2027-03-20}{2027-04-06} \ganttnewline
+\ganttmilestone{Revisión integral de la memoria con el director}{2027-04-06} \ganttnewline
+\ganttgroup{Sprint 11}{2027-04-07}{2027-04-30} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Incorporación del \textit{feedback} del director}{2027-04-07}{2027-04-12} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: conclusiones y versión final}{2027-04-13}{2027-04-16} \ganttnewline
+\ganttmilestone{Entrega de la memoria}{2027-04-16} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Preparación de la defensa}{2027-04-17}{2027-04-28} \ganttnewline
+\ganttmilestone{Defensa pública}{2027-04-30} \ganttnewline[thick, black!40]
+\ganttmilestone{Revisiones con el director}{2026-10-27} \ganttmilestone{}{2026-11-10} \ganttmilestone{}{2026-11-24} \ganttmilestone{}{2026-12-08} \ganttmilestone{}{2026-12-22} \ganttmilestone{}{2027-01-12} \ganttmilestone{}{2027-01-26} \ganttmilestone{}{2027-02-23} \ganttmilestone{}{2027-03-02} \ganttmilestone{}{2027-04-06} \ganttnewline
+\ganttmilestone{Reuniones con el cliente}{2026-10-13} \ganttmilestone{}{2027-01-23} \ganttmilestone{}{2027-03-02}
 \end{ganttchart}
 
 \vspace{2mm}
