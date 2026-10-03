@@ -39,7 +39,7 @@ codirector, % Uncomment to add a codirector to the title page
  
 \fechaINICIO{08 de agosto de 2026}		%Fecha de inicio de la cursada de GdP \fechaInicioName
 \fechaFINALPlan{13 de octubre de 2026} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de mayo de 2027}	%Fecha de defensa pública del trabajo final
+\fechaFINALTrabajo{abril de 2027}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -92,7 +92,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa, mediante un modelo de aprendizaje automático que predice la probabilidad de citación de cada título y un generador basado en un modelo grande de lenguaje que reescribe las sinopsis conforme a esa predicción}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa. El sistema combina un modelo de aprendizaje automático, que predice la probabilidad de citación de cada título, con un generador basado en un modelo grande de lenguaje, que reescribe las sinopsis conforme a esa predicción}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública en \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -113,13 +113,13 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-El proyecto se desarrolla en conjunto con Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{Machine Learning Engineer}, condición que habilita el acceso al catálogo editorial, a los datos internos de posicionamiento, a una cuenta paga de la interfaz de programación de aplicaciones (API, por su sigla en inglés) de DataForSEO y a las API de los motores de búsqueda generativa utilizados en el proyecto.
+El proyecto se desarrolla en conjunto con Penguin Random House Grupo Editorial Argentina, empresa que edita, publica y distribuye libros en formato papel, digital y audio para lectores de todas las edades. El responsable se desempeña en esa organización como \textit{machine learning engineer}. Este puesto le da acceso al catálogo editorial y a los datos internos de posicionamiento. Además, le permite utilizar la cuenta paga de la editorial en DataForSEO, un proveedor de datos de buscadores, y las interfaces de programación de aplicaciones (API, por su sigla en inglés) de los motores de búsqueda generativa empleados en el proyecto.
 
-En la tienda en línea de la editorial\footnote{\url{https://www.penguinlibros.com/ar/}}, la sinopsis y las palabras clave (\textit{keywords}) constituyen el principal contenido indexable de la ficha de cada libro y determinan en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. El texto de la sinopsis se redacta con criterio editorial y no contempla la demanda real de búsqueda.
+En la tienda en línea de la editorial\footnote{\url{https://www.penguinlibros.com/ar/}}, las sinopsis y las palabras clave (\textit{keywords}) constituyen el principal contenido indexable de la ficha de cada libro y determinan en buena medida que un lector potencial encuentre el título al buscar por género, autor o temática. Las sinopsis se redactan con criterio editorial y no contemplan la demanda real de búsqueda.
 
 La optimización para motores de búsqueda (SEO, por su sigla en inglés) reúne las técnicas que mejoran la posición de un sitio dentro de la página de resultados (SERP, por su sigla en inglés) de los buscadores tradicionales. Durante años, el tráfico se concentró en los primeros lugares de la SERP, lo que otorgaba alta visibilidad a los sitios mejor posicionados.
 
-Sin embargo, recientemente cobraron auge los motores de búsqueda generativa, como ChatGPT y AI Overviews de Google, que responden a las consultas con un texto redactado por inteligencia artificial. Para construir esas respuestas, el motor puede realizar varias búsquedas web, recuperar un conjunto acotado de páginas y sintetizar su contenido en un texto que las cita como fuentes. Este mecanismo se conoce como generación aumentada por recuperación (RAG, por su sigla en inglés).
+Sin embargo, en los últimos años se extendió el uso de los motores de búsqueda generativa, como ChatGPT y AI Overviews de Google. Estos motores responden a las consultas con un texto redactado por inteligencia artificial. Para construir esas respuestas, el motor puede realizar varias búsquedas web, recuperar un conjunto acotado de páginas y sintetizar su contenido en un texto que las cita como fuentes. Este mecanismo se conoce como generación aumentada por recuperación (RAG, por su sigla en inglés).
 
 La optimización para motores de búsqueda generativa (GEO, por su sigla en inglés) reúne las técnicas que aumentan la probabilidad de que un contenido sea citado en esas respuestas. A diferencia del SEO, su unidad de éxito no es la posición en la SERP, sino la aparición en la respuesta del motor de búsqueda generativa. En este proyecto, esa aparición se mide como citación, es decir, como la inclusión de la ficha del libro entre las fuentes de la respuesta. La citación solo ocurre cuando el motor busca en la web, y no cuando responde a partir de lo aprendido en su entrenamiento.
 
@@ -138,7 +138,7 @@ En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistem
 \label{fig:diagBloques}
 \end{figure}
 
-El generador de sinopsis recibe el texto original y esas características, y produce una versión candidata. Un módulo de verificación automática controla la similitud semántica con el texto original, la extensión y la presencia efectiva de las características priorizadas; solo las candidatas que superan estos controles pasan a revisión editorial.
+El generador de sinopsis recibe el texto original y esas características, y produce una versión candidata. Un módulo de verificación automática controla la similitud semántica con el texto original, la extensión y la presencia efectiva de las características priorizadas. Solo las candidatas que superan estos controles pasan a revisión editorial.
 
 Las sinopsis aprobadas se publican en un piloto controlado sobre un conjunto de títulos comparables por género y popularidad. Una parte de esos títulos recibe la sinopsis reescrita, como grupo experimental, y el resto conserva la original, como grupo de control. El seguimiento de ambos grupos, con mediciones repetidas, permite estimar el efecto de la reescritura y descontar los cambios de comportamiento de los motores. Esas mediciones realimentan el conjunto de datos y habilitan un nuevo entrenamiento del modelo.
 
@@ -157,7 +157,7 @@ El proyecto se desarrolla internamente por el equipo de Analítica Avanzada de P
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Auspiciante   & -   & \empclientename &			\\ \hline
 Cliente       & \clientename      &\empclientename	& Científica de datos \\ \hline
-Responsable   & \authorname       & \empclientename & Machine Learning Engineer 	\\ \hline
+Responsable   & \authorname       & \empclientename & \textit{Machine learning engineer} \\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
 Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Final \\ \hline
 \end{tabularx}
@@ -186,13 +186,9 @@ El proyecto incluye:
 	\item La construcción del conjunto de datos de citación.
 		\begin{itemize}
 		\item Diseño del conjunto de consultas de descubrimiento y del protocolo de medición.
-		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores de búsqueda generativa. 
-			\begin{itemize}
-				\item Para el motor de búsqueda generativa de ChatGPT se utiliza la API de OpenAI.
-				\item Para el motor de búsqueda generativa AI Overviews de Google se utiliza la API de DataForSEO.
-			\end{itemize}
+		\item Medición repetida de la citación del catálogo en las respuestas con búsqueda web de los motores de búsqueda generativa.
 		\item Obtención de la posición de las fichas en las búsquedas que realizan los motores, mediante la API de DataForSEO, en calidad de variables de control.
-		\item Incorporación de los datos internos de la editorial: catálogo y metadatos; indicadores de popularidad, como las ventas y las series históricas de Google Trends; y resultados de proyectos de SEO previos.
+		\item Incorporación de los datos internos de la editorial: catálogo y metadatos, indicadores de popularidad y resultados de proyectos de SEO previos. Los indicadores de popularidad comprenden las ventas y las series históricas de Google Trends.
 		\item Consolidación, limpieza y versionado del conjunto de datos.
 		\end{itemize}
 	\item El análisis exploratorio de los datos y la construcción de las variables predictoras, incluida la extracción de las características de contenido con un LLM y su validación sobre una muestra etiquetada en forma manual.
@@ -204,7 +200,7 @@ El proyecto incluye:
 		\end{itemize}
 	\item El desarrollo del generador de sinopsis basado en un LLM comercial, con sus restricciones de extensión, tono y fidelidad, que aplica las técnicas de GEO compatibles con una sinopsis.
 	\item El módulo de verificación automática de las sinopsis candidatas: fidelidad semántica respecto del texto original, extensión y presencia efectiva de las características priorizadas.
-	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad, dividido en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales, con seguimiento de la citación y de la posición orgánica de ambos grupos durante la ventana de medición acordada.
+	\item La ejecución de un piloto controlado sobre un conjunto de títulos comparables por género y popularidad. Los títulos se dividen en un grupo experimental, que recibe las sinopsis aprobadas, y un grupo de control, que conserva las originales. Durante la ventana de medición acordada, se registran la citación y la posición orgánica de ambos grupos.
 	\item La documentación del sistema, el código fuente y la memoria del trabajo final.
 \end{itemize}
 
@@ -265,41 +261,41 @@ El criterio para calcular los \textit{story points} pondera tres dimensiones y s
 
 La suma de los tres pesos se redondea al siguiente número de la serie de Fibonacci. Esto es: 1, 2, 3, 5, 8, 13, 21 y 34. El criterio sobreestima antes que subestimar.
 
-\textbf{Épica 1: construcción del conjunto de datos de citación}
+Épica 1: construcción del conjunto de datos de citación
 
-\textbf{HU1.} Como \textit{Machine Learning Engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
+HU1. Como \textit{machine learning engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
 
-\textbf{HU2.} Como \textit{Machine Learning Engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
+HU2. Como \textit{machine learning engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
-\textbf{Épica 2: predicción de la probabilidad de citación}
+Épica 2: predicción de la probabilidad de citación
 
-\textbf{HU3.} Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
+HU3. Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
 
-\textbf{HU4.} Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
+HU4. Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
 
-\textbf{Épica 3: generación y verificación de sinopsis}
+Épica 3: generación y verificación de sinopsis
 
-\textbf{HU5.} Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
+HU5. Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
 
-\textbf{HU6.} Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
+HU6. Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
 
-\textbf{Épica 4: piloto y medición de resultados}
+Épica 4: piloto y medición de resultados
 
-\textbf{HU7.} Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
+HU7. Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
 
-\textbf{HU8.} Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 1, incertidumbre: 2; la suma es 6 y se redondea a 8.
+HU8. Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 1, incertidumbre: 2; la suma es 6 y se redondea a 8.
 
 \section{7. Criterios de aceptación de historias de usuario}
 \label{sec:criteriosAceptacion}
 
 Cada historia de usuario cuenta con criterios de aceptación medibles y verificables, que definen cuándo la funcionalidad se considera cumplida.
 
-\textbf{Épica 1: construcción del conjunto de datos de citación}
+Épica 1: construcción del conjunto de datos de citación
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
 	\item Se consulta cada título con un conjunto fijo de consultas en los motores de búsqueda generativa, con la búsqueda web habilitada y diez repeticiones por consulta.
-	\item Se registra, para cada respuesta, si el motor realizó una búsqueda web y, cuando la API lo informa, qué búsquedas ejecutó.
+	\item Se registra si el motor realizó una búsqueda web en cada respuesta. Cuando la API lo informa, también se registran las búsquedas ejecutadas.
 	\item En las respuestas con búsqueda, se registra si la ficha del título figura entre las fuentes citadas.
 \end{itemize}
 
@@ -311,7 +307,7 @@ Criterios de aceptación de la HU2:
 	\item Se documentan el origen y las transformaciones de cada variable.
 \end{itemize}
 
-\textbf{Épica 2: predicción de la probabilidad de citación}
+Épica 2: predicción de la probabilidad de citación
 
 Criterios de aceptación de la HU3:
 \begin{itemize}
@@ -328,7 +324,7 @@ Criterios de aceptación de la HU4:
 	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
 \end{itemize}
 
-\textbf{Épica 3: generación y verificación de sinopsis}
+Épica 3: generación y verificación de sinopsis
 
 Criterios de aceptación de la HU5:
 \begin{itemize}
@@ -344,7 +340,7 @@ Criterios de aceptación de la HU6:
 \end{itemize}
 
 
-\textbf{Épica 4: piloto y medición de resultados}
+Épica 4: piloto y medición de resultados
 
 Criterios de aceptación de la HU7:
 \begin{itemize}
@@ -366,7 +362,7 @@ Criterios de aceptación de la HU8:
 \label{sec:crispdm}
 
 \begin{enumerate}
-	\item \textbf{Comprensión del negocio}
+	\item Comprensión del negocio
 	\begin{itemize}
 		\item Objetivo: aumentar la visibilidad del catálogo de la editorial en los motores de búsqueda generativa, medida como la tasa de citación de las fichas en las respuestas con búsqueda web.
 		\item Valor agregado: presencia del catálogo en un canal emergente para el descubrimiento de libros, sin resignar el posicionamiento orgánico ya consolidado, mediante un procedimiento basado en datos y aplicable a todo el catálogo.
@@ -378,17 +374,17 @@ Criterios de aceptación de la HU8:
 		\end{itemize}
 	\end{itemize}
 
-	\item \textbf{Comprensión de los datos}
+	\item Comprensión de los datos
 	\begin{itemize}
-		\item Tipo: respuestas de los motores, con su texto, sus fuentes citadas y las búsquedas ejecutadas; sinopsis y metadatos del catálogo; posiciones de las fichas en los buscadores e indicadores de popularidad.
-		\item Origen: API de OpenAI para ChatGPT con búsqueda web; API de DataForSEO para AI Overviews de Google y para las posiciones en los buscadores; datos internos de la editorial para el catálogo, las ventas y las series de Google Trends.
+		\item Tipo: respuestas de los motores, con su texto, sus fuentes citadas y las búsquedas ejecutadas. Se suman las sinopsis y los metadatos del catálogo. También se incluyen las posiciones de las fichas en los buscadores y los indicadores de popularidad.
+		\item Origen: la API de OpenAI provee las respuestas de ChatGPT con búsqueda web. La API de DataForSEO entrega las de AI Overviews de Google y las posiciones en los buscadores. Los datos internos de la editorial aportan el catálogo, las ventas y las series de Google Trends.
 		\item Cantidad esperada: del orden de miles de respuestas por ronda de medición, sobre cientos de títulos elegibles de los géneros del estudio.
 		\item Calidad: alta variabilidad entre ejecuciones y entre paráfrasis de una misma consulta, citas escasas y fuentes que deben asociarse a cada título. Se requieren mediciones repetidas y control de calidad del procesamiento.
 	\end{itemize}
 
-	\item \textbf{Preparación de los datos}
+	\item Preparación de los datos
 	\begin{itemize}
-		\item Características clave: variables de contenido de la sinopsis, extraídas con un LLM y validadas sobre una muestra etiquetada en forma manual; coincidencia entre la sinopsis y cada grupo de consultas; variables de control de posición, popularidad y metadatos.
+		\item Características clave: variables de contenido de la sinopsis, extraídas con un LLM y validadas sobre una muestra etiquetada en forma manual. Se agrega la coincidencia entre la sinopsis y cada grupo de consultas. Completan el conjunto las variables de control de posición, popularidad y metadatos.
 		\item Transformaciones:
 		\begin{itemize}
 			\item Descarte de las respuestas sin búsqueda web y asociación de las fuentes citadas con la ficha de cada título.
@@ -398,7 +394,7 @@ Criterios de aceptación de la HU8:
 		\end{itemize}
 	\end{itemize}
 
-	\item \textbf{Modelado}
+	\item Modelado
 	\begin{itemize}
 		\item Tipo de problema: regresión de una proporción, es decir, de la cantidad de citas sobre la cantidad de respuestas con búsqueda, para estimar la probabilidad de citación por título, grupo de consultas y motor.
 		\item Algoritmos posibles:
@@ -410,7 +406,7 @@ Criterios de aceptación de la HU8:
 		\item Selección y ajuste: búsqueda de hiperparámetros con validación cruzada agrupada por título, regularización y registro de la versión del modelo.
 	\end{itemize}
 
-	\item \textbf{Evaluación del modelo}
+	\item Evaluación del modelo
 	\begin{itemize}
 		\item Métricas técnicas: error cuadrático medio, ponderado por la cantidad de respuestas, y correlación de Spearman entre la tasa de citación predicha y la observada, sobre títulos excluidos del entrenamiento.
 		\item Criterios mínimos: el modelo seleccionado obtiene menor error y mayor correlación que un modelo de referencia que predice la tasa media de cada grupo de consultas y motor. Además, se reporta el aporte de las características de contenido respecto de un modelo que solo usa variables de control.
@@ -418,7 +414,7 @@ Criterios de aceptación de la HU8:
 		\item Verificación humana: revisión de una muestra de respuestas procesadas, de características extraídas y de prioridades asignadas.
 	\end{itemize}
 
-	\item \textbf{Despliegue}
+	\item Despliegue
 	\begin{itemize}
 		\item Tipo de despliegue: piloto controlado sobre un conjunto de títulos comparables por género y popularidad, con publicación de las sinopsis aprobadas en el grupo experimental por los canales que la editorial ya utiliza.
 		\item Herramientas: repositorio de código, versionado del conjunto de datos y del modelo, y registro de las respuestas de los motores y de las sinopsis publicadas.
@@ -429,9 +425,11 @@ Criterios de aceptación de la HU8:
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-A partir de cada historia de usuario definida en la seccion \ref{sec:backlog} se descompone el trabajo en tareas técnicas concretas, medibles y acotadas en el tiempo.
+A partir de cada historia de usuario definida en la sección \ref{sec:backlog}, se descompone el trabajo en tareas técnicas concretas, medibles y acotadas en el tiempo. En la tabla \ref{tab:wbs} se presentan esas tareas, con su estimación en horas y su prioridad.
 \begin{table}[htpb]
 \centering
+\caption{Desglose del trabajo en tareas técnicas.}
+\label{tab:wbs}
 \begin{tabularx}{\linewidth}{@{}|c|X|c|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
