@@ -465,141 +465,281 @@ HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \h
 \end{table}
 
 \section{10. Planificación de Sprints}
+\label{sec:sprints}
 
-Organizar las tareas técnicas del proyecto en sprints de trabajo que permitan distribuir de forma equilibrada la carga horaria total, estimada en 600 horas.
-
-\textbf{Consigna:}
-\begin{itemize}
-  \item Completar una tabla que relacione sprints con HU y tareas técnicas correspondientes.
-  \item Incluir estimación en horas para cada tarea.
-  \item Indicar responsable y porcentaje de avance estimado o completado.
-  \item Contemplar también tareas de planificación, documentación, redacción de memoria y preparación de defensa.
-\end{itemize}
-
-\textbf{Conceptos clave:}
-\begin{itemize}
-  \item Una \'{e}pica es una unidad funcional amplia; una historia de usuario es una funcionalidad concreta; un sprint es una unidad de tiempo donde se ejecutan tareas.
-  \item Las tareas son el nivel más desagregado: permiten estimar tiempos, asignar responsables y monitorear progreso.
-\end{itemize}
-
-\textbf{Duración sugerida:}
-\begin{itemize}
-  \item Para un proyecto de 600 h, se recomienda planificar entre 10 y 12 sprints de aproximadamente 2 semanas cada uno.
-  \item Asignar entre 45 y 50 horas efectivas por sprint a tareas técnicas.
-  \item Reservar 100 a 120 h para actividades no técnicas (planificación, escritura, reuniones, defensa).
-\end{itemize}
-
-\textbf{Importante:}
-\begin{itemize}
-  \item En proyectos individuales, el responsable suele ser el propio autor.
-  \item Aun así, desagregar tareas facilita el seguimiento y mejora continua.
-\end{itemize}
-
-\textbf{Conversión opcional de Story Points a horas:}
-\begin{itemize}
-  \item 1 SP \(\approx\) 2 h como referencia flexible.
-  \item Tener en cuenta aproximaciones tipo Fibonacci.
-\end{itemize}
+En la tabla \ref{tab:sprints} se distribuyen las 600~h del proyecto en once \textit{sprints}, precedidos por un \textit{sprint}~0 de planificación. Las tareas técnicas son las de la sección \ref{sec:wbs}, con una estimación que incorpora el tiempo de prueba, iteración y documentación. Se suman, además, las pruebas integradas, la documentación, la escritura de la memoria y la preparación de la defensa.
 
 \begin{table}[htpb]
 \centering
-\caption{Formato sugerido}
+\caption{Planificación de los \textit{sprints}.}
+\label{tab:sprints}
 \begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
-Sprint & HU o fase & Tarea & Horas / SP & Responsable & \% Completado \\ \hline
-Sprint 0 & Planificación & Definir alcance y cronograma & 10 h & Alumno & 100\% \\ \hline
-Sprint 0 & Planificación & Reunión con el tutor/cliente & 5 h & Alumno & 50\% \\ \hline
-Sprint 0 & Planificación & Ajuste de los entregables & 6 h & Alumno & 25\% \\ \hline
-Sprint 1 & HU1 & Tarea 1 HU1 & 6 h / 3 SP & Alumno & 0\% \\ \hline
-Sprint 1 & HU1 & Tarea 2 HU1 & 10 h / 5 SP & Alumno & 0\% \\ \hline
-Sprint 2 & HU2 & Tarea 1 HU2 & 7 h / 5 SP & Alumno & 0\% \\ \hline
-... & ... & ... & ... & ... & ... \\ \hline
-Sprint 5 & Escritura & Redacción memoria & 50 h / 34 SP & Alumno & 0\% \\ \hline
-Sprint 6 & Defensa & Preparación de la exposición & 20 h / 13 SP & Alumno & 0\% \\ \hline
+Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint 0 & Planificación & Relevar el estado del arte de GEO & 8 h & Ing. Paredes & 100~\% \\ \hline
+Sprint 0 & Planificación & Reorientar el proyecto de SEO a GEO & 12 h & Ing. Paredes & 100~\% \\ \hline
+Sprint 0 & Planificación & Elaboración del plan de trabajo & 24 h & Ing. Paredes & 70~\% \\ \hline
+Sprint 0 & Planificación & Validar el plan con los orientadores y el cliente & 4 h & Ing. Paredes & 50~\% \\ \hline
+Sprint 1 & HU1 & Definir las consultas y el protocolo de medición & 15 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 1 & HU1 & Automatizar las consultas a ChatGPT y a AI Overviews & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 1 & HU1 & Registrar las búsquedas y asociar las fuentes citadas & 17 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU2 & Obtener la posición de las fichas con DataForSEO & 14 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU2 & Consolidar el conjunto de datos con los datos internos & 20 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU3 & Definir y extraer las características con un LLM & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Etiquetar una muestra y medir la concordancia con el LLM & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Entrenar y comparar al menos dos modelos & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Calcular las métricas y el aporte de las características & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Implementar la priorización de características por título & 12 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
 
-\textbf{Recomendaciones:}
-\begin{itemize}
-  \item Verificar que la carga horaria por sprint sea equilibrada.
-  \item Usar sprints de 1 a 3 semanas, acordes al cronograma general.
-  \item Actualizar el \% completado durante el seguimiento del proyecto.
-  \item Considerar un sprint final exclusivo para pruebas, revisión y ajustes antes de la defensa.
-\end{itemize}
+\begin{table}[htpb]
+\centering
+\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0}
+Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint 4 & HU4 & Implementar el protocolo de validación & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 4 & HU4 & Reentrenar por ronda y reportar la variabilidad & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 4 & HU5 & Diseñar los \textit{prompts} del generador & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU5 & Desarrollar el generador de sinopsis basado en un LLM & 22 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU5 & Estimar la probabilidad de citación de la sinopsis sugerida & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU6 & Implementar el control de similitud, extensión y características & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & HU6 & Definir el umbral de fidelidad con el equipo editorial & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & HU6 & Integrar el rechazo automático y el pase a revisión editorial & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & Pruebas & Ejecutar pruebas integradas del flujo completo & 30 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & Pruebas & Corregir errores y ajustar el sistema & 28 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & HU7 & Seleccionar los títulos y asignar los grupos del piloto & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & HU7 & Publicar las sinopsis y configurar el seguimiento & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Ejecutar la campaña de medición del piloto & 28 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Registrar la posición orgánica de ambos grupos & 8 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Estimar el efecto de la reescritura entre grupos & 16 h & Ing. Paredes & 0~\% \\ \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[htpb]
+\centering
+\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0}
+Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint 9 & HU8 & Calcular los intervalos de variabilidad del efecto estimado & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 9 & HU8 & Elaborar el informe con visualizaciones y limitaciones & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 9 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 10 & Escritura & Redactar la memoria: introducción y estado del arte & 32 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 10 & Escritura & Redactar la memoria: desarrollo y resultados & 30 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Escritura & Incorporar el \textit{feedback} del director & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Escritura & Redactar la memoria: conclusiones y versión final & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Defensa & Preparar la exposición y ensayar la defensa & 20 h & Ing. Paredes & 0~\% \\ \hline
+\end{tabularx}
+\end{table}
 
 
 \section{11. Diagrama de Gantt (sprints)}
 \label{sec:gantt}
 
-Visualizar en un diagrama de Gantt la planificación temporal del proyecto, tomando como base los sprints definidos en la sección anterior. Debe contemplar todas las horas del proyecto.
+En la tabla \ref{tab:cronograma} se indican las fechas, la duración y las horas de cada \textit{sprint}, que suman las 600~h del proyecto, y en la figura \ref{fig:gantt} se presenta el diagrama de Gantt.
 
-Consigna:
+\begin{table}[!htpb]
+\centering
+\caption{Cronograma de los \textit{sprints}.}
+\label{tab:cronograma}
+\begin{tabularx}{\linewidth}{@{}|l|c|c|c|X|c|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0}
+Sprint & Inicio & Fin & Semanas & Contenido & Horas \\ \hline
+Sprint 0 & 08/08/2026 & 13/10/2026 & 9,5 & Planificación & 48 h \\ \hline
+Sprint 1 & 14/10/2026 & 27/10/2026 & 2 & HU1 & 50 h \\ \hline
+Sprint 2 & 28/10/2026 & 10/11/2026 & 2 & HU2 y HU3 & 50 h \\ \hline
+Sprint 3 & 11/11/2026 & 24/11/2026 & 2 & HU3 & 50 h \\ \hline
+Sprint 4 & 25/11/2026 & 08/12/2026 & 2 & HU4 y HU5 & 48 h \\ \hline
+Sprint 5 & 09/12/2026 & 22/12/2026 & 2 & HU5 y HU6 & 48 h \\ \hline
+Receso & 23/12/2026 & 05/01/2027 & 2 & Receso de fin de año & -- \\ \hline
+Sprint 6 & 06/01/2027 & 19/01/2027 & 2 & HU6 y pruebas & 50 h \\ \hline
+Sprint 7 & 20/01/2027 & 02/02/2027 & 2 & Pruebas y HU7 & 50 h \\ \hline
+Sprint 8 & 03/02/2027 & 02/03/2027 & 4 & HU7 & 52 h \\ \hline
+Sprint 9 & 03/03/2027 & 16/03/2027 & 2 & HU8 y documentación & 50 h \\ \hline
+Sprint 10 & 17/03/2027 & 20/04/2027 & 5 & Escritura & 62 h \\ \hline
+Sprint 11 & 21/04/2027 & 15/05/2027 & 3,5 & Escritura y defensa & 42 h \\ \hline
+\end{tabularx}
+\end{table}
 
-\begin{itemize}
+Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marzo de 2027, dos meses antes de la defensa. Las tareas se encadenan en forma secuencial, ya que recaen en un único responsable, y conforman el camino crítico.
 
-\item Elaborar un diagrama de Gantt que muestre la secuencia temporal de los sprints.
+\begin{figure}[htpb]
+\centering
+\definecolor{ganttTec}{HTML}{2A78D6}
+\definecolor{ganttNoTec}{HTML}{EB6834}
+\definecolor{ganttSprint}{HTML}{52514E}
+\definecolor{ganttHito}{HTML}{0B0B0B}
+\begin{ganttchart}[
+  time slot unit=day,
+  time slot format=isodate,
+  x unit=0.033cm,
+  y unit title=0.42cm,
+  y unit chart=0.37cm,
+  title/.append style={draw=black!30, fill=black!6},
+  title height=1,
+  title label font=\scriptsize,
+  canvas/.append style={draw=black!30},
+  hgrid style/.style={draw=black!8},
+  hgrid,
+  bar height=0.56,
+  bar top shift=0.22,
+  bar/.append style={draw=none, fill=ganttTec},
+  bar label font=\scriptsize,
+  group height=0.22,
+  group top shift=0.39,
+  group peaks height=0.14,
+  group peaks width=1.5,
+  group/.append style={draw=none, fill=ganttSprint},
+  group label font=\scriptsize\bfseries,
+  milestone height=0.5,
+  milestone top shift=0.25,
+  milestone/.append style={draw=none, fill=ganttHito, xscale=6},
+  milestone label font=\scriptsize,
+  newline shortcut=false
+]{2026-08-08}{2027-05-15}
+\gantttitle{2026}{146} \gantttitle{2027}{135} \ganttnewline
+\gantttitle{ago}{24} \gantttitle{sep}{30} \gantttitle{oct}{31} \gantttitle{nov}{30} \gantttitle{dic}{31} \gantttitle{ene}{31} \gantttitle{feb}{28} \gantttitle{mar}{31} \gantttitle{abr}{30} \gantttitle{may}{15} \ganttnewline
+\ganttgroup{Sprint 0}{2026-08-08}{2026-10-13} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Estado del arte de GEO}{2026-08-08}{2026-09-06} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Reorientación de SEO a GEO}{2026-09-07}{2026-09-22} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Elaboración del plan de trabajo}{2026-08-08}{2026-10-13} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Validación del plan}{2026-09-29}{2026-10-13} \ganttnewline
+\ganttmilestone{Entregas parciales del plan}{2026-09-07} \ganttmilestone{}{2026-09-22} \ganttmilestone{}{2026-09-28} \ganttnewline
+\ganttmilestone{Entrega final del plan}{2026-10-13} \ganttnewline
+\ganttgroup{Sprint 1}{2026-10-14}{2026-10-27} \ganttnewline
+\ganttbar{Consultas y protocolo de medición}{2026-10-14}{2026-10-17} \ganttnewline
+\ganttbar{Automatización de consultas}{2026-10-18}{2026-10-22} \ganttnewline
+\ganttbar{Registro de búsquedas y fuentes}{2026-10-23}{2026-10-27} \ganttnewline
+\ganttgroup{Sprint 2}{2026-10-28}{2026-11-10} \ganttnewline
+\ganttbar{Posición de las fichas}{2026-10-28}{2026-10-31} \ganttnewline
+\ganttbar{Consolidación del conjunto de datos}{2026-11-01}{2026-11-06} \ganttnewline
+\ganttbar{Extracción de características}{2026-11-07}{2026-11-10} \ganttnewline
+\ganttgroup{Sprint 3}{2026-11-11}{2026-11-24} \ganttnewline
+\ganttbar{Etiquetado y concordancia}{2026-11-11}{2026-11-13} \ganttnewline
+\ganttbar{Entrenamiento de modelos}{2026-11-14}{2026-11-18} \ganttnewline
+\ganttbar{Métricas y aporte de características}{2026-11-19}{2026-11-21} \ganttnewline
+\ganttbar{Priorización de características}{2026-11-22}{2026-11-24} \ganttnewline
+\ganttgroup{Sprint 4}{2026-11-25}{2026-12-08} \ganttnewline
+\ganttbar{Protocolo de validación}{2026-11-25}{2026-11-29} \ganttnewline
+\ganttbar{Reentrenamiento y variabilidad}{2026-11-30}{2026-12-04} \ganttnewline
+\ganttbar{Diseño de los \textit{prompts}}{2026-12-05}{2026-12-08} \ganttnewline
+\ganttgroup{Sprint 5}{2026-12-09}{2026-12-22} \ganttnewline
+\ganttbar{Generador de sinopsis}{2026-12-09}{2026-12-14} \ganttnewline
+\ganttbar{Probabilidad de citación}{2026-12-15}{2026-12-17} \ganttnewline
+\ganttbar{Controles de verificación}{2026-12-18}{2026-12-22} \ganttnewline
+\ganttbar[bar/.append style={fill=black!15}]{Receso de fin de año}{2026-12-23}{2027-01-05} \ganttnewline
+\ganttgroup{Sprint 6}{2027-01-06}{2027-01-19} \ganttnewline
+\ganttbar{Umbral de fidelidad}{2027-01-06}{2027-01-08} \ganttnewline
+\ganttbar{Rechazo automático y revisión}{2027-01-09}{2027-01-11} \ganttnewline
+\ganttbar{Pruebas integradas}{2027-01-12}{2027-01-19} \ganttnewline
+\ganttgroup{Sprint 7}{2027-01-20}{2027-02-02} \ganttnewline
+\ganttbar{Corrección de errores}{2027-01-20}{2027-01-27} \ganttnewline
+\ganttbar{Grupos del piloto}{2027-01-28}{2027-01-30} \ganttnewline
+\ganttbar{Publicación y seguimiento}{2027-01-31}{2027-02-02} \ganttnewline
+\ganttmilestone{Publicación de las sinopsis}{2027-02-02} \ganttnewline
+\ganttgroup{Sprint 8}{2027-02-03}{2027-03-02} \ganttnewline
+\ganttbar{Campaña de medición del piloto}{2027-02-03}{2027-02-23} \ganttnewline
+\ganttbar{Posición orgánica de ambos grupos}{2027-02-03}{2027-02-23} \ganttnewline
+\ganttbar{Estimación del efecto}{2027-02-24}{2027-03-02} \ganttnewline
+\ganttgroup{Sprint 9}{2027-03-03}{2027-03-16} \ganttnewline
+\ganttbar{Intervalos de variabilidad}{2027-03-03}{2027-03-05} \ganttnewline
+\ganttbar{Informe del piloto}{2027-03-06}{2027-03-10} \ganttnewline
+\ganttbar{Documentación técnica}{2027-03-11}{2027-03-16} \ganttnewline
+\ganttmilestone{Fin de la etapa técnica}{2027-03-16} \ganttnewline
+\ganttgroup{Sprint 10}{2027-03-17}{2027-04-20} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: introducción}{2027-03-17}{2027-04-03} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: desarrollo y resultados}{2027-04-04}{2027-04-20} \ganttnewline
+\ganttmilestone{Revisión integral de la memoria con el director}{2027-04-20} \ganttnewline
+\ganttgroup{Sprint 11}{2027-04-21}{2027-05-15} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Incorporación del \textit{feedback} del director}{2027-04-21}{2027-04-26} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: conclusiones y versión final}{2027-04-27}{2027-04-30} \ganttnewline
+\ganttmilestone{Entrega de la memoria}{2027-04-30} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Preparación de la defensa}{2027-05-01}{2027-05-14} \ganttnewline
+\ganttmilestone{Defensa pública}{2027-05-15} \ganttnewline[thick, black!40]
+\ganttmilestone{Revisiones con el director}{2026-10-27} \ganttmilestone{}{2026-11-10} \ganttmilestone{}{2026-11-24} \ganttmilestone{}{2026-12-08} \ganttmilestone{}{2026-12-22} \ganttmilestone{}{2027-01-19} \ganttmilestone{}{2027-02-02} \ganttmilestone{}{2027-03-02} \ganttmilestone{}{2027-03-16} \ganttmilestone{}{2027-04-20} \ganttnewline
+\ganttmilestone{Reuniones con el cliente}{2026-10-13} \ganttmilestone{}{2027-01-30} \ganttmilestone{}{2027-03-16}
+\end{ganttchart}
 
-\item Cada fila debe representar un sprint (con su número o nombre), y el eje horizontal debe indicar el tiempo (en semanas o fechas concretas).
-
-\item Las tareas técnicas derivadas de HU deben diferenciarse visualmente (por ejemplo, con un color distinto) de las tareas no técnicas (planificación, redacción, defensa).
-
-\item Incluir todas las tareas estimadas en cada sprint.
-\end{itemize}
-
-Recomendaciones para el Gantt:
-
-\begin{itemize}
-
-	\item Podés usar herramientas gratuitas como TeamGantt, ClickUp, GanttProject, [Google Sheets], [Trello + Planyway], entre otras.
-	\item Ordená los sprints de forma cronológica, comenzando con Sprint 0 (planificación) y finalizando con el sprint de defensa.
-	\item Asegurate de reflejar la duración realista de cada sprint según tu disponibilidad y el cronograma general del posgrado.
-	\item Incluí hitos importantes: reuniones, entregas parciales, defensa.
-\end{itemize}
-
-
-Incluir una imagen legible del diagrama de Gantt. Si es muy ancho, presentar primero la tabla y luego el gráfico de barras.
-
+\vspace{2mm}
+{\scriptsize
+\begin{tikzpicture}[baseline]
+\fill[ganttTec] (0,0) rectangle (0.5,0.22); \node[anchor=west] at (0.55,0.11) {Tareas técnicas};
+\fill[ganttNoTec] (3.0,0) rectangle (3.5,0.22); \node[anchor=west] at (3.55,0.11) {Tareas no técnicas};
+\fill[ganttSprint] (6.4,0.05) rectangle (6.9,0.17); \node[anchor=west] at (6.95,0.11) {\textit{Sprint}};
+\fill[ganttHito] (8.35,0.11) -- (8.47,0.23) -- (8.59,0.11) -- (8.47,-0.01) -- cycle; \node[anchor=west] at (8.65,0.11) {Hito o reunión};
+\fill[black!15] (11.0,0) rectangle (11.5,0.22); \node[anchor=west] at (11.55,0.11) {Receso};
+\end{tikzpicture}}
+\caption{Diagrama de Gantt del proyecto.}
+\label{fig:gantt}
+\end{figure}
 
 
 \section{12. Gobernanza de datos}
 \label{sec:gobernanza}
 
-En esta sección se debe analizar de manera integral el marco normativo y ético asociado al uso de los datos y al desarrollo de soluciones basadas en inteligencia artificial.
-
-El análisis se divide en dos partes:
-
-\begin{itemize}
-  \item Cumplimiento normativo.
-  \item Ética en el uso de inteligencia artificial.
-\end{itemize}
+El proyecto utiliza tres tipos de datos: los datos internos de la editorial, las respuestas de los motores de búsqueda generativa y las posiciones de las fichas en los buscadores. En esta sección se analizan el marco normativo que rige su uso y los aspectos éticos de la solución.
 
 \subsection{Cumplimiento normativo}
-Este análisis es clave para garantizar el cumplimiento normativo y evitar conflictos legales durante el desarrollo y publicación del proyecto.
 
-En esta subsección se debe identificar si los datos utilizados en el proyecto están sujetos a normativas de protección de datos y privacidad, y en qué condiciones pueden emplearse.
-
-Aspectos a considerar:
+Dado que el proyecto se desarrolla en Argentina, resultan aplicables las siguientes normativas:
 
 \begin{itemize}
-  \item Determinar si los datos están regulados por normativas como el GDPR, la Ley 25.326 de Protección de Datos Personales (Argentina), la HIPAA u otras, según la jurisdicción o la temática del proyecto.
-  \item Aclarar si las fuentes de datos son propias, de acceso público o licenciadas. En este último caso, explicitar la licencia correspondiente y sus condiciones de uso. Realizar este mismo análisis para las herramientas y, en caso de corresponder, para los modelos preentrenados a emplear.
-  \item Analizar la viabilidad legal del proyecto, considerando los mecanismos necesarios para garantizar el cumplimiento normativo y la trazabilidad de los datos.
+	\item Ley 25.326 de Protección de los Datos Personales: el proyecto no trata datos de lectores ni de clientes, y las ventas se utilizan agregadas por título. Los únicos datos personales son los nombres de los autores, que ya son públicos en el catálogo.
+	\item Ley 11.723 de Propiedad Intelectual: las sinopsis son obras protegidas cuya titularidad corresponde a la editorial o a los autores. Su uso y su reescritura requieren la autorización de la editorial, que además decide la publicación de cada versión.
+\end{itemize}
+
+El Reglamento General de Protección de Datos de la Unión Europea (GDPR, por su sigla en inglés) no resulta aplicable, ya que no se tratan datos de residentes de la Unión Europea.
+
+Las fuentes de datos, las herramientas y los modelos se emplean bajo las siguientes condiciones:
+
+\begin{itemize}
+	\item Datos internos: el catálogo, los metadatos, las ventas y los resultados de proyectos de SEO previos son propiedad de la editorial y tienen carácter confidencial. Se utilizan con su autorización, solo con fines académicos, y no se publican ni se comparten con terceros.
+	\item Respuestas de los motores: se obtienen mediante la API de OpenAI y la API de DataForSEO, servicios contratados cuyo uso se rige por sus términos de servicio. Las consultas respetan los límites de uso de cada proveedor, y las respuestas se almacenan solo para medir la citación, sin redistribuirse.
+	\item Herramientas y modelos: las bibliotecas previstas tienen licencias permisivas, como BSD de 3 cláusulas en scikit-learn, MIT en LightGBM y Apache 2.0 en CatBoost. El LLM comercial se utiliza mediante su API, sin acceso a sus pesos, y el modelo de \textit{embeddings} se elegirá entre los que cuenten con una licencia permisiva.
+\end{itemize}
+
+En consecuencia, el proyecto es legalmente viable, siempre que se adopten las siguientes medidas:
+
+\begin{itemize}
+	\item Autorización escrita de la editorial para el uso de los datos internos con fines académicos.
+	\item Confidencialidad de los datos propietarios: la memoria, la defensa y cualquier otra publicación incluyen solo resultados agregados y ejemplos autorizados por la editorial, y el conjunto de datos no se publica.
+	\item Envío a las API externas solo de información ya publicada en la tienda en línea, previa verificación de las políticas de retención y uso de datos de cada proveedor.
+	\item Almacenamiento de los datos en repositorios de acceso restringido, con las credenciales de las API fuera del código fuente.
+	\item Trazabilidad del origen y de las transformaciones de cada variable, y versionado de los datos, del modelo y de las sinopsis generadas.
 \end{itemize}
 
 \subsection{Ética en el uso de inteligencia artificial}
 
-En esta subsección se debe reflexionar sobre los aspectos éticos vinculados al uso de datos y algoritmos de inteligencia artificial. Se espera una evaluación de la integridad del sistema y su impacto social.
-
-Aspectos a considerar:
+Los datos y los modelos del proyecto presentan los siguientes sesgos posibles:
 
 \begin{itemize}
-	\item Identificar posibles sesgos en los datos o modelos (ideológicos, culturales, de género, geográficos, etc.) y analizar sus consecuencias (por ejemplo: discriminación, manipulación, pérdida de privacidad o desinformación).
-	\item Analizar los posibles riesgos en términos de impacto social del uso indebido de la solución a desarrollar.
-	\item En caso de corresponder, proponer medidas de mitigación y mecanismos de confianza (auditorías, documentación, trazabilidad, revisión humana, etc.).
-	\item Finalmente, elaborar una reflexión general sobre la ética del proyecto, considerando tanto la equidad y transparencia del sistema como su impacto potencial en la sociedad.
-
+	\item Sesgo de popularidad: los motores tienden a citar los títulos y las marcas de mayor difusión. El modelo podría atribuir a las características de contenido un efecto que corresponde a la popularidad, y favorecer a los títulos más vendidos en desmedro del fondo de catálogo. Por ese motivo, la popularidad y la posición orgánica se incorporan como variables de control.
+	\item Sesgo de selección: las consultas y los géneros del estudio son una muestra acotada de las intenciones de los lectores. Los resultados no se extienden a otros géneros sin una nueva validación.
+	\item Sesgo de los modelos de lenguaje: el LLM puede extraer de forma errónea las características o introducir estereotipos culturales o de género en las sinopsis. La concordancia con un etiquetado manual y la revisión editorial acotan este riesgo.
+	\item Sesgo geográfico y de idioma: los motores pueden preferir fuentes de otros mercados de habla hispana o en otro idioma. Por eso, la medición registra el dominio de cada fuente citada.
 \end{itemize}
+
+En cuanto al impacto social, el sistema beneficia a la editorial y a sus autores, y ofrece a los lectores información más clara sobre cada libro. Sin embargo, presenta los siguientes riesgos:
+
+\begin{itemize}
+	\item Desinformación: una sinopsis optimizada podría exagerar o atribuir al libro contenidos que no tiene.
+	\item Homogeneización: la reescritura masiva podría uniformar las sinopsis y diluir la voz editorial.
+\end{itemize}
+
+Para prevenir y mitigar estos riesgos, se adoptan las siguientes medidas:
+
+\begin{itemize}
+	\item Supervisión humana: ninguna sinopsis se publica sin la aprobación del equipo editorial.
+	\item Verificación automática: cada candidata debe superar el umbral de fidelidad semántica respecto del texto original.
+	\item Trazabilidad y auditoría: se registran las versiones de los datos, del modelo, de los \textit{prompts} y de las candidatas, y se revisa la priorización por género y por motor en cada ronda de medición.
+	\item Política de uso responsable: el sistema se aplica solo al catálogo propio, no emplea técnicas engañosas ni contenido pensado exclusivamente para los motores, y el uso de inteligencia artificial se declara conforme a la política de la editorial.
+\end{itemize}
+
+El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, y no mediante la manipulación de los motores. La equidad se resguarda con el control de la popularidad y el análisis por género, y la transparencia, con la documentación de los límites del sistema y la revisión humana de cada sinopsis publicada.
 
 
 \section{13. Gestión de riesgos}
