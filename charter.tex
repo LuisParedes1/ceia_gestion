@@ -529,7 +529,8 @@ Sprint 9 & HU8 & Elaborar el informe con visualizaciones y limitaciones & 16 h &
 Sprint 9 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 10 & Escritura & Redactar la memoria: introducción y estado del arte & 32 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 10 & Escritura & Redactar la memoria: desarrollo y resultados & 30 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 11 & Escritura & Redactar la memoria: conclusiones y correcciones & 22 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Escritura & Incorporar el \textit{feedback} del director & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Escritura & Redactar la memoria: conclusiones y versión final & 10 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 11 & Defensa & Preparar la exposición y ensayar la defensa & 20 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
@@ -538,9 +539,9 @@ Sprint 11 & Defensa & Preparar la exposición y ensayar la defensa & 20 h & Ing.
 \section{11. Diagrama de Gantt (sprints)}
 \label{sec:gantt}
 
-La planificación temporal se basa en los \textit{sprints} de la sección \ref{sec:sprints}. En la tabla \ref{tab:cronograma} se indican las fechas, la duración y las horas de cada \textit{sprint}, que suman las 600~h del proyecto, y en la figura \ref{fig:gantt} se presenta el diagrama de Gantt con todas las tareas y los hitos principales.
+En la tabla \ref{tab:cronograma} se indican las fechas, la duración y las horas de cada \textit{sprint}, que suman las 600~h del proyecto, y en la figura \ref{fig:gantt} se presenta el diagrama de Gantt.
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
 \centering
 \caption{Cronograma de los \textit{sprints}.}
 \label{tab:cronograma}
@@ -564,7 +565,7 @@ Sprint 11 & 21/04/2027 & 15/05/2027 & 3,5 & Escritura y defensa & 42 h \\ \hline
 \end{tabularx}
 \end{table}
 
-Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marzo de 2027, dos meses antes de la defensa. Como todas las tareas recaen en un único responsable, las de cada \textit{sprint} se encadenan en forma secuencial y la secuencia de \textit{sprints} conforma el camino crítico. El \textit{sprint}~8 dura cuatro semanas porque la medición del piloto depende del tiempo de calendario.
+Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marzo de 2027, dos meses antes de la defensa. Las tareas se encadenan en forma secuencial, ya que recaen en un único responsable, y conforman el camino crítico.
 
 \begin{figure}[htpb]
 \centering
@@ -575,9 +576,9 @@ Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marz
 \begin{ganttchart}[
   time slot unit=day,
   time slot format=isodate,
-  x unit=0.034cm,
+  x unit=0.033cm,
   y unit title=0.42cm,
-  y unit chart=0.38cm,
+  y unit chart=0.37cm,
   title/.append style={draw=black!30, fill=black!6},
   title height=1,
   title label font=\scriptsize,
@@ -652,10 +653,12 @@ Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marz
 \ganttgroup{Sprint 10}{2027-03-17}{2027-04-20} \ganttnewline
 \ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: introducción}{2027-03-17}{2027-04-03} \ganttnewline
 \ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: desarrollo y resultados}{2027-04-04}{2027-04-20} \ganttnewline
+\ganttmilestone{Revisión integral de la memoria con el director}{2027-04-20} \ganttnewline
 \ganttgroup{Sprint 11}{2027-04-21}{2027-05-15} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: conclusiones}{2027-04-21}{2027-05-03} \ganttnewline
-\ganttbar[bar/.append style={fill=ganttNoTec}]{Preparación de la defensa}{2027-05-04}{2027-05-14} \ganttnewline
-\ganttmilestone{Entrega de la memoria}{2027-05-03} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Incorporación del \textit{feedback} del director}{2027-04-21}{2027-04-26} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Memoria: conclusiones y versión final}{2027-04-27}{2027-04-30} \ganttnewline
+\ganttmilestone{Entrega de la memoria}{2027-04-30} \ganttnewline
+\ganttbar[bar/.append style={fill=ganttNoTec}]{Preparación de la defensa}{2027-05-01}{2027-05-14} \ganttnewline
 \ganttmilestone{Defensa pública}{2027-05-15} \ganttnewline[thick, black!40]
 \ganttmilestone{Revisiones con el director}{2026-10-27} \ganttmilestone{}{2026-11-10} \ganttmilestone{}{2026-11-24} \ganttmilestone{}{2026-12-08} \ganttmilestone{}{2026-12-22} \ganttmilestone{}{2027-01-19} \ganttmilestone{}{2027-02-02} \ganttmilestone{}{2027-03-02} \ganttmilestone{}{2027-03-16} \ganttmilestone{}{2027-04-20} \ganttnewline
 \ganttmilestone{Reuniones con el cliente}{2026-10-13} \ganttmilestone{}{2027-01-30} \ganttmilestone{}{2027-03-16}
