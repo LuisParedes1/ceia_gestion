@@ -681,41 +681,65 @@ Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marz
 \section{12. Gobernanza de datos}
 \label{sec:gobernanza}
 
-En esta sección se debe analizar de manera integral el marco normativo y ético asociado al uso de los datos y al desarrollo de soluciones basadas en inteligencia artificial.
-
-El análisis se divide en dos partes:
-
-\begin{itemize}
-  \item Cumplimiento normativo.
-  \item Ética en el uso de inteligencia artificial.
-\end{itemize}
+El proyecto utiliza tres tipos de datos: los datos internos de la editorial, las respuestas de los motores de búsqueda generativa y las posiciones de las fichas en los buscadores. En esta sección se analizan el marco normativo que rige su uso y los aspectos éticos de la solución.
 
 \subsection{Cumplimiento normativo}
-Este análisis es clave para garantizar el cumplimiento normativo y evitar conflictos legales durante el desarrollo y publicación del proyecto.
 
-En esta subsección se debe identificar si los datos utilizados en el proyecto están sujetos a normativas de protección de datos y privacidad, y en qué condiciones pueden emplearse.
-
-Aspectos a considerar:
+Dado que el proyecto se desarrolla en Argentina, resultan aplicables las siguientes normativas:
 
 \begin{itemize}
-  \item Determinar si los datos están regulados por normativas como el GDPR, la Ley 25.326 de Protección de Datos Personales (Argentina), la HIPAA u otras, según la jurisdicción o la temática del proyecto.
-  \item Aclarar si las fuentes de datos son propias, de acceso público o licenciadas. En este último caso, explicitar la licencia correspondiente y sus condiciones de uso. Realizar este mismo análisis para las herramientas y, en caso de corresponder, para los modelos preentrenados a emplear.
-  \item Analizar la viabilidad legal del proyecto, considerando los mecanismos necesarios para garantizar el cumplimiento normativo y la trazabilidad de los datos.
+	\item Ley 25.326 de Protección de los Datos Personales: el proyecto no trata datos de lectores ni de clientes, y las ventas se utilizan agregadas por título. Los únicos datos personales son los nombres de los autores, que ya son públicos en el catálogo.
+	\item Ley 11.723 de Propiedad Intelectual: las sinopsis son obras protegidas cuya titularidad corresponde a la editorial o a los autores. Su uso y su reescritura requieren la autorización de la editorial, que además decide la publicación de cada versión.
+\end{itemize}
+
+El Reglamento General de Protección de Datos de la Unión Europea (GDPR, por su sigla en inglés) no resulta aplicable, ya que no se tratan datos de residentes de la Unión Europea.
+
+Las fuentes de datos, las herramientas y los modelos se emplean bajo las siguientes condiciones:
+
+\begin{itemize}
+	\item Datos internos: el catálogo, los metadatos, las ventas y los resultados de proyectos de SEO previos son propiedad de la editorial y tienen carácter confidencial. Se utilizan con su autorización, solo con fines académicos, y no se publican ni se comparten con terceros.
+	\item Respuestas de los motores: se obtienen mediante la API de OpenAI y la API de DataForSEO, servicios contratados cuyo uso se rige por sus términos de servicio. Las consultas respetan los límites de uso de cada proveedor, y las respuestas se almacenan solo para medir la citación, sin redistribuirse.
+	\item Herramientas y modelos: las bibliotecas previstas tienen licencias permisivas, como BSD de 3 cláusulas en scikit-learn, MIT en LightGBM y Apache 2.0 en CatBoost. El LLM comercial se utiliza mediante su API, sin acceso a sus pesos, y el modelo de \textit{embeddings} se elegirá entre los que cuenten con una licencia permisiva.
+\end{itemize}
+
+En consecuencia, el proyecto es legalmente viable, siempre que se adopten las siguientes medidas:
+
+\begin{itemize}
+	\item Autorización escrita de la editorial para el uso de los datos internos con fines académicos.
+	\item Confidencialidad de los datos propietarios: la memoria, la defensa y cualquier otra publicación incluyen solo resultados agregados y ejemplos autorizados por la editorial, y el conjunto de datos no se publica.
+	\item Envío a las API externas solo de información ya publicada en la tienda en línea, previa verificación de las políticas de retención y uso de datos de cada proveedor.
+	\item Almacenamiento de los datos en repositorios de acceso restringido, con las credenciales de las API fuera del código fuente.
+	\item Trazabilidad del origen y de las transformaciones de cada variable, y versionado de los datos, del modelo y de las sinopsis generadas.
 \end{itemize}
 
 \subsection{Ética en el uso de inteligencia artificial}
 
-En esta subsección se debe reflexionar sobre los aspectos éticos vinculados al uso de datos y algoritmos de inteligencia artificial. Se espera una evaluación de la integridad del sistema y su impacto social.
-
-Aspectos a considerar:
+Los datos y los modelos del proyecto presentan los siguientes sesgos posibles:
 
 \begin{itemize}
-	\item Identificar posibles sesgos en los datos o modelos (ideológicos, culturales, de género, geográficos, etc.) y analizar sus consecuencias (por ejemplo: discriminación, manipulación, pérdida de privacidad o desinformación).
-	\item Analizar los posibles riesgos en términos de impacto social del uso indebido de la solución a desarrollar.
-	\item En caso de corresponder, proponer medidas de mitigación y mecanismos de confianza (auditorías, documentación, trazabilidad, revisión humana, etc.).
-	\item Finalmente, elaborar una reflexión general sobre la ética del proyecto, considerando tanto la equidad y transparencia del sistema como su impacto potencial en la sociedad.
-
+	\item Sesgo de popularidad: los motores tienden a citar los títulos y las marcas de mayor difusión. El modelo podría atribuir a las características de contenido un efecto que corresponde a la popularidad, y favorecer a los títulos más vendidos en desmedro del fondo de catálogo. Por ese motivo, la popularidad y la posición orgánica se incorporan como variables de control.
+	\item Sesgo de selección: las consultas y los géneros del estudio son una muestra acotada de las intenciones de los lectores. Los resultados no se extienden a otros géneros sin una nueva validación.
+	\item Sesgo de los modelos de lenguaje: el LLM puede extraer de forma errónea las características o introducir estereotipos culturales o de género en las sinopsis. La concordancia con un etiquetado manual y la revisión editorial acotan este riesgo.
+	\item Sesgo geográfico y de idioma: los motores pueden preferir fuentes de otros mercados de habla hispana o en otro idioma. Por eso, la medición registra el dominio de cada fuente citada.
 \end{itemize}
+
+En cuanto al impacto social, el sistema beneficia a la editorial y a sus autores, y ofrece a los lectores información más clara sobre cada libro. Sin embargo, presenta los siguientes riesgos:
+
+\begin{itemize}
+	\item Desinformación: una sinopsis optimizada podría exagerar o atribuir al libro contenidos que no tiene.
+	\item Homogeneización: la reescritura masiva podría uniformar las sinopsis y diluir la voz editorial.
+\end{itemize}
+
+Para prevenir y mitigar estos riesgos, se adoptan las siguientes medidas:
+
+\begin{itemize}
+	\item Supervisión humana: ninguna sinopsis se publica sin la aprobación del equipo editorial.
+	\item Verificación automática: cada candidata debe superar el umbral de fidelidad semántica respecto del texto original.
+	\item Trazabilidad y auditoría: se registran las versiones de los datos, del modelo, de los \textit{prompts} y de las candidatas, y se revisa la priorización por género y por motor en cada ronda de medición.
+	\item Política de uso responsable: el sistema se aplica solo al catálogo propio, no emplea técnicas engañosas ni contenido pensado exclusivamente para los motores, y el uso de inteligencia artificial se declara conforme a la política de la editorial.
+\end{itemize}
+
+El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, y no mediante la manipulación de los motores. La equidad se resguarda con el control de la popularidad y el análisis por género, y la transparencia, con la documentación de los límites del sistema y la revisión humana de cada sinopsis publicada.
 
 
 \section{13. Gestión de riesgos}
