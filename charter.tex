@@ -467,7 +467,7 @@ HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \h
 \section{10. Planificación de Sprints}
 \label{sec:sprints}
 
-En la tabla \ref{tab:sprints} se distribuyen las 600~h del proyecto en doce \textit{sprints} de dos a tres semanas, precedidos por un \textit{sprint}~0 de planificación. Las tareas técnicas agrupan las de la sección \ref{sec:wbs} e incorporan el tiempo de prueba, iteración y documentación. Se suman, además, las tareas de planificación, escritura de la memoria y preparación de la defensa.
+En la tabla \ref{tab:sprints} se distribuyen las 600~h del proyecto en once \textit{sprints} de dos a tres semanas, precedidos por un \textit{sprint}~0 de planificación. Las tareas técnicas son las de la sección \ref{sec:wbs}, con una estimación que incorpora el tiempo de prueba, iteración y documentación. Se suman, además, las pruebas integradas, la documentación, la escritura de la memoria y la preparación de la defensa.
 
 \begin{table}[htpb]
 \centering
@@ -481,14 +481,16 @@ Sprint 0 & Planificación & Relevar el estado del arte de GEO & 8 h & Ing. Pared
 Sprint 0 & Planificación & Reorientar el proyecto de SEO a GEO & 12 h & Ing. Paredes & 100~\% \\ \hline
 Sprint 0 & Planificación & Elaboración del plan de trabajo & 24 h & Ing. Paredes & 70~\% \\ \hline
 Sprint 0 & Planificación & Validar el plan con los orientadores y el cliente & 4 h & Ing. Paredes & 50~\% \\ \hline
-Sprint 1 & HU1 & Definir las consultas, sus paráfrasis y el protocolo de medición & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 1 & HU1 & Configurar el repositorio y el acceso a las API & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 1 & HU2 & Extraer el catálogo y los datos de popularidad & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 1 & HU1 & Documentar el protocolo de medición & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 2 & HU1 & Automatizar las consultas a ChatGPT y a AI Overviews & 14 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 2 & HU1 & Registrar las búsquedas y asociar las fuentes citadas & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 2 & HU1 & Probar el sistema y estimar el costo por ronda & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 2 & HU2 & Implementar validaciones de calidad de los datos & 8 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 1 & HU1 & Definir las consultas y el protocolo de medición & 15 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 1 & HU1 & Automatizar las consultas a ChatGPT y a AI Overviews & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 1 & HU1 & Registrar las búsquedas y asociar las fuentes citadas & 17 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU2 & Obtener la posición de las fichas con DataForSEO & 14 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU2 & Consolidar el conjunto de datos con los datos internos & 20 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 2 & HU3 & Definir y extraer las características con un LLM & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Etiquetar una muestra y medir la concordancia con el LLM & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Entrenar y comparar al menos dos modelos & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Calcular las métricas y el aporte de las características & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 3 & HU3 & Implementar la priorización de características por título & 12 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -498,22 +500,21 @@ Sprint 2 & HU2 & Implementar validaciones de calidad de los datos & 8 h & Ing. P
 \hline
 \rowcolor[HTML]{C0C0C0}
 Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
-Sprint 3 & HU1 & Ejecutar y verificar la primera ronda de medición & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 3 & HU2 & Obtener la posición de las fichas con DataForSEO & 8 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 3 & HU2 & Consolidar el conjunto de datos de citación & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 3 & HU2 & Documentar el origen de cada variable & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 4 & HU1 & Ejecutar la segunda ronda de medición & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 4 & HU2 & Analizar los datos y presentarlos al cliente & 18 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 4 & HU3 & Definir y extraer las características con un LLM & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 4 & HU3 & Etiquetar una muestra y medir la concordancia & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 5 & HU3 & Implementar los modelos de referencia y de control & 8 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 5 & HU3 & Entrenar y comparar al menos dos modelos & 14 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 5 & HU3 & Calcular las métricas y priorizar las características & 18 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 5 & HU4 & Implementar el protocolo de validación & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 6 & HU4 & Ejecutar la ronda con paráfrasis no vistas & 14 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 6 & HU4 & Medir la estabilidad entre rondas & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 6 & HU4 & Reentrenar por ronda y reportar la variabilidad & 8 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 6 & HU4 & Analizar los errores y documentar la validación & 14 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 4 & HU4 & Implementar el protocolo de validación & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 4 & HU4 & Reentrenar por ronda y reportar la variabilidad & 18 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 4 & HU5 & Diseñar los \textit{prompts} del generador & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU5 & Desarrollar el generador de sinopsis basado en un LLM & 22 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU5 & Estimar la probabilidad de citación de la sinopsis sugerida & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 5 & HU6 & Implementar el control de similitud, extensión y características & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & HU6 & Definir el umbral de fidelidad con el equipo editorial & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & HU6 & Integrar el rechazo automático y el pase a revisión editorial & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 6 & Pruebas & Ejecutar pruebas integradas del flujo completo & 30 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & Pruebas & Corregir errores y ajustar el sistema & 28 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & HU7 & Seleccionar los títulos y asignar los grupos del piloto & 10 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 7 & HU7 & Publicar las sinopsis y configurar el seguimiento & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Ejecutar la campaña de medición del piloto & 28 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Registrar la posición orgánica de ambos grupos & 8 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 8 & HU7 & Estimar el efecto de la reescritura entre grupos & 16 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
 
@@ -523,41 +524,13 @@ Sprint 6 & HU4 & Analizar los errores y documentar la validación & 14 h & Ing. 
 \hline
 \rowcolor[HTML]{C0C0C0}
 Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
-Sprint 7 & HU5 & Seleccionar el LLM y diseñar los \textit{prompts} & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 7 & HU5 & Desarrollar el generador de sinopsis & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 7 & HU5 & Incorporar las técnicas de GEO al generador & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 7 & HU5 & Estimar la probabilidad de citación de las candidatas & 8 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 8 & HU6 & Implementar el módulo de verificación & 16 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 8 & HU6 & Definir el umbral de fidelidad y el pase a revisión & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 8 & HU5 & Integrar el modelo, el generador y la verificación & 9 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 8 & HU7 & Seleccionar los títulos y asignar los grupos & 9 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & HU6 & Coordinar la revisión editorial de las candidatas & 14 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & HU6 & Analizar la tasa de aprobación editorial & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & HU7 & Ejecutar las rondas de línea de base & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & HU7 & Desarrollar el tablero de seguimiento & 6 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 9 & Escritura & Redactar la memoria: introducción y estado del arte & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 10 & HU7 & Publicar las sinopsis y configurar el seguimiento & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 10 & HU7 & Ejecutar la campaña de medición del piloto & 17 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 10 & HU7 & Registrar la posición orgánica de ambos grupos & 5 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 10 & Escritura & Redactar la memoria: diseño e implementación & 14 h & Ing. Paredes & 0~\% \\ \hline
-\end{tabularx}
-\end{table}
-
-\begin{table}[htpb]
-\centering
-\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
-\hline
-\rowcolor[HTML]{C0C0C0}
-Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
-Sprint 11 & HU7 & Completar las mediciones y reentrenar el modelo & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 11 & HU7 & Estimar el efecto de la reescritura & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 11 & HU8 & Calcular los intervalos y elaborar el informe & 14 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 11 & Escritura & Redactar la memoria: ensayos y resultados & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 12 & HU8 & Presentar el informe al cliente & 4 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 12 & Documentación & Documentar el sistema y su reproducibilidad & 10 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 12 & Escritura & Redactar la memoria: conclusiones y correcciones & 12 h & Ing. Paredes & 0~\% \\ \hline
-Sprint 12 & Defensa & Preparar la exposición y ensayar la defensa & 20 h & Ing. Paredes & 0~\% \\ \hline
-\multicolumn{3}{@{}|r|}{Total} & 600 h & & \\ \hline
+Sprint 9 & HU8 & Calcular los intervalos de variabilidad del efecto estimado & 12 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 9 & HU8 & Elaborar el informe con visualizaciones y limitaciones & 16 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 9 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 10 & Escritura & Redactar la memoria: introducción y estado del arte & 30 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 10 & Escritura & Redactar la memoria: desarrollo y resultados & 24 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Escritura & Redactar la memoria: conclusiones y correcciones & 20 h & Ing. Paredes & 0~\% \\ \hline
+Sprint 11 & Defensa & Preparar la exposición y ensayar la defensa & 30 h & Ing. Paredes & 0~\% \\ \hline
 \end{tabularx}
 \end{table}
 
