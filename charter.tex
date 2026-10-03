@@ -11,6 +11,8 @@ codirector, % Uncomment to add a codirector to the title page
 \renewcommand{\thefootnote}{\arabic{footnote}}
 \renewcommand{\@makefnmark}{\hbox{\normalfont~[\@thefnmark]}}
 \renewcommand{\@makefntext}[1]{\noindent\normalfont[\@thefnmark]~#1}
+% Las páginas que solo contienen flotantes los alinean arriba, no al centro
+\setlength{\@fptop}{0pt}
 \makeatother
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
@@ -71,7 +73,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 1      & Se completa hasta el punto 5 inclusive                & 07 de septiembre de 2026 \\ \hline
 2      & Se adapta el proyecto de SEO a GEO según nuevos requisitos. Se actualiza hasta el punto 5 inclusive & 22 de septiembre de 2026 \\ \hline
 3      & Se completan los puntos 6 a 9 inclusive & 28 de septiembre de 2026 \\ \hline
-%4      & Se completa hasta el punto 12 inclusive                & {día} de {mes} de 202X \\ \hline
+4      & Se corrigen el acta y los puntos 1 a 9. Se completa hasta el punto 12 inclusive & 03 de octubre de 2026 \\ \hline
 %5      & Se completa el plan	                                 & {día} de {mes} de 202X \\ \hline
 
 % Si hay más correcciones pasada la versión 4 también se deben especificar acá
@@ -158,8 +160,8 @@ Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Auspiciante   & -   & \empclientename &			\\ \hline
 Cliente       & \clientename      &\empclientename	& Científica de datos \\ \hline
 Responsable   & \authorname       & \empclientename & \textit{Machine learning engineer} \\ \hline
-Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Orientador    & \cosupname	      & \pertecosupname & Codirector del Trabajo Final \\ \hline
+Orientador    & \supname	      & \pertesupname 	& Director del trabajo final \\ \hline
+Orientador    & \cosupname	      & \pertecosupname & Codirector del trabajo final \\ \hline
 \end{tabularx}
 %\caption{Identificación de los interesados.}
 \end{table}
@@ -263,27 +265,27 @@ La suma de los tres pesos se redondea al siguiente número de la serie de Fibona
 
 Épica 1: construcción del conjunto de datos de citación
 
-HU1. Como \textit{machine learning engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
+HU1. Como \textit{machine learning engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 5 e incertidumbre 5. La suma es 15 y se redondea a 21.
 
-HU2. Como \textit{machine learning engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
+HU2. Como \textit{machine learning engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 3. La suma es 11 y se redondea a 13.
 
 Épica 2: predicción de la probabilidad de citación
 
-HU3. Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 3, incertidumbre: 5; la suma es 13.
+HU3. Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 3 e incertidumbre 5. La suma es 13.
 
-HU4. Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 5; la suma es 13.
+HU4. Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 5. La suma es 13.
 
 Épica 3: generación y verificación de sinopsis
 
-HU5. Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 3; la suma es 11 y se redondea a 13.
+HU5. Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 3. La suma es 11 y se redondea a 13.
 
-HU6. Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 5, incertidumbre: 2; la suma es 10 y se redondea a 13.
+HU6. Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 2. La suma es 10 y se redondea a 13.
 
 Épica 4: piloto y medición de resultados
 
-HU7. Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad: 5, complejidad: 5, incertidumbre: 5; la suma es 15 y se redondea a 21.
+HU7. Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 5 e incertidumbre 5. La suma es 15 y se redondea a 21.
 
-HU8. Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad: media. \textit{Story points}: dificultad: 3, complejidad: 1, incertidumbre: 2; la suma es 6 y se redondea a 8.
+HU8. Como cliente, quiero un informe claro de los resultados del piloto para decidir la continuidad del proyecto. Prioridad: media. \textit{Story points}: dificultad 3, complejidad 1 e incertidumbre 2. La suma es 6 y se redondea a 8.
 
 \section{7. Criterios de aceptación de historias de usuario}
 \label{sec:criteriosAceptacion}
@@ -430,7 +432,7 @@ A partir de cada historia de usuario definida en la sección \ref{sec:backlog}, 
 \centering
 \caption{Desglose del trabajo en tareas técnicas.}
 \label{tab:wbs}
-\begin{tabularx}{\linewidth}{@{}|c|X|c|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|>{\raggedright\arraybackslash}X|c|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
 Historia & Tarea técnica & Estimación & Prioridad \\ \hline
@@ -446,6 +448,15 @@ HU3 & Calcular las métricas de desempeño y el aporte de las características d
 HU3 & Implementar la priorización de características por título & 6 h & Alta \\ \hline
 HU4 & Implementar el protocolo de validación con repeticiones y paráfrasis & 6 h & Alta \\ \hline
 HU4 & Reentrenar el modelo por ronda de medición y reportar la variabilidad de las predicciones & 5 h & Media \\ \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[htpb]
+\centering
+\begin{tabularx}{\linewidth}{@{}|c|>{\raggedright\arraybackslash}X|c|c|@{}}
+\hline
+\rowcolor[HTML]{C0C0C0}
+Historia & Tarea técnica & Estimación & Prioridad \\ \hline
 HU5 & Diseñar los \textit{prompts} del generador a partir de las características priorizadas y de los grupos de consultas de cada título & 5 h & Alta \\ \hline
 HU5 & Desarrollar el generador de sinopsis basado en un LLM & 8 h & Alta \\ \hline
 HU5 & Estimar con el modelo la probabilidad de citación de la sinopsis sugerida frente a la original & 4 h & Alta \\ \hline
@@ -465,19 +476,19 @@ HU8 & Elaborar el informe con visualizaciones y limitaciones & 4 h & Media \\ \h
 \section{10. Planificación de Sprints}
 \label{sec:sprints}
 
-En la tabla \ref{tab:sprints} se distribuyen las 600~h del proyecto en once \textit{sprints}, precedidos por un \textit{sprint}~0 de planificación. Las tareas técnicas son las de la sección \ref{sec:wbs}, con una estimación que incorpora el tiempo de prueba, iteración y documentación. Se suman, además, las pruebas integradas, la documentación, la escritura de la memoria y la preparación de la defensa.
+En la tabla \ref{tab:sprints} se distribuyen las 600~h del proyecto en once \textit{sprints}, precedidos por un \textit{sprint}~0 de planificación. Las tareas técnicas provienen de la sección \ref{sec:wbs}. Su estimación en horas es mayor, ya que incorpora el tiempo de prueba, iteración y documentación de cada tarea. A esas tareas se suman las pruebas integradas, la documentación de los módulos, la escritura de la memoria y la preparación de la defensa.
 
 \begin{table}[htpb]
 \centering
 \caption{Planificación de los \textit{sprints}.}
 \label{tab:sprints}
-\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|p{1.55cm}|p{2.62cm}|>{\raggedright\arraybackslash}X|c|l|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
-Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint & HU o fase & Tarea & Horas & Responsable & Avance \\ \hline
 Sprint 0 & Planificación & Relevar el estado del arte de GEO & 8 h & Ing. Paredes & 100~\% \\ \hline
 Sprint 0 & Planificación & Reorientar el proyecto de SEO a GEO & 12 h & Ing. Paredes & 100~\% \\ \hline
-Sprint 0 & Planificación & Elaboración del plan de trabajo & 24 h & Ing. Paredes & 70~\% \\ \hline
+Sprint 0 & Planificación & Elaborar el plan de trabajo & 24 h & Ing. Paredes & 70~\% \\ \hline
 Sprint 0 & Planificación & Validar el plan con los orientadores y el cliente & 4 h & Ing. Paredes & 50~\% \\ \hline
 Sprint 1 & HU1 & Definir las consultas y el protocolo de medición & 15 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 1 & HU1 & Automatizar las consultas a ChatGPT y a AI Overviews & 18 h & Ing. Paredes & 0~\% \\ \hline
@@ -494,10 +505,10 @@ Sprint 3 & HU3 & Implementar la priorización de características por título & 
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|p{1.55cm}|p{2.62cm}|>{\raggedright\arraybackslash}X|c|l|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
-Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint & HU o fase & Tarea & Horas & Responsable & Avance \\ \hline
 Sprint 4 & HU4 & Implementar el protocolo de validación & 18 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 4 & HU4 & Reentrenar por ronda y reportar la variabilidad & 18 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 4 & HU5 & Diseñar los \textit{prompts} del generador & 12 h & Ing. Paredes & 0~\% \\ \hline
@@ -518,10 +529,10 @@ Sprint 8 & HU7 & Estimar el efecto de la reescritura entre grupos & 16 h & Ing. 
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|l|l|X|c|l|c|@{}}
+\begin{tabularx}{\linewidth}{@{}|p{1.55cm}|p{2.62cm}|>{\raggedright\arraybackslash}X|c|l|c|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0}
-Sprint & HU o fase & Tarea & Horas & Responsable & \% Completado \\ \hline
+Sprint & HU o fase & Tarea & Horas & Responsable & Avance \\ \hline
 Sprint 9 & HU8 & Calcular los intervalos de variabilidad del efecto estimado & 12 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 9 & HU8 & Elaborar el informe con visualizaciones y limitaciones & 16 h & Ing. Paredes & 0~\% \\ \hline
 Sprint 9 & Documentación & Documentar los módulos implementados & 22 h & Ing. Paredes & 0~\% \\ \hline
@@ -537,7 +548,7 @@ Sprint 11 & Defensa & Preparar la exposición y ensayar la defensa & 20 h & Ing.
 \section{11. Diagrama de Gantt (sprints)}
 \label{sec:gantt}
 
-En la tabla \ref{tab:cronograma} se indican las fechas, la duración y las horas de cada \textit{sprint}, que suman las 600~h del proyecto, y en la figura \ref{fig:gantt} se presenta el diagrama de Gantt.
+En la tabla \ref{tab:cronograma} se indican las fechas, la duración y las horas de cada \textit{sprint}, que suman las 600~h del proyecto. En la figura \ref{fig:gantt} se presenta el diagrama de Gantt.
 
 \begin{table}[!htpb]
 \centering
@@ -592,7 +603,7 @@ Según lo recomendado en la asignatura, la etapa técnica concluye el 16 de marz
   group peaks height=0.14,
   group peaks width=1.5,
   group/.append style={draw=none, fill=ganttSprint},
-  group label font=\scriptsize\bfseries,
+  group label font=\scriptsize,
   milestone height=0.5,
   milestone top shift=0.25,
   milestone/.append style={draw=none, fill=ganttHito, xscale=6},
@@ -696,15 +707,15 @@ Las fuentes de datos, las herramientas y los modelos se emplean bajo las siguien
 
 \begin{itemize}
 	\item Datos internos: el catálogo, los metadatos, las ventas y los resultados de proyectos de SEO previos son propiedad de la editorial y tienen carácter confidencial. Se utilizan con su autorización, solo con fines académicos, y no se publican ni se comparten con terceros.
-	\item Respuestas de los motores: se obtienen mediante la API de OpenAI y la API de DataForSEO, servicios contratados cuyo uso se rige por sus términos de servicio. Las consultas respetan los límites de uso de cada proveedor, y las respuestas se almacenan solo para medir la citación, sin redistribuirse.
-	\item Herramientas y modelos: las bibliotecas previstas tienen licencias permisivas, como BSD de 3 cláusulas en scikit-learn, MIT en LightGBM y Apache 2.0 en CatBoost. El LLM comercial se utiliza mediante su API, sin acceso a sus pesos, y el modelo de \textit{embeddings} se elegirá entre los que cuenten con una licencia permisiva.
+	\item Respuestas de los motores: se obtienen mediante las API de OpenAI y de DataForSEO, servicios contratados cuyo uso se rige por sus términos de servicio. Las consultas respetan los límites de uso de cada proveedor. Las respuestas se almacenan solo para medir la citación y no se redistribuyen.
+	\item Herramientas y modelos: las bibliotecas previstas tienen licencias permisivas. En particular, scikit-learn se distribuye bajo la licencia BSD de 3 cláusulas, LightGBM bajo la MIT y CatBoost bajo la Apache 2.0. El LLM comercial se utiliza mediante su API, sin acceso a sus pesos. El modelo de \textit{embeddings} se elige entre los que cuentan con una licencia permisiva.
 \end{itemize}
 
 En consecuencia, el proyecto es legalmente viable, siempre que se adopten las siguientes medidas:
 
 \begin{itemize}
 	\item Autorización escrita de la editorial para el uso de los datos internos con fines académicos.
-	\item Confidencialidad de los datos propietarios: la memoria, la defensa y cualquier otra publicación incluyen solo resultados agregados y ejemplos autorizados por la editorial, y el conjunto de datos no se publica.
+	\item Confidencialidad de los datos propietarios: la memoria, la defensa y cualquier otra publicación incluyen solo resultados agregados y ejemplos autorizados por la editorial. El conjunto de datos no se publica.
 	\item Envío a las API externas solo de información ya publicada en la tienda en línea, previa verificación de las políticas de retención y uso de datos de cada proveedor.
 	\item Almacenamiento de los datos en repositorios de acceso restringido, con las credenciales de las API fuera del código fuente.
 	\item Trazabilidad del origen y de las transformaciones de cada variable, y versionado de los datos, del modelo y de las sinopsis generadas.
@@ -715,7 +726,7 @@ En consecuencia, el proyecto es legalmente viable, siempre que se adopten las si
 Los datos y los modelos del proyecto presentan los siguientes sesgos posibles:
 
 \begin{itemize}
-	\item Sesgo de popularidad: los motores tienden a citar los títulos y las marcas de mayor difusión. El modelo podría atribuir a las características de contenido un efecto que corresponde a la popularidad, y favorecer a los títulos más vendidos en desmedro del fondo de catálogo. Por ese motivo, la popularidad y la posición orgánica se incorporan como variables de control.
+	\item Sesgo de popularidad: los motores tienden a citar los títulos y las marcas de mayor difusión. El modelo podría atribuir a las características de contenido un efecto que corresponde a la popularidad. En ese caso, favorecería a los títulos más vendidos en desmedro del fondo de catálogo. Por ese motivo, la popularidad y la posición orgánica se incorporan como variables de control.
 	\item Sesgo de selección: las consultas y los géneros del estudio son una muestra acotada de las intenciones de los lectores. Los resultados no se extienden a otros géneros sin una nueva validación.
 	\item Sesgo de los modelos de lenguaje: el LLM puede extraer de forma errónea las características o introducir estereotipos culturales o de género en las sinopsis. La concordancia con un etiquetado manual y la revisión editorial acotan este riesgo.
 	\item Sesgo geográfico y de idioma: los motores pueden preferir fuentes de otros mercados de habla hispana o en otro idioma. Por eso, la medición registra el dominio de cada fuente citada.
@@ -733,11 +744,11 @@ Para prevenir y mitigar estos riesgos, se adoptan las siguientes medidas:
 \begin{itemize}
 	\item Supervisión humana: ninguna sinopsis se publica sin la aprobación del equipo editorial.
 	\item Verificación automática: cada candidata debe superar el umbral de fidelidad semántica respecto del texto original.
-	\item Trazabilidad y auditoría: se registran las versiones de los datos, del modelo, de los \textit{prompts} y de las candidatas, y se revisa la priorización por género y por motor en cada ronda de medición.
-	\item Política de uso responsable: el sistema se aplica solo al catálogo propio, no emplea técnicas engañosas ni contenido pensado exclusivamente para los motores, y el uso de inteligencia artificial se declara conforme a la política de la editorial.
+	\item Trazabilidad y auditoría: se registran las versiones de los datos, del modelo, de los \textit{prompts} y de las candidatas. Además, en cada ronda de medición se revisa la priorización por género y por motor.
+	\item Política de uso responsable: el sistema se aplica solo al catálogo propio y no emplea técnicas engañosas ni contenido pensado exclusivamente para los motores. El uso de inteligencia artificial se declara conforme a la política de la editorial.
 \end{itemize}
 
-El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, y no mediante la manipulación de los motores. La equidad se resguarda con el control de la popularidad y el análisis por género, y la transparencia, con la documentación de los límites del sistema y la revisión humana de cada sinopsis publicada.
+El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, y no mediante la manipulación de los motores. La equidad se resguarda con el control de la popularidad y el análisis por género. La transparencia se sostiene en la documentación de los límites del sistema y en la revisión humana de cada sinopsis publicada.
 
 
 \section{13. Gestión de riesgos}
