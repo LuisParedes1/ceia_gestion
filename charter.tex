@@ -757,72 +757,135 @@ El proyecto busca mejorar la visibilidad del catálogo con información fiel y v
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
- 
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos de forma negativa)
-\begin{itemize}
-	\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de (O). 
-\end{itemize}   
+Los riesgos se identifican a partir de los supuestos de la sección \ref{sec:supuestos}, ya que el incumplimiento de un supuesto suele alterar el plan. Cada riesgo se evalúa según su severidad (S) y su probabilidad de ocurrencia (O), en una escala de 1 a 10.
 
-Riesgo 2:
+a) Identificación de los riesgos y estimación de sus consecuencias
+
+Riesgo 1: escasez de citas de las fichas del catálogo.
 \begin{itemize}
-	\item Severidad (S): X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
+	\item Severidad (S): 9.\\
+	Sin suficientes casos de citación, el modelo no puede aprender qué características favorecen la citación. En ese caso, el generador pierde su guía y el objetivo central del proyecto queda comprometido.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	En las consultas de descubrimiento, los motores suelen citar medios, sitios de reseñas y tiendas de terceros. Por eso, la ficha de un título puede aparecer con poca frecuencia entre las fuentes citadas.
 \end{itemize}
 
-Riesgo 3:
+Riesgo 2: cambios en los motores de búsqueda generativa o en sus API durante la medición.
 \begin{itemize}
-	\item Severidad (S):  X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
+	\item Severidad (S): 8.\\
+	Un cambio en el modelo, en la función de búsqueda o en el formato de la API puede interrumpir la automatización de las consultas. Además, puede volver incomparables las rondas de medición previas y posteriores al cambio.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	Los proveedores actualizan sus modelos y sus servicios de búsqueda con frecuencia. Además, las mediciones se extienden durante más de cuatro meses.
 \end{itemize}
 
+Riesgo 3: costo de las API superior al previsto.
+\begin{itemize}
+	\item Severidad (S): 6.\\
+	Un consumo mayor al previsto requiere una autorización expresa del auspiciante. Mientras tanto, las mediciones se demoran o deben reducirse.
+	\item Probabilidad de ocurrencia (O): 5.\\
+	El costo depende de la cantidad de títulos, consultas y repeticiones, que todavía no está cerrada. A eso se suma la variación del tipo de cambio, ya que los servicios se pagan en moneda extranjera.
+\end{itemize}
 
-b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+Riesgo 4: demoras en la revisión editorial o en la publicación de las sinopsis del piloto.
+\begin{itemize}
+	\item Severidad (S): 8.\\
+	La publicación forma parte del camino crítico. Una demora acorta la ventana de medición del piloto, ya que la fecha de la defensa es fija.
+	\item Probabilidad de ocurrencia (O): 5.\\
+	La revisión y la publicación dependen de las prioridades del equipo editorial y del área de marketing digital, que no forman parte del proyecto. Además, la publicación está prevista para fines de enero, en pleno período de vacaciones.
+\end{itemize}
+
+Riesgo 5: resultados no concluyentes del piloto.
+\begin{itemize}
+	\item Severidad (S): 7.\\
+	Sin una diferencia significativa entre los grupos, no es posible demostrar el impacto de la reescritura en la citación. El sistema se entrega igual, pero la propuesta de valor queda sin validar.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	La citación varía mucho entre ejecuciones y el piloto abarca un conjunto acotado de títulos durante solo cuatro semanas.
+\end{itemize}
+
+Riesgo 6: caída de la posición orgánica de las fichas del piloto.
+\begin{itemize}
+	\item Severidad (S): 7.\\
+	El proyecto busca mejorar la visibilidad sin resignar el posicionamiento orgánico ya consolidado. Una caída en el grupo experimental podría llevar a la editorial a suspender el piloto.
+	\item Probabilidad de ocurrencia (O): 3.\\
+	Las sinopsis reescritas conservan la fidelidad al texto original y el piloto abarca pocos títulos. Por eso, un efecto negativo sobre el posicionamiento orgánico es poco probable.
+\end{itemize}
+
+Riesgo 7: retiro de la autorización de la editorial para utilizar los datos internos.
+\begin{itemize}
+	\item Severidad (S): 10.\\
+	Sin el catálogo, las sinopsis y los datos internos, el proyecto no puede continuar.
+	\item Probabilidad de ocurrencia (O): 2.\\
+	El proyecto se desarrolla dentro de la editorial y responde a sus propios objetivos de visibilidad. Además, el codirector pertenece a la empresa y acompaña el proyecto.
+\end{itemize}
+
+b) Tabla de gestión de riesgos
+
+En la tabla \ref{tab:riesgos} se presenta el número de prioridad de riesgo (RPN, por su sigla en inglés) de cada riesgo, que se calcula como $\mathrm{RPN} = S \times O$.
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
+\caption{Gestión de riesgos.}
+\label{tab:riesgos}
+\begin{tabularx}{\linewidth}{@{}|>{\raggedright\arraybackslash}X|c|c|c|c|c|c|@{}}
 \hline
-\rowcolor[HTML]{C0C0C0} 
+\rowcolor[HTML]{C0C0C0}
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-\end{tabularx}%
+1. Escasez de citas de las fichas & 9 & 6 & 54 & 6 & 4 & 24 \\ \hline
+2. Cambios en los motores o en sus API & 8 & 6 & 48 & 5 & 4 & 20 \\ \hline
+3. Costo de las API superior al previsto & 6 & 5 & 30 & 4 & 3 & 12 \\ \hline
+4. Demoras en la revisión o en la publicación del piloto & 8 & 5 & 40 & 6 & 3 & 18 \\ \hline
+5. Resultados no concluyentes del piloto & 7 & 6 & 42 & 5 & 4 & 20 \\ \hline
+6. Caída de la posición orgánica & 7 & 3 & 21 & -- & -- & -- \\ \hline
+7. Retiro de la autorización de uso de los datos & 10 & 2 & 20 & -- & -- & -- \\ \hline
+\end{tabularx}
 \end{table}
 
-Criterio adoptado: 
+Criterio adoptado: se tomarán medidas de mitigación en los riesgos cuyo RPN sea mayor que 25. Ese valor corresponde a una severidad y a una probabilidad de ocurrencia intermedias, de 5 cada una.
 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a...
+Los riesgos 6 y 7 no superan ese umbral, por lo que no requieren un plan de mitigación. Sin embargo, se controlan durante todo el proyecto: la posición orgánica se registra en cada ronda de medición y el uso de los datos se basa en una autorización escrita de la editorial.
 
-Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
+Nota: los valores marcados con asterisco corresponden a la situación posterior a la mitigación.
 
-c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
- 
-Riesgo 1: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  \begin{itemize}
-	\item Severidad (S*): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O*): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
-	\end{itemize}
+c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido
 
-Riesgo 2: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
- 
-Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+Riesgo 1: en el \textit{sprint}~1 se realiza una medición exploratoria sobre una muestra de títulos para estimar la tasa de citación antes de fijar el conjunto de consultas. Si la tasa resulta baja, se incorporan consultas más específicas por autor, saga o temática, en las que es más probable que la ficha sea citada. Además, se evalúa como señal auxiliar la aparición de la ficha en los resultados de las búsquedas que ejecuta el motor, obtenidos mediante DataForSEO.
+\begin{itemize}
+	\item Severidad (S*): 6.\\
+	Con la señal auxiliar, el modelo conserva un objetivo de entrenamiento aunque las citas sean escasas. Sin embargo, la priorización pierde precisión.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	La medición exploratoria permite ajustar el conjunto de consultas antes de construir el conjunto de datos.
+\end{itemize}
 
-\end{consigna}
+Riesgo 2: cada respuesta se registra con la fecha y la versión del modelo utilizado. Cuando la API lo permite, se fija una versión estable del modelo. El acceso a cada motor se implementa en un módulo independiente, de modo que un cambio de API afecte solo a ese módulo. Durante el piloto, el grupo de control absorbe los cambios de comportamiento que afectan a ambos grupos por igual. Además, se revisan semanalmente las notas de versión de cada proveedor.
+\begin{itemize}
+	\item Severidad (S*): 5.\\
+	Un cambio de API se resuelve en un módulo acotado. El registro de versiones permite separar las rondas afectadas.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	Fijar la versión del modelo reduce los cambios inesperados en el motor de ChatGPT. En AI Overviews no es posible fijar una versión, por lo que la probabilidad no baja más.
+\end{itemize}
+
+Riesgo 3: la medición exploratoria del \textit{sprint}~1 permite estimar el costo por ronda antes de fijar el volumen de consultas. Con esa estimación, se acuerda con el auspiciante un presupuesto por ronda y se configuran alertas de consumo en cada proveedor. Además, las respuestas de DataForSEO se almacenan para evitar consultas repetidas. La cantidad de repeticiones se ajusta según la variabilidad observada.
+\begin{itemize}
+	\item Severidad (S*): 4.\\
+	Ante un desvío, se reduce la muestra de títulos sin detener las mediciones.
+	\item Probabilidad de ocurrencia (O*): 3.\\
+	El presupuesto se basa en un costo medido y no en una estimación teórica.
+\end{itemize}
+
+Riesgo 4: la fecha de publicación y las personas responsables de la revisión y de la carga se acuerdan con el cliente en la reunión de validación del plan, al cierre del \textit{sprint}~0. El codirector, que fija prioridades dentro de la empresa, interviene ante cualquier demora. Además, la revisión editorial se organiza en bloques acotados. Si la publicación se retrasa, el piloto comienza con los títulos ya publicados, siempre que ambos grupos conserven el tamaño mínimo.
+\begin{itemize}
+	\item Severidad (S*): 6.\\
+	Una demora parcial acorta la ventana de medición, pero no impide iniciar el piloto.
+	\item Probabilidad de ocurrencia (O*): 3.\\
+	La fecha acordada con anticipación y el respaldo del codirector reducen la dependencia de las prioridades de otras áreas.
+\end{itemize}
+
+Riesgo 5: antes de asignar los grupos, se realiza un análisis de potencia estadística para fijar la cantidad mínima de títulos. La asignación se estratifica por género y popularidad, de modo que ambos grupos resulten comparables. Además, se mantienen las mediciones repetidas y se define como métrica secundaria la aparición de las fichas en los resultados de las búsquedas que ejecutan los motores.
+\begin{itemize}
+	\item Severidad (S*): 5.\\
+	Aun sin una diferencia significativa en la citación, la métrica secundaria y la validación del modelo aportan evidencia sobre el efecto de la reescritura.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	El tamaño de los grupos se define a partir de la variabilidad observada en el conjunto de datos y no de forma arbitraria.
+\end{itemize}
 
 \section{14. Sprint Review}
 \label{sec:sprint_review}
