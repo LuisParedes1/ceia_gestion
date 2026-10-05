@@ -757,137 +757,195 @@ El proyecto busca mejorar la visibilidad del catálogo con información fiel y v
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
- 
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos de forma negativa)
-\begin{itemize}
-	\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-	Justificar el motivo por el cual se asigna determinado número de (O). 
-\end{itemize}   
+Los riesgos se identifican a partir de los supuestos de la sección \ref{sec:supuestos}, ya que el incumplimiento de un supuesto suele alterar el plan. Cada riesgo se evalúa según su severidad (S) y su probabilidad de ocurrencia (O), en una escala de 1 a 10.
 
-Riesgo 2:
+a) Identificación de los riesgos y estimación de sus consecuencias
+
+Riesgo 1: escasez de citas de las fichas del catálogo.
 \begin{itemize}
-	\item Severidad (S): X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
+	\item Severidad (S): 9.\\
+	Sin suficientes casos de citación, el modelo no puede aprender qué características favorecen la citación. En ese caso, el generador pierde su guía y el objetivo central del proyecto queda comprometido.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	En las consultas de descubrimiento, los motores suelen citar medios, sitios de reseñas y tiendas de terceros. Por eso, la ficha de un título puede aparecer con poca frecuencia entre las fuentes citadas.
 \end{itemize}
 
-Riesgo 3:
+Riesgo 2: cambios en los motores de búsqueda generativa o en sus API durante la medición.
 \begin{itemize}
-	\item Severidad (S):  X.\\
-	Justificación...
-	\item Ocurrencia (O): Y.\\
-	Justificación...
+	\item Severidad (S): 8.\\
+	Un cambio en el modelo, en la función de búsqueda o en el formato de la API puede interrumpir la automatización de las consultas. Además, puede volver incomparables las rondas de medición previas y posteriores al cambio.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	Los proveedores actualizan sus modelos y sus servicios de búsqueda con frecuencia. Además, las mediciones se extienden durante más de cuatro meses.
 \end{itemize}
 
+Riesgo 3: costo de las API superior al previsto.
+\begin{itemize}
+	\item Severidad (S): 6.\\
+	Un consumo mayor al previsto requiere una autorización expresa del auspiciante. Mientras tanto, las mediciones se demoran o deben reducirse.
+	\item Probabilidad de ocurrencia (O): 5.\\
+	El costo depende de la cantidad de títulos, consultas y repeticiones, que todavía no está cerrada. A eso se suma la variación del tipo de cambio, ya que los servicios se pagan en moneda extranjera.
+\end{itemize}
 
-b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+Riesgo 4: demoras en la revisión editorial o en la publicación de las sinopsis del piloto.
+\begin{itemize}
+	\item Severidad (S): 8.\\
+	La publicación forma parte del camino crítico. Una demora acorta la ventana de medición del piloto, ya que la fecha de la defensa es fija.
+	\item Probabilidad de ocurrencia (O): 5.\\
+	La revisión y la publicación dependen de las prioridades del equipo editorial y del área de marketing digital, que no forman parte del proyecto. Además, la publicación está prevista para fines de enero, en pleno período de vacaciones.
+\end{itemize}
+
+Riesgo 5: resultados no concluyentes del piloto.
+\begin{itemize}
+	\item Severidad (S): 7.\\
+	Sin una diferencia significativa entre los grupos, no es posible demostrar el impacto de la reescritura en la citación. El sistema se entrega igual, pero la propuesta de valor queda sin validar.
+	\item Probabilidad de ocurrencia (O): 6.\\
+	La citación varía mucho entre ejecuciones y el piloto abarca un conjunto acotado de títulos durante solo cuatro semanas.
+\end{itemize}
+
+Riesgo 6: caída de la posición orgánica de las fichas del piloto.
+\begin{itemize}
+	\item Severidad (S): 7.\\
+	El proyecto busca mejorar la visibilidad sin resignar el posicionamiento orgánico ya consolidado. Una caída en el grupo experimental podría llevar a la editorial a suspender el piloto.
+	\item Probabilidad de ocurrencia (O): 3.\\
+	Las sinopsis reescritas conservan la fidelidad al texto original y el piloto abarca pocos títulos. Por eso, un efecto negativo sobre el posicionamiento orgánico es poco probable.
+\end{itemize}
+
+Riesgo 7: retiro de la autorización de la editorial para utilizar los datos internos.
+\begin{itemize}
+	\item Severidad (S): 10.\\
+	Sin el catálogo, las sinopsis y los datos internos, el proyecto no puede continuar.
+	\item Probabilidad de ocurrencia (O): 2.\\
+	El proyecto se desarrolla dentro de la editorial y responde a sus propios objetivos de visibilidad. Además, el codirector pertenece a la empresa y acompaña el proyecto.
+\end{itemize}
+
+b) Tabla de gestión de riesgos
+
+En la tabla \ref{tab:riesgos} se presenta el número de prioridad de riesgo (RPN, por su sigla en inglés) de cada riesgo, que se calcula como $\mathrm{RPN} = S \times O$.
 
 \begin{table}[htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
+\caption{Gestión de riesgos.}
+\label{tab:riesgos}
+\begin{tabularx}{\linewidth}{@{}|>{\raggedright\arraybackslash}X|c|c|c|c|c|c|@{}}
 \hline
-\rowcolor[HTML]{C0C0C0} 
+\rowcolor[HTML]{C0C0C0}
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-\end{tabularx}%
+1. Escasez de citas de las fichas & 9 & 6 & 54 & 6 & 4 & 24 \\ \hline
+2. Cambios en los motores o en sus API & 8 & 6 & 48 & 5 & 4 & 20 \\ \hline
+3. Costo de las API superior al previsto & 6 & 5 & 30 & 4 & 3 & 12 \\ \hline
+4. Demoras en la revisión o en la publicación del piloto & 8 & 5 & 40 & 6 & 3 & 18 \\ \hline
+5. Resultados no concluyentes del piloto & 7 & 6 & 42 & 5 & 4 & 20 \\ \hline
+6. Caída de la posición orgánica & 7 & 3 & 21 & -- & -- & -- \\ \hline
+7. Retiro de la autorización de uso de los datos & 10 & 2 & 20 & -- & -- & -- \\ \hline
+\end{tabularx}
 \end{table}
 
-Criterio adoptado: 
+Criterio adoptado: se tomarán medidas de mitigación en los riesgos cuyo RPN sea mayor que 25. Ese valor corresponde a una severidad y a una probabilidad de ocurrencia intermedias, de 5 cada una.
 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a...
+Los riesgos 6 y 7 no superan ese umbral, por lo que no requieren un plan de mitigación. Sin embargo, se controlan durante todo el proyecto. La posición orgánica se registra en cada ronda de medición y el uso de los datos se basa en una autorización escrita de la editorial.
 
-Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
-c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
- 
-Riesgo 1: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  \begin{itemize}
-	\item Severidad (S*): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	\item Probabilidad de ocurrencia (O*): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
-	\end{itemize}
+c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido
 
-Riesgo 2: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
- 
-Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+Riesgo 1: en el \textit{sprint}~1 se realiza una medición exploratoria sobre una muestra de títulos para estimar la tasa de citación antes de fijar el conjunto de consultas. Si la tasa resulta baja, se incorporan consultas más específicas por autor, saga o temática, en las que es más probable que la ficha sea citada. Además, se evalúa como señal auxiliar la aparición de la ficha en los resultados de las búsquedas que ejecuta el motor, obtenidos mediante DataForSEO.
+\begin{itemize}
+	\item Severidad (S*): 6.\\
+	Con la señal auxiliar, el modelo conserva un objetivo de entrenamiento aunque las citas sean escasas. Sin embargo, la priorización pierde precisión.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	La medición exploratoria permite ajustar el conjunto de consultas antes de construir el conjunto de datos.
+\end{itemize}
 
-\end{consigna}
+Riesgo 2: cada respuesta se registra con la fecha y la versión del modelo utilizado. Cuando la API lo permite, se fija una versión estable del modelo. El acceso a cada motor se implementa en un módulo independiente, de modo que un cambio de API afecte solo a ese módulo. Durante el piloto, el grupo de control absorbe los cambios de comportamiento que afectan a ambos grupos por igual. Además, se revisan semanalmente las notas de versión de cada proveedor.
+\begin{itemize}
+	\item Severidad (S*): 5.\\
+	Un cambio de API se resuelve en un módulo acotado. El registro de versiones permite separar las rondas afectadas.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	Fijar la versión del modelo reduce los cambios inesperados en el motor de ChatGPT. En AI Overviews no es posible fijar una versión, por lo que la probabilidad no baja más.
+\end{itemize}
+
+Riesgo 3: la medición exploratoria del \textit{sprint}~1 permite estimar el costo por ronda antes de fijar el volumen de consultas. Con esa estimación, se acuerda con el auspiciante un presupuesto por ronda y se configuran alertas de consumo en cada proveedor. Además, las respuestas de DataForSEO se almacenan para evitar consultas repetidas. La cantidad de repeticiones se ajusta según la variabilidad observada.
+\begin{itemize}
+	\item Severidad (S*): 4.\\
+	Ante un desvío, se reduce la muestra de títulos sin detener las mediciones.
+	\item Probabilidad de ocurrencia (O*): 3.\\
+	El presupuesto se basa en un costo medido y no en una estimación teórica.
+\end{itemize}
+
+Riesgo 4: la fecha de publicación y las personas responsables de la revisión y de la carga se acuerdan con el cliente en la reunión de validación del plan, al cierre del \textit{sprint}~0. El codirector, que fija prioridades dentro de la empresa, interviene ante cualquier demora. Además, la revisión editorial se organiza en bloques acotados. Si la publicación se retrasa, el piloto comienza con los títulos ya publicados, siempre que ambos grupos conserven el tamaño mínimo.
+\begin{itemize}
+	\item Severidad (S*): 6.\\
+	Una demora parcial acorta la ventana de medición, pero no impide iniciar el piloto.
+	\item Probabilidad de ocurrencia (O*): 3.\\
+	La fecha acordada con anticipación y el respaldo del codirector reducen la dependencia de las prioridades de otras áreas.
+\end{itemize}
+
+Riesgo 5: antes de asignar los grupos, se realiza un análisis de potencia estadística para fijar la cantidad mínima de títulos. La asignación se estratifica por género y popularidad, de modo que ambos grupos resulten comparables. Además, se mantienen las mediciones repetidas y se define como métrica secundaria la aparición de las fichas en los resultados de las búsquedas que ejecutan los motores.
+\begin{itemize}
+	\item Severidad (S*): 5.\\
+	Aun sin una diferencia significativa en la citación, la métrica secundaria y la validación del modelo aportan evidencia sobre el efecto de la reescritura.
+	\item Probabilidad de ocurrencia (O*): 4.\\
+	El tamaño de los grupos se define a partir de la variabilidad observada en el conjunto de datos y no de forma arbitraria.
+\end{itemize}
 
 \section{14. Sprint Review}
 \label{sec:sprint_review}
 
-La revisión de sprint (\emph{Sprint Review}) es una práctica fundamental en metodologías ágiles. Consiste en revisar y evaluar lo que se ha completado al finalizar un sprint. En esta instancia, se presentan los avances y se verifica si las funcionalidades cumplen con los criterios de aceptación establecidos. También se identifican entregables parciales y se consideran ajustes si es necesario.
+La revisión de \textit{sprint}, o \textit{sprint review}, se realiza al cierre de cada \textit{sprint}. En ella se presentan los avances al director y se verifica que las funcionalidades cumplan los criterios de aceptación de la sección \ref{sec:criteriosAceptacion}. Así, el avance se evalúa a medida que se desarrollan las funcionalidades y los ajustes se detectan a tiempo.
 
-Aunque el proyecto aún se encuentre en etapa de planificación, esta sección permite proyectar cómo se evaluarán las funcionalidades más importantes del backlog. Esta mirada anticipada favorece la planificación enfocada en valor y permite reflexionar sobre posibles obstáculos.
+En la tabla \ref{tab:review} se proyecta esa revisión para una historia de usuario de cada épica. Las tareas son las de la sección \ref{sec:sprints} y las observaciones remiten a los riesgos de la sección \ref{sec:riesgos}.
 
-\textbf{Objetivo:} anticipar cómo se evaluará el avance del proyecto a medida que se desarrollen las funcionalidades, utilizando como base al menos cuatro historias de usuario del \emph{Product Backlog}.
-
-
-Seleccionar al menos 4 HU del Product Backlog. Para cada una, completar la siguiente tabla de revisión proyectada:
-
-\textbf{Formato sugerido:}
 \begin{table}[htpb]
+\centering
+\caption{Revisión proyectada de las historias de usuario.}
+\label{tab:review}
 \renewcommand{\arraystretch}{1.5}
+\newcommand{\tareasHU}[1]{{\renewcommand{\arraystretch}{1.2}\begin{tabular}{>{\raggedright\arraybackslash}m{2.9cm}}#1\end{tabular}}}
 \begin{tabular}{|>{\raggedright\arraybackslash}m{2.4cm}|
-                >{\raggedright\arraybackslash}m{2.3cm}|
-                >{\raggedright\arraybackslash}m{3cm}|
-                >{\raggedright\arraybackslash}m{3cm}|
-                >{\raggedright\arraybackslash}m{3cm}|}
+                @{}m{\dimexpr2.9cm+2\tabcolsep\relax}@{}|
+                >{\raggedright\arraybackslash}m{2.8cm}|
+                >{\raggedright\arraybackslash}m{2.8cm}|
+                >{\raggedright\arraybackslash}m{2.8cm}|}
 \hline
 \rowcolor[HTML]{CCCCCC}
-\textbf{HU seleccionada} & \textbf{Tareas asociadas} & \textbf{Entregable esperado} & \textbf{¿Cómo sabrás que está cumplida?} & \textbf{Observaciones o riesgos} \\
+HU seleccionada & \multicolumn{1}{>{\raggedright\arraybackslash}m{2.9cm}|}{Tareas asociadas} & Entregable esperado & ¿Cómo sabrás que está cumplida? & Observaciones o riesgos \\
 \hline
-                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
-\multirow{-2}{=}{HU1}    & Tarea 2 & \multirow{-2}{=}{Módulo funcional} & \multirow{-2}{=}{Cumple criterios de aceptación definidos} & \multirow{-2}{=}{Falta validar con el tutor} \\
+HU1 & \tareasHU{
+  Consultas y protocolo de medición \\ \hline
+  Automatización de consultas \\ \hline
+  Registro de búsquedas y fuentes} & Primera ronda de medición registrada & Diez repeticiones por consulta y registro de las fuentes citadas & Riesgo 1: tasa de citación baja \\
 \hline
-                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
-\multirow{-2}{=}{HU3}    & Tarea 2 & \multirow{-2}{=}{Reporte generado} & \multirow{-2}{=}{Exportación disponible y clara} & \multirow{-2}{=}{Requiere datos reales} \\
+HU3 & \tareasHU{
+  Extracción de características \\ \hline
+  Etiquetado y concordancia \\ \hline
+  Entrenamiento de modelos \\ \hline
+  Métricas y aporte de características \\ \hline
+  Priorización de características} & Modelo versionado y características priorizadas & Mejor error y correlación que el modelo de referencia & Riesgo 1: pocas citas en el conjunto de datos \\
 \hline
-                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
-\multirow{-2}{=}{HU5}    & Tarea 2 & \multirow{-2}{=}{Panel de gestión} & \multirow{-2}{=}{Roles diferenciados operativos} & \multirow{-2}{=}{Riesgo en integración} \\
+HU5 & \tareasHU{
+  Diseño de los \textit{prompts} \\ \hline
+  Generador de sinopsis \\ \hline
+  Probabilidad de citación} & Generador de sinopsis candidatas & Probabilidad de citación estimada mayor que la original & La mejora estimada debe confirmarse en el piloto \\
 \hline
-                         & Tarea 1 &                             &                                           &                                     \\ \cline{2-2}
-\multirow{-2}{=}{HU7}    & Tarea 2 & \multirow{-2}{=}{Informe trimestral} & \multirow{-2}{=}{PDF con gráficos y evolución} & \multirow{-2}{=}{Puede faltar tiempo para ajustes} \\
+HU7 & \tareasHU{
+  Grupos del piloto \\ \hline
+  Publicación y seguimiento \\ \hline
+  Campaña de medición del piloto \\ \hline
+  Posición orgánica de ambos grupos \\ \hline
+  Estimación del efecto} & Mediciones del piloto y efecto estimado & Cuatro semanas de medición en ambos grupos & Riesgos 4 y 5: demoras en la publicación y efecto no concluyente \\
 \hline
 \end{tabular}
 \end{table}
 
-\section{15. Sprint Retrospective}    
+\section{15. Sprint Retrospective}
 \label{sec:sprint_retro}
 
-La retrospectiva de sprint es una práctica orientada a la mejora continua. Al finalizar un sprint, el equipo (o el alumno, si trabaja de forma individual) reflexiona sobre lo que funcionó bien, lo que puede mejorarse y qué acciones concretas pueden implementarse para trabajar mejor en el futuro.
+La retrospectiva de \textit{sprint} se orienta a la mejora continua. Como el proyecto tiene un único responsable, la retrospectiva es individual y se realiza al cierre de cada \textit{sprint}. Para organizarla se utiliza la metodología de la estrella de la retrospectiva (\textit{starfish}).
 
-Durante la cursada se propuso el uso de la \textbf{Estrella de la Retrospectiva}, que organiza la reflexión en torno a cinco ejes:
-
-\begin{itemize}
-\item  ¿Qué hacer más?
-\item  ¿Qué hacer menos?
-\item  ¿Qué mantener?
-\item  ¿Qué empezar a hacer?
-\item  ¿Qué dejar de hacer?
-\end{itemize}
-
-Aun en una etapa temprana, esta herramienta permite que el alumno planifique su forma de trabajar, identifique anticipadamente posibles dificultades y diseñe estrategias de organización personal.
-
-\textbf{Objetivo:} reflexionar sobre las condiciones iniciales del proyecto, identificando fortalezas, posibles dificultades y estrategias de mejora, incluso antes del inicio del desarrollo.
-
-
-Completar la siguiente tabla tomando como referencia los cinco ejes de la Estrella de la Retrospectiva (\emph{Starfish} o estrella de mar). Esta instancia te ayudará a definir buenas prácticas desde el inicio y prepararte para enfrentar el trabajo de forma organizada y flexible. Se deberá completar la tabla al menos para 3 sprints técnicos y 1 no técnico.
-
-\textbf{Formato sugerido:}
+En la tabla \ref{tab:retro} se proyecta la retrospectiva de tres \textit{sprints} técnicos, uno por cada etapa del desarrollo. Se incluye también el \textit{sprint}~0 de planificación, que ya transcurrió y permite una primera reflexión real sobre la forma de trabajo. Por último, se proyecta el \textit{sprint}~11, que cierra el proyecto con la memoria y la defensa pública.
 
 \begin{table}[htpb]
+\centering
+\caption{Retrospectiva proyectada de los \textit{sprints}.}
+\label{tab:retro}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{|>{\raggedright\arraybackslash}p{1.8cm}|
                 >{\raggedright\arraybackslash}p{2.3cm}|
@@ -896,21 +954,20 @@ Completar la siguiente tabla tomando como referencia los cinco ejes de la Estrel
                 >{\raggedright\arraybackslash}p{2.3cm}|
                 >{\raggedright\arraybackslash}p{2.3cm}|}
 \hline
-\rowcolor[HTML]{CCCCCC} 
-\textbf{Sprint tipo y N°} & \textbf{¿Qué hacer más?} & \textbf{¿Qué hacer menos?} & \textbf{¿Qué mantener?} & \textbf{¿Qué empezar a hacer?} & \textbf{¿Qué dejar de hacer?} \\
+\rowcolor[HTML]{CCCCCC}
+Sprint tipo y N° & ¿Qué hacer más? & ¿Qué hacer menos? & ¿Qué mantener? & ¿Qué empezar a hacer? & ¿Qué dejar de hacer? \\
 \hline
-Sprint técnico - 1 & Validaciones continuas con el alumno & Cambios sin versión registrada & Pruebas con datos simulados & Documentar cambios propuestos & Ajustes sin análisis de impacto \\
+Sprint no técnico - 0 & Validaciones tempranas con el director y el codirector & Reescrituras completas por cambios de enfoque & Revisión de la redacción con la guía del taller gramatical & Registrar cada decisión y su motivo & Postergar la estimación de horas hasta el final del plan \\
 \hline
-Sprint técnico - 2 & Verificar configuraciones en múltiples escenarios & Modificar parámetros sin guardar historial & Perfiles reutilizables & Usar logs para configuración & Repetir pruebas manuales innecesarias \\
+Sprint técnico - 1 & Pruebas de las consultas sobre muestras pequeñas & Consultas manuales a los motores fuera del protocolo & Registro del motor y de la versión del modelo & Controlar a diario el consumo de las API & Ejecutar rondas completas sin validar el formato de las respuestas \\
 \hline
-Sprint técnico - 8 & Comparar correlaciones con casos previos & Cambiar parámetros sin justificar & Revisión cruzada de métricas & Anotar configuraciones usadas & Trabajar sin respaldo de datos \\
+Sprint técnico - 3 & Contraste con el modelo de referencia & Ajustes de hiperparámetros sin registro & Validación cruzada agrupada por título & Validar las prioridades sobre una muestra de títulos & Agregar variables sin documentar su origen \\
 \hline
-Sprint no técnico - 12 (por ej.: ``Defensa'') & Ensayos orales con feedback & Cambiar contenidos en la memoria & Material visual claro & Dividir la presentación por bloques & Agregar gráficos difíciles de explicar \\
+Sprint técnico - 8 & Seguimiento semanal de ambos grupos del piloto & Cambios en las sinopsis publicadas durante la medición & Mediciones repetidas con el mismo protocolo & Documentar cada módulo al cerrarlo & Interpretar resultados parciales como definitivos \\
+\hline
+Sprint no técnico - 11 & Ensayos de la exposición con devolución del director & Cambios de contenido en la memoria cerca de la entrega & Material visual claro sobre los resultados del piloto & Ensayar la defensa con tiempo límite y preguntas simuladas & Agregar detalles técnicos que no aportan a las conclusiones \\
 \hline
 \end{tabular}
 \end{table}
-
-
-
 
 \end{document}
