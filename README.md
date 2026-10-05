@@ -2,7 +2,8 @@
 
 Plan de proyecto para trabajos finales de posgrado Carreras de especialización en Inteligencia Artificial.
 
-En el siguiente repositorio se va desarrollando el [pre-informe](./charter.pdf) asociado al proyecto "Optimizacion de sinopsis de libros mediante prediccion de keywords con Machine Learning y SEO"
+En el siguiente repositorio se va desarrollando el [pre-informe](./charter.pdf) asociado al proyecto "Optimización de sinopsis de libros para motores de búsqueda generativa (GEO) mediante la predicción de la probabilidad de citación con aprendizaje automático"
+
 
 # Paginas importantes
 
