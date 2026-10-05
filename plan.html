@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEO para sinopsis</title>
+<meta name="description" content="Plan de trabajo final de la Carrera de Especialización en Inteligencia Artificial (FIUBA): optimización de sinopsis de libros para motores de búsqueda generativa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --ink: #1d1b18;
+  --muted: #5f5a52;
+  --line: #e4dfd6;
+  --accent: #b4462b;
+  --accent-soft: #f6e4dc;
+  --tec: #2a78d6;
+  --notec: #d9622b;
+  --sprint: #52514e;
+  --pause: #d6d2ca;
+  --ok: #3c7d4f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161513;
+    --surface: #1f1d1a;
+    --ink: #eeeae3;
+    --muted: #a8a196;
+    --line: #34312c;
+    --accent: #e9805f;
+    --accent-soft: #3a2620;
+    --tec: #5b9ce8;
+    --notec: #ec8a5a;
+    --sprint: #a8a49c;
+    --pause: #45413b;
+    --ok: #74b98a;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161513; --surface: #1f1d1a; --ink: #eeeae3; --muted: #a8a196; --line: #34312c;
+  --accent: #e9805f; --accent-soft: #3a2620; --tec: #5b9ce8; --notec: #ec8a5a;
+  --sprint: #a8a49c; --pause: #45413b; --ok: #74b98a;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 .75rem; }
+h3 { font-size: 1.15rem; margin: 0 0 .4rem; }
+p { margin: 0 0 1rem; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+/* Navegación */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; gap: 1.25rem; align-items: center; height: 52px; overflow-x: auto; scrollbar-width: none; }
+nav .wrap::-webkit-scrollbar { display: none; }
+nav a { color: var(--muted); text-decoration: none; font-size: .9rem; white-space: nowrap; }
+nav a:hover { color: var(--ink); }
+nav .brand { white-space: nowrap; font-family: "Fraunces", serif; font-weight: 600; color: var(--ink); margin-right: auto; }
+
+/* Carátula */
+header.hero { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin: 0 0 1.25rem; max-width: 22ch; }
+.hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1rem 2rem; margin: 2rem 0; }
+.people div { border-left: 2px solid var(--line); padding-left: .8rem; }
+.people small { display: block; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+.cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+.btn {
+  display: inline-block; padding: .65rem 1.1rem; border-radius: 8px;
+  background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; font-size: .95rem;
+}
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+/* Secciones */
+section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+section > .wrap > .intro { color: var(--muted); max-width: 68ch; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 2rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.4rem; }
+figure { margin: 1.5rem 0 0; }
+figure img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
+figcaption { color: var(--muted); font-size: .88rem; margin-top: .5rem; }
+ul.clean { padding-left: 1.1rem; margin: 0; }
+ul.clean li { margin-bottom: .4rem; }
+
+.purpose {
+  font-family: "Fraunces", serif; font-size: clamp(1.35rem, 3vw, 1.9rem); line-height: 1.35;
+  border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1.25rem; margin: 0; max-width: 40ch;
+}
+
+/* Interesados */
+table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+.table-scroll { overflow-x: auto; }
+
+/* Métricas */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
+.stat b { display: block; font-family: "Fraunces", serif; font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1.1; }
+.stat span { color: var(--muted); font-size: .9rem; }
+
+/* Backlog */
+.epic { margin-bottom: 1.5rem; }
+.epic h3 { color: var(--accent); font-size: 1rem; font-family: "Inter", sans-serif; text-transform: uppercase; letter-spacing: .06em; }
+.hu { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: .9rem; align-items: start; padding: .75rem 0; border-top: 1px solid var(--line); }
+.hu .id { font-weight: 600; color: var(--muted); }
+.hu .sp { font-size: .8rem; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: .15rem .6rem; white-space: nowrap; font-weight: 600; }
+@media (max-width: 560px) { .hu { grid-template-columns: 2.6rem 1fr; } .hu .sp { grid-column: 2; justify-self: start; } }
+
+/* Gantt */
+.gantt { margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+.g-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; min-height: 30px; }
+.g-label { font-size: .85rem; padding-right: .75rem; }
+.g-label small { color: var(--muted); display: block; font-size: .74rem; line-height: 1.2; }
+.g-track { position: relative; height: 22px; background-image: var(--grid); }
+.g-bar { position: absolute; top: 3px; height: 16px; border-radius: 4px; }
+.g-mile { position: absolute; top: 4px; width: 13px; height: 13px; background: var(--ink); transform: translateX(-50%) rotate(45deg); }
+.g-months { display: grid; grid-template-columns: 150px 1fr; font-size: .75rem; color: var(--muted); margin-bottom: .4rem; }
+.g-months .m { position: relative; height: 18px; }
+.g-months .m span { position: absolute; transform: translateX(2px); }
+.g-today { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .82rem; color: var(--muted); margin-top: .9rem; }
+.legend i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; margin-right: .35rem; vertical-align: middle; }
+@media (max-width: 560px) {
+  .g-row, .g-months { grid-template-columns: 92px 1fr; }
+  .g-label small { display: none; }
+}
+
+/* Riesgos */
+.risk { display: grid; grid-template-columns: 1fr 180px; gap: 1rem; align-items: center; padding: .8rem 0; border-top: 1px solid var(--line); }
+.risk .name { font-size: .95rem; }
+.risk .name small { display: block; color: var(--muted); font-size: .82rem; }
+.rbar { position: relative; height: 22px; background: var(--line); border-radius: 4px; }
+.rbar .before { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: .35; border-radius: 4px; }
+.rbar .after { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 4px; }
+.rbar .thr { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
+.rbar .val { position: absolute; right: 6px; top: 0; font-size: .75rem; line-height: 22px; color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) { .risk { grid-template-columns: 1fr; gap: .4rem; } }
+
+/* Cierre */
+footer { padding: 56px 0 72px; color: var(--muted); font-size: .9rem; }
+footer h2 { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav aria-label="Secciones">
+  <div class="wrap">
+    <a class="brand" href="index.html" style="text-decoration:none">GEO · CEIA</a>
+    <a href="index.html" style="color:var(--accent);font-weight:500">← Índice de clases</a>
+    <a href="#contexto">Contexto</a>
+    <a href="#interesados">Interesados</a>
+    <a href="#proposito">Propósito</a>
+    <a href="#alcance">Alcance</a>
+    <a href="#requerimientos">Requerimientos</a>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#riesgos">Riesgos</a>
+    <a href="#calidad">Calidad</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Plan de trabajo final · Carrera de Especialización en Inteligencia Artificial · FIUBA</div>
+    <h1>Optimización de sinopsis de libros para motores de búsqueda generativa</h1>
+    <p class="lead">Un modelo de aprendizaje automático predice la probabilidad de que la ficha de un libro sea citada por ChatGPT o por AI Overviews de Google. Un modelo grande de lenguaje reescribe luego la sinopsis a partir de esa predicción, sin alterar su fidelidad al texto original.</p>
+    <div class="people">
+      <div><small>Responsable</small>Ing. Luis José Paredes Ramirez</div>
+      <div><small>Director</small>Dr. Ing. Juan Manuel Rodríguez<br><span style="color:var(--muted);font-size:.85rem">Universidad de Buenos Aires</span></div>
+      <div><small>Codirector</small>Sebastian Pellizzeri<br><span style="color:var(--muted);font-size:.85rem">Penguin Random House Grupo Editorial</span></div>
+      <div><small>Cliente</small>Victoria O'Donnell<br><span style="color:var(--muted);font-size:.85rem">Penguin Random House Grupo Editorial</span></div>
+    </div>
+    <div class="cta">
+      <a class="btn" href="charter.pdf">Leer el plan completo (PDF)</a>
+      <a class="btn ghost" href="index.html">Índice de clases</a>
+      <a class="btn ghost" href="https://github.com/LuisParedes1/ceia_gestion">Ver el repositorio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="contexto">
+  <div class="wrap">
+    <h2>Contexto y propuesta</h2>
+    <div class="grid-2">
+      <div>
+        <p>La optimización para motores de búsqueda (SEO, por su sigla en inglés) mejora la posición de un sitio en la página de resultados de los buscadores tradicionales. Sin embargo, cada vez más consultas se resuelven en motores de búsqueda generativa, que redactan una respuesta y citan un conjunto acotado de fuentes.</p>
+        <p>La optimización para motores de búsqueda generativa (GEO, por su sigla en inglés) busca que un contenido aparezca entre esas fuentes. En este proyecto, el éxito se mide como citación: la inclusión de la ficha del libro entre las fuentes de la respuesta.</p>
+      </div>
+      <div>
+        <p>Las herramientas comerciales de SEO no anticipan qué títulos serán citados ni qué conviene modificar en sus sinopsis. La solución propuesta traslada el foco hacia la citación en dos etapas.</p>
+        <ul class="clean">
+          <li>Un modelo estima la probabilidad de citación de cada título y ordena las características de contenido según su aporte.</li>
+          <li>Un generador basado en un modelo grande de lenguaje (LLM, por su sigla en inglés) reescribe la sinopsis e incorpora esas características.</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem">La figura 1 muestra el flujo completo, desde las fuentes de datos hasta el piloto controlado, cuyas mediciones realimentan el modelo.</p>
+    <figure>
+      <img src="Figuras/diagBloques.png" alt="Diagrama en bloques: fuentes de datos, ingesta y modelo de predicción, generador de sinopsis, verificación y piloto controlado con realimentación." loading="lazy">
+      <figcaption>Figura 1. Diagrama en bloques del sistema.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="interesados">
+  <div class="wrap">
+    <h2>Interesados</h2>
+    <p class="intro">El equipo de Analítica Avanzada de Penguin Random House Grupo Editorial desarrolla el proyecto en forma interna. La tabla 1 resume el rol de cada interesado.</p>
+    <div class="table-scroll card" style="padding:.4rem .8rem">
+      <table>
+        <caption style="text-align:left;color:var(--muted);font-size:.85rem;padding:.5rem 0">Tabla 1. Interesados del proyecto.</caption>
+        <thead><tr><th>Rol</th><th>Nombre</th><th>Organización</th><th>Aporte</th></tr></thead>
+        <tbody>
+          <tr><td>Auspiciante</td><td>–</td><td>Penguin Random House</td><td>Horas de trabajo, datos internos y crédito de la API de DataForSEO.</td></tr>
+          <tr><td>Cliente</td><td>Victoria O'Donnell</td><td>Penguin Random House</td><td>Valida los entregables y define los títulos del piloto.</td></tr>
+          <tr><td>Responsable</td><td>Ing. Luis José Paredes Ramirez</td><td>Penguin Random House</td><td>Desarrolla el proyecto como <em>machine learning engineer</em>.</td></tr>
+          <tr><td>Director</td><td>Dr. Ing. Juan Manuel Rodríguez</td><td>Universidad de Buenos Aires</td><td>Encuadre metodológico y supervisión académica.</td></tr>
+          <tr><td>Codirector</td><td>Sebastian Pellizzeri</td><td>Penguin Random House</td><td>Conocimiento del negocio editorial y fijación de prioridades internas.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="proposito">
+  <div class="wrap">
+    <h2>Propósito</h2>
+    <p class="purpose">Aumentar la visibilidad del catálogo en los motores de búsqueda generativa, medida como la tasa de citación de sus fichas, sin resignar el posicionamiento orgánico ya consolidado.</p>
+    <div class="stats">
+      <div class="stat"><b>600 h</b><span>de trabajo planificado</span></div>
+      <div class="stat"><b>12</b><span><em>sprints</em>, incluido el de planificación</span></div>
+      <div class="stat"><b>8</b><span>historias de usuario en 4 épicas</span></div>
+      <div class="stat"><b>30/04/2027</b><span>defensa pública prevista</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="alcance">
+  <div class="wrap">
+    <h2>Alcance</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Incluye</h3>
+        <ul class="clean">
+          <li>El conjunto de datos de citación, con mediciones repetidas en ChatGPT y en AI Overviews.</li>
+          <li>La extracción de características de contenido con un LLM y su validación manual.</li>
+          <li>El modelo de predicción de la probabilidad de citación.</li>
+          <li>El generador de sinopsis con restricciones de extensión, tono y fidelidad.</li>
+          <li>La verificación automática de las sinopsis candidatas.</li>
+          <li>Un piloto controlado con un grupo experimental y un grupo de control.</li>
+          <li>La documentación, el código fuente y la memoria del trabajo final.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>No incluye</h3>
+        <ul class="clean">
+          <li>Otros factores de GEO distintos de la sinopsis.</li>
+          <li>Las respuestas que los motores generan sin búsqueda web.</li>
+          <li>El entrenamiento o el alojamiento de un modelo de lenguaje propio.</li>
+          <li>La integración con el gestor de contenidos de la tienda en línea.</li>
+          <li>El despliegue sobre todo el catálogo y la puesta en producción.</li>
+          <li>La medición del impacto en ventas o en ingresos.</li>
+          <li>Otros mercados distintos de Argentina.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="requerimientos">
+  <div class="wrap">
+    <h2>Requerimientos</h2>
+    <p class="intro">El <em>product backlog</em> agrupa ocho historias de usuario (HU) en cuatro épicas. Cada historia se pondera en <em>story points</em> según su dificultad, su complejidad y su incertidumbre.</p>
+    <div id="backlog"></div>
+  </div>
+</section>
+
+<section id="cronograma">
+  <div class="wrap">
+    <h2>Cronograma</h2>
+    <p class="intro">Las 600 h se distribuyen en once <em>sprints</em> de desarrollo, precedidos por uno de planificación. La etapa técnica cierra dos meses antes de la defensa. La figura 2 presenta el diagrama de Gantt con la fecha de hoy marcada en color.</p>
+    <div class="gantt" id="gantt" role="img" aria-label="Diagrama de Gantt de los sprints entre agosto de 2026 y abril de 2027."></div>
+    <div class="legend">
+      <span><i style="background:var(--tec)"></i>Desarrollo técnico</span>
+      <span><i style="background:var(--notec)"></i>Planificación y escritura</span>
+      <span><i style="background:var(--pause)"></i>Receso</span>
+      <span><i style="background:var(--ink);transform:rotate(45deg);width:9px;height:9px"></i>Hito</span>
+      <span><i style="background:var(--accent);width:2px;height:12px"></i>Hoy</span>
+    </div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:.5rem">Figura 2. Diagrama de Gantt de los <em>sprints</em>.</p>
+  </div>
+</section>
+
+<section id="riesgos">
+  <div class="wrap">
+    <h2>Gestión de riesgos</h2>
+    <p class="intro">Cada riesgo se evalúa según su severidad (S) y su probabilidad de ocurrencia (O), en una escala de 1 a 10. El número de prioridad de riesgo (RPN, por su sigla en inglés) es el producto S × O. Se mitigan los riesgos con un RPN mayor que 25. La figura 3 compara el RPN original, en color claro, con el residual tras la mitigación.</p>
+    <div id="risks" style="margin-top:1.5rem"></div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:.75rem">Figura 3. RPN de cada riesgo antes y después de la mitigación. La línea vertical marca el umbral de 25.</p>
+  </div>
+</section>
+
+<section id="calidad">
+  <div class="wrap">
+    <h2>Gestión de la calidad</h2>
+    <p class="intro">El desarrollo sigue la metodología CRISP-DM dentro de un marco Scrum. Cada historia de usuario tiene criterios de aceptación medibles, que se verifican en la revisión de cada <em>sprint</em>.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Métricas de éxito del negocio</h3>
+        <ul class="clean">
+          <li>Aumento relativo de la tasa de citación del grupo experimental de al menos 20 %, con significación estadística.</li>
+          <li>Ninguna caída de la posición orgánica respecto del grupo de control.</li>
+          <li>Al menos 70 % de sinopsis candidatas aprobadas en la revisión editorial.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Controles técnicos</h3>
+        <ul class="clean">
+          <li>Validación cruzada agrupada por título, sin fuga de información.</li>
+          <li>Error cuadrático medio ponderado y correlación de Spearman frente a un modelo de referencia.</li>
+          <li>Umbral de fidelidad semántica para cada sinopsis candidata.</li>
+          <li>Revisión editorial obligatoria antes de publicar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Cierre</h2>
+    <p>El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, no mediante la manipulación de los motores. El plan completo, con la gobernanza de datos y las retrospectivas proyectadas, está disponible en el documento del plan.</p>
+    <div class="cta" style="margin:1.25rem 0 2rem">
+      <a class="btn" href="charter.pdf">Descargar el plan (PDF)</a>
+    </div>
+    <p>Curso de Gestión de Proyectos · Facultad de Ingeniería, Universidad de Buenos Aires · 2026</p>
+  </div>
+</footer>
+
+<script>
+// Backlog
+const epics = [
+  { name: "Épica 1: conjunto de datos de citación", hus: [
+    ["HU1", "Medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable.", 21],
+    ["HU2", "Consolidar la posición de las fichas y los datos internos de popularidad para controlar su efecto en la predicción.", 13] ] },
+  { name: "Épica 2: predicción de la probabilidad de citación", hus: [
+    ["HU3", "Entrenar un modelo que aprenda qué características de contenido se asocian con la citación.", 13],
+    ["HU4", "Validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables.", 13] ] },
+  { name: "Épica 3: generación y verificación de sinopsis", hus: [
+    ["HU5", "Sugerir una sinopsis optimizada para aumentar su probabilidad de citación.", 13],
+    ["HU6", "Preservar la fidelidad de la sinopsis original para utilizarla en la tienda en línea.", 13] ] },
+  { name: "Épica 4: piloto y medición de resultados", hus: [
+    ["HU7", "Seguir la citación de las sinopsis publicadas frente a un grupo de control de títulos comparables.", 21],
+    ["HU8", "Entregar un informe claro de los resultados del piloto para decidir la continuidad del proyecto.", 8] ] }
+];
+document.getElementById("backlog").innerHTML = epics.map(e =>
+  `<div class="epic"><h3>${e.name}</h3>` +
+  e.hus.map(([id, txt, sp]) => `<div class="hu"><span class="id">${id}</span><span>${txt}</span><span class="sp">${sp} SP</span></div>`).join("") +
+  `</div>`).join("");
+
+// Gantt
+const START = new Date("2026-08-08"), END = new Date("2027-04-30");
+const span = (END - START) / 864e5;
+const pct = d => ((new Date(d) - START) / 864e5 / span * 100).toFixed(2) + "%";
+const sprints = [
+  ["Sprint 0", "Planificación", "2026-08-08", "2026-10-13", "notec"],
+  ["Sprint 1", "HU1", "2026-10-14", "2026-10-27", "tec"],
+  ["Sprint 2", "HU2 y HU3", "2026-10-28", "2026-11-10", "tec"],
+  ["Sprint 3", "HU3", "2026-11-11", "2026-11-24", "tec"],
+  ["Sprint 4", "HU4 y HU5", "2026-11-25", "2026-12-08", "tec"],
+  ["Sprint 5", "HU5 y HU6", "2026-12-09", "2026-12-22", "tec"],
+  ["Receso", "Fin de año", "2026-12-23", "2026-12-29", "pause"],
+  ["Sprint 6", "HU6 y pruebas", "2026-12-30", "2027-01-12", "tec"],
+  ["Sprint 7", "Pruebas y HU7", "2027-01-13", "2027-01-26", "tec"],
+  ["Sprint 8", "HU7 y documentación", "2027-01-27", "2027-02-23", "tec"],
+  ["Sprint 9", "HU8", "2027-02-24", "2027-03-02", "tec"],
+  ["Sprint 10", "Escritura", "2027-03-03", "2027-04-06", "notec"],
+  ["Sprint 11", "Escritura y defensa", "2027-04-07", "2027-04-30", "notec"]
+];
+const milestones = [
+  ["Entrega final del plan", "2026-10-13"],
+  ["Publicación de las sinopsis", "2027-01-26"],
+  ["Fin de la etapa técnica", "2027-03-02"],
+  ["Entrega de la memoria", "2027-04-16"],
+  ["Defensa pública", "2027-04-30"]
+];
+const months = ["ago","sep","oct","nov","dic","ene","feb","mar","abr"];
+const monthStarts = ["2026-08-08","2026-09-01","2026-10-01","2026-11-01","2026-12-01","2027-01-01","2027-02-01","2027-03-01","2027-04-01"];
+const gridLines = monthStarts.slice(1).map(d => `linear-gradient(var(--line), var(--line)) ${pct(d)} 0 / 1px 100% no-repeat`).join(",");
+const today = new Date();
+const todayMark = today >= START && today <= END ? `<div class="g-today" style="left:${pct(today.toISOString().slice(0,10))}" title="Hoy"></div>` : "";
+let html = `<div class="g-months"><span></span><div class="m">${months.map((m,i)=>`<span style="left:${pct(monthStarts[i])}">${m}</span>`).join("")}</div></div>`;
+html += sprints.map(([n, c, s, e, k]) =>
+  `<div class="g-row"><div class="g-label">${n}<small>${c}</small></div>` +
+  `<div class="g-track" style="background:${gridLines}">${todayMark}<div class="g-bar" style="left:${pct(s)};width:calc(${pct(e)} - ${pct(s)} + 3px);background:var(--${k})" title="${n}: ${s} a ${e}"></div></div></div>`).join("");
+html += `<div class="g-row"><div class="g-label">Hitos</div><div class="g-track" style="background:${gridLines}">${todayMark}` +
+  milestones.map(([n, d]) => `<div class="g-mile" style="left:${pct(d)}" title="${n} (${d})"></div>`).join("") + `</div></div>`;
+document.getElementById("gantt").innerHTML = html;
+
+// Riesgos
+const risks = [
+  ["Escasez de citas de las fichas", "Medición exploratoria y consultas más específicas en el sprint 1.", 54, 24],
+  ["Cambios en los motores o en sus API", "Versiones fijas, módulos independientes y grupo de control.", 48, 20],
+  ["Resultados no concluyentes del piloto", "Análisis de potencia y asignación estratificada.", 42, 20],
+  ["Demoras en la revisión o en la publicación", "Fecha acordada con el cliente y respaldo del codirector.", 40, 18],
+  ["Costo de las API superior al previsto", "Presupuesto por ronda basado en un costo medido.", 30, 12],
+  ["Caída de la posición orgánica", "Por debajo del umbral; se controla en cada ronda.", 21, null],
+  ["Retiro de la autorización de uso de los datos", "Por debajo del umbral; autorización escrita.", 20, null]
+];
+const MAX = 60;
+document.getElementById("risks").innerHTML = risks.map(([n, m, before, after]) =>
+  `<div class="risk"><div class="name">${n}<small>${m}</small></div>` +
+  `<div class="rbar" title="RPN ${before}${after ? " → " + after : ""}">` +
+  `<div class="before" style="width:${before / MAX * 100}%"></div>` +
+  `<div class="after" style="width:${(after ?? before) / MAX * 100}%;${after ? "" : "opacity:.35"}"></div>` +
+  `<div class="thr" style="left:${25 / MAX * 100}%"></div>` +
+  `<span class="val">${after ? before + " → " + after : before}</span></div></div>`).join("");
+</script>
+</body>
+</html>

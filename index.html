@@ -3,439 +3,390 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEO para sinopsis</title>
-<meta name="description" content="Plan de trabajo final de la Carrera de Especialización en Inteligencia Artificial (FIUBA): optimización de sinopsis de libros para motores de búsqueda generativa.">
+<title>Clases de Gestión de Proyectos</title>
+<meta name="description" content="Índice de las clases del curso de Gestión de Proyectos (CEIA, FIUBA): temas, presentaciones y notas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #faf8f4;
-  --surface: #ffffff;
-  --ink: #1d1b18;
-  --muted: #5f5a52;
-  --line: #e4dfd6;
-  --accent: #b4462b;
-  --accent-soft: #f6e4dc;
-  --tec: #2a78d6;
-  --notec: #d9622b;
-  --sprint: #52514e;
-  --pause: #d6d2ca;
-  --ok: #3c7d4f;
+  --bg: #faf8f4; --surface: #ffffff; --ink: #1d1b18; --muted: #5f5a52; --line: #e4dfd6;
+  --accent: #b4462b; --accent-soft: #f6e4dc; --mark: #fbe7a1;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #161513;
-    --surface: #1f1d1a;
-    --ink: #eeeae3;
-    --muted: #a8a196;
-    --line: #34312c;
-    --accent: #e9805f;
-    --accent-soft: #3a2620;
-    --tec: #5b9ce8;
-    --notec: #ec8a5a;
-    --sprint: #a8a49c;
-    --pause: #45413b;
-    --ok: #74b98a;
+    --bg: #161513; --surface: #1f1d1a; --ink: #eeeae3; --muted: #a8a196; --line: #34312c;
+    --accent: #e9805f; --accent-soft: #3a2620; --mark: #5a4a12;
   }
 }
 :root[data-theme="dark"] {
   --bg: #161513; --surface: #1f1d1a; --ink: #eeeae3; --muted: #a8a196; --line: #34312c;
-  --accent: #e9805f; --accent-soft: #3a2620; --tec: #5b9ce8; --notec: #ec8a5a;
-  --sprint: #a8a49c; --pause: #45413b; --ok: #74b98a;
+  --accent: #e9805f; --accent-soft: #3a2620; --mark: #5a4a12;
 }
-
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0;
-  overflow-x: hidden;
-  background: var(--bg);
-  color: var(--ink);
-  font: 400 17px/1.65 "Inter", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink);
+  font: 400 17px/1.6 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
 }
 a { color: var(--accent); }
 h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; }
-h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 .75rem; }
-h3 { font-size: 1.15rem; margin: 0 0 .4rem; }
-p { margin: 0 0 1rem; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+mark { background: var(--mark); color: inherit; border-radius: 2px; }
 
-/* Navegación */
 nav {
   position: sticky; top: 0; z-index: 10;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
 }
 nav .wrap { display: flex; gap: 1.25rem; align-items: center; height: 52px; overflow-x: auto; scrollbar-width: none; }
 nav .wrap::-webkit-scrollbar { display: none; }
 nav a { color: var(--muted); text-decoration: none; font-size: .9rem; white-space: nowrap; }
-nav a:hover { color: var(--ink); }
+nav a:hover, nav a[aria-current] { color: var(--ink); }
 nav .brand { white-space: nowrap; font-family: "Fraunces", serif; font-weight: 600; color: var(--ink); margin-right: auto; }
 
-/* Carátula */
-header.hero { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
-.eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin: 0 0 1.25rem; max-width: 22ch; }
-.hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
-.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1rem 2rem; margin: 2rem 0; }
-.people div { border-left: 2px solid var(--line); padding-left: .8rem; }
-.people small { display: block; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
-.cta { display: flex; flex-wrap: wrap; gap: .75rem; }
-.btn {
-  display: inline-block; padding: .65rem 1.1rem; border-radius: 8px;
-  background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; font-size: .95rem;
+header { padding: 56px 0 32px; }
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--accent); font-weight: 600; margin-bottom: .8rem; }
+header h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 1rem; }
+header p { color: var(--muted); max-width: 62ch; margin: 0; }
+
+/* Barra de búsqueda y filtros */
+.tools {
+  position: sticky; top: 52px; z-index: 5; background: var(--bg);
+  padding: 12px 0; border-bottom: 1px solid var(--line);
 }
-.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-
-/* Secciones */
-section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-section > .wrap > .intro { color: var(--muted); max-width: 68ch; }
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 2rem; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.4rem; }
-figure { margin: 1.5rem 0 0; }
-figure img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
-figcaption { color: var(--muted); font-size: .88rem; margin-top: .5rem; }
-ul.clean { padding-left: 1.1rem; margin: 0; }
-ul.clean li { margin-bottom: .4rem; }
-
-.purpose {
-  font-family: "Fraunces", serif; font-size: clamp(1.35rem, 3vw, 1.9rem); line-height: 1.35;
-  border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1.25rem; margin: 0; max-width: 40ch;
+.tools .wrap { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.search {
+  flex: 1 1 260px; display: flex; align-items: center; gap: .5rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 .8rem;
 }
+.search:focus-within { border-color: var(--accent); }
+.search input { flex: 1; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: .95rem; padding: .6rem 0; outline: none; min-width: 0; }
+.search svg { flex: none; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip {
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  border-radius: 999px; padding: .3rem .8rem; font: 500 .82rem "Inter", sans-serif; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.count { color: var(--muted); font-size: .85rem; margin-left: auto; white-space: nowrap; }
 
-/* Interesados */
-table { width: 100%; border-collapse: collapse; font-size: .93rem; }
-th, td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-weight: 600; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
-.table-scroll { overflow-x: auto; }
+/* Índice rápido */
+.toc { display: flex; flex-wrap: wrap; gap: .5rem; margin: 28px 0 8px; }
+.toc a {
+  text-decoration: none; color: var(--ink); font-size: .85rem; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: .35rem .7rem;
+}
+.toc a b { color: var(--accent); margin-right: .3rem; }
+.toc a.dim { opacity: .35; }
 
-/* Métricas */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 1rem; margin-top: 1.5rem; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
-.stat b { display: block; font-family: "Fraunces", serif; font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1.1; }
-.stat span { color: var(--muted); font-size: .9rem; }
-
-/* Backlog */
-.epic { margin-bottom: 1.5rem; }
-.epic h3 { color: var(--accent); font-size: 1rem; font-family: "Inter", sans-serif; text-transform: uppercase; letter-spacing: .06em; }
-.hu { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: .9rem; align-items: start; padding: .75rem 0; border-top: 1px solid var(--line); }
-.hu .id { font-weight: 600; color: var(--muted); }
-.hu .sp { font-size: .8rem; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: .15rem .6rem; white-space: nowrap; font-weight: 600; }
-@media (max-width: 560px) { .hu { grid-template-columns: 2.6rem 1fr; } .hu .sp { grid-column: 2; justify-self: start; } }
-
-/* Gantt */
-.gantt { margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
-.g-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; min-height: 30px; }
-.g-label { font-size: .85rem; padding-right: .75rem; }
-.g-label small { color: var(--muted); display: block; font-size: .74rem; line-height: 1.2; }
-.g-track { position: relative; height: 22px; background-image: var(--grid); }
-.g-bar { position: absolute; top: 3px; height: 16px; border-radius: 4px; }
-.g-mile { position: absolute; top: 4px; width: 13px; height: 13px; background: var(--ink); transform: translateX(-50%) rotate(45deg); }
-.g-months { display: grid; grid-template-columns: 150px 1fr; font-size: .75rem; color: var(--muted); margin-bottom: .4rem; }
-.g-months .m { position: relative; height: 18px; }
-.g-months .m span { position: absolute; transform: translateX(2px); }
-.g-today { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--accent); }
-.legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .82rem; color: var(--muted); margin-top: .9rem; }
-.legend i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; margin-right: .35rem; vertical-align: middle; }
-@media (max-width: 560px) {
-  .g-row, .g-months { grid-template-columns: 92px 1fr; }
-  .g-label small { display: none; }
+/* Clases */
+.class { display: grid; grid-template-columns: 88px 1fr; gap: 1.5rem; padding: 40px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 120px; }
+.class[hidden] { display: none; }
+.num { font-family: "Fraunces", serif; font-size: 3.4rem; line-height: 1; color: var(--accent); font-weight: 600; }
+.class h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin: 0 0 .3rem; }
+.meta { color: var(--muted); font-size: .88rem; margin-bottom: 1.2rem; }
+.block { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: .9rem; }
+.block[hidden] { display: none; }
+.block-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; margin-bottom: .5rem; }
+.block h3 { font-size: 1.08rem; margin: 0; }
+.tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin-left: auto; font-size: .84rem; }
+.links a { text-decoration: none; white-space: nowrap; }
+.links a:hover { text-decoration: underline; }
+.topics { margin: 0; padding-left: 1.1rem; }
+.topics li { margin: .2rem 0; font-size: .95rem; }
+.plan { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+.plan a { margin-right: .6rem; }
+.empty { text-align: center; color: var(--muted); padding: 64px 0; }
+@media (max-width: 640px) {
+  .class { grid-template-columns: 1fr; gap: .2rem; }
+  .num { font-size: 2.4rem; }
+  .links { margin-left: 0; }
+  .count { margin-left: 0; }
 }
 
-/* Riesgos */
-.risk { display: grid; grid-template-columns: 1fr 180px; gap: 1rem; align-items: center; padding: .8rem 0; border-top: 1px solid var(--line); }
-.risk .name { font-size: .95rem; }
-.risk .name small { display: block; color: var(--muted); font-size: .82rem; }
-.rbar { position: relative; height: 22px; background: var(--line); border-radius: 4px; }
-.rbar .before { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: .35; border-radius: 4px; }
-.rbar .after { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 4px; }
-.rbar .thr { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
-.rbar .val { position: absolute; right: 6px; top: 0; font-size: .75rem; line-height: 22px; color: var(--ink); font-weight: 600; }
-@media (max-width: 560px) { .risk { grid-template-columns: 1fr; gap: .4rem; } }
-
-/* Cierre */
-footer { padding: 56px 0 72px; color: var(--muted); font-size: .9rem; }
-footer h2 { color: var(--ink); }
+/* Recursos */
+.resources { padding: 48px 0 72px; }
+.resources h2 { font-size: 1.6rem; margin: 0 0 1rem; }
+.res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: .8rem; }
+.res-grid a {
+  display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: .8rem 1rem; text-decoration: none; color: var(--ink);
+}
+.res-grid a small { display: block; color: var(--muted); font-size: .82rem; }
+.res-grid a:hover { border-color: var(--accent); }
+footer { color: var(--muted); font-size: .85rem; padding-bottom: 48px; }
 </style>
 </head>
 <body>
 
-<nav aria-label="Secciones">
+<nav aria-label="Sitio">
   <div class="wrap">
-    <span class="brand">GEO · CEIA</span>
-    <a href="#contexto">Contexto</a>
-    <a href="#interesados">Interesados</a>
-    <a href="#proposito">Propósito</a>
-    <a href="#alcance">Alcance</a>
-    <a href="#requerimientos">Requerimientos</a>
-    <a href="#cronograma">Cronograma</a>
-    <a href="#riesgos">Riesgos</a>
-    <a href="#calidad">Calidad</a>
+    <a class="brand" href="index.html" style="color:var(--ink)">GEO · CEIA</a>
+    <a href="plan.html">Plan de trabajo</a>
+    <a href="index.html" aria-current="page">Clases</a>
+    <a href="#recursos">Recursos</a>
   </div>
 </nav>
 
-<header class="hero">
+<header>
   <div class="wrap">
-    <div class="eyebrow">Plan de trabajo final · Carrera de Especialización en Inteligencia Artificial · FIUBA</div>
-    <h1>Optimización de sinopsis de libros para motores de búsqueda generativa</h1>
-    <p class="lead">Un modelo de aprendizaje automático predice la probabilidad de que la ficha de un libro sea citada por ChatGPT o por AI Overviews de Google. Un modelo grande de lenguaje reescribe luego la sinopsis a partir de esa predicción, sin alterar su fidelidad al texto original.</p>
-    <div class="people">
-      <div><small>Responsable</small>Ing. Luis José Paredes Ramirez</div>
-      <div><small>Director</small>Dr. Ing. Juan Manuel Rodríguez<br><span style="color:var(--muted);font-size:.85rem">Universidad de Buenos Aires</span></div>
-      <div><small>Codirector</small>Sebastian Pellizzeri<br><span style="color:var(--muted);font-size:.85rem">Penguin Random House Grupo Editorial</span></div>
-      <div><small>Cliente</small>Victoria O'Donnell<br><span style="color:var(--muted);font-size:.85rem">Penguin Random House Grupo Editorial</span></div>
-    </div>
-    <div class="cta">
-      <a class="btn" href="charter.pdf">Leer el plan completo (PDF)</a>
-      <a class="btn ghost" href="https://github.com/LuisParedes1/ceia_gestion">Ver el repositorio</a>
-    </div>
+    <div class="eyebrow">Curso de Gestión de Proyectos · CEIA · FIUBA · 2026</div>
+    <h1>Índice de clases</h1>
+    <p>Los temas de las ocho clases del curso, con enlaces a las presentaciones, a las notas de cada tema y a la sección del plan de trabajo donde se aplican. El buscador filtra por cualquier palabra de los temas.</p>
   </div>
 </header>
 
-<main>
-
-<section id="contexto">
+<div class="tools">
   <div class="wrap">
-    <h2>Contexto y propuesta</h2>
-    <div class="grid-2">
-      <div>
-        <p>La optimización para motores de búsqueda (SEO, por su sigla en inglés) mejora la posición de un sitio en la página de resultados de los buscadores tradicionales. Sin embargo, cada vez más consultas se resuelven en motores de búsqueda generativa, que redactan una respuesta y citan un conjunto acotado de fuentes.</p>
-        <p>La optimización para motores de búsqueda generativa (GEO, por su sigla en inglés) busca que un contenido aparezca entre esas fuentes. En este proyecto, el éxito se mide como citación: la inclusión de la ficha del libro entre las fuentes de la respuesta.</p>
-      </div>
-      <div>
-        <p>Las herramientas comerciales de SEO no anticipan qué títulos serán citados ni qué conviene modificar en sus sinopsis. La solución propuesta traslada el foco hacia la citación en dos etapas.</p>
-        <ul class="clean">
-          <li>Un modelo estima la probabilidad de citación de cada título y ordena las características de contenido según su aporte.</li>
-          <li>Un generador basado en un modelo grande de lenguaje (LLM, por su sigla en inglés) reescribe la sinopsis e incorpora esas características.</li>
-        </ul>
-      </div>
-    </div>
-    <p style="margin-top:1.5rem">La figura 1 muestra el flujo completo, desde las fuentes de datos hasta el piloto controlado, cuyas mediciones realimentan el modelo.</p>
-    <figure>
-      <img src="Figuras/diagBloques.png" alt="Diagrama en bloques: fuentes de datos, ingesta y modelo de predicción, generador de sinopsis, verificación y piloto controlado con realimentación." loading="lazy">
-      <figcaption>Figura 1. Diagrama en bloques del sistema.</figcaption>
-    </figure>
+    <label class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar un tema: Scrum, RPN, WBS, gerundio…" aria-label="Buscar un tema" autocomplete="off">
+    </label>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por área"></div>
+    <span class="count" id="count" aria-live="polite"></span>
   </div>
-</section>
+</div>
 
-<section id="interesados">
-  <div class="wrap">
-    <h2>Interesados</h2>
-    <p class="intro">El equipo de Analítica Avanzada de Penguin Random House Grupo Editorial desarrolla el proyecto en forma interna. La tabla 1 resume el rol de cada interesado.</p>
-    <div class="table-scroll card" style="padding:.4rem .8rem">
-      <table>
-        <caption style="text-align:left;color:var(--muted);font-size:.85rem;padding:.5rem 0">Tabla 1. Interesados del proyecto.</caption>
-        <thead><tr><th>Rol</th><th>Nombre</th><th>Organización</th><th>Aporte</th></tr></thead>
-        <tbody>
-          <tr><td>Auspiciante</td><td>–</td><td>Penguin Random House</td><td>Horas de trabajo, datos internos y crédito de la API de DataForSEO.</td></tr>
-          <tr><td>Cliente</td><td>Victoria O'Donnell</td><td>Penguin Random House</td><td>Valida los entregables y define los títulos del piloto.</td></tr>
-          <tr><td>Responsable</td><td>Ing. Luis José Paredes Ramirez</td><td>Penguin Random House</td><td>Desarrolla el proyecto como <em>machine learning engineer</em>.</td></tr>
-          <tr><td>Director</td><td>Dr. Ing. Juan Manuel Rodríguez</td><td>Universidad de Buenos Aires</td><td>Encuadre metodológico y supervisión académica.</td></tr>
-          <tr><td>Codirector</td><td>Sebastian Pellizzeri</td><td>Penguin Random House</td><td>Conocimiento del negocio editorial y fijación de prioridades internas.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="proposito">
-  <div class="wrap">
-    <h2>Propósito</h2>
-    <p class="purpose">Aumentar la visibilidad del catálogo en los motores de búsqueda generativa, medida como la tasa de citación de sus fichas, sin resignar el posicionamiento orgánico ya consolidado.</p>
-    <div class="stats">
-      <div class="stat"><b>600 h</b><span>de trabajo planificado</span></div>
-      <div class="stat"><b>12</b><span><em>sprints</em>, incluido el de planificación</span></div>
-      <div class="stat"><b>8</b><span>historias de usuario en 4 épicas</span></div>
-      <div class="stat"><b>30/04/2027</b><span>defensa pública prevista</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="alcance">
-  <div class="wrap">
-    <h2>Alcance</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Incluye</h3>
-        <ul class="clean">
-          <li>El conjunto de datos de citación, con mediciones repetidas en ChatGPT y en AI Overviews.</li>
-          <li>La extracción de características de contenido con un LLM y su validación manual.</li>
-          <li>El modelo de predicción de la probabilidad de citación.</li>
-          <li>El generador de sinopsis con restricciones de extensión, tono y fidelidad.</li>
-          <li>La verificación automática de las sinopsis candidatas.</li>
-          <li>Un piloto controlado con un grupo experimental y un grupo de control.</li>
-          <li>La documentación, el código fuente y la memoria del trabajo final.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>No incluye</h3>
-        <ul class="clean">
-          <li>Otros factores de GEO distintos de la sinopsis.</li>
-          <li>Las respuestas que los motores generan sin búsqueda web.</li>
-          <li>El entrenamiento o el alojamiento de un modelo de lenguaje propio.</li>
-          <li>La integración con el gestor de contenidos de la tienda en línea.</li>
-          <li>El despliegue sobre todo el catálogo y la puesta en producción.</li>
-          <li>La medición del impacto en ventas o en ingresos.</li>
-          <li>Otros mercados distintos de Argentina.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="requerimientos">
-  <div class="wrap">
-    <h2>Requerimientos</h2>
-    <p class="intro">El <em>product backlog</em> agrupa ocho historias de usuario (HU) en cuatro épicas. Cada historia se pondera en <em>story points</em> según su dificultad, su complejidad y su incertidumbre.</p>
-    <div id="backlog"></div>
-  </div>
-</section>
-
-<section id="cronograma">
-  <div class="wrap">
-    <h2>Cronograma</h2>
-    <p class="intro">Las 600 h se distribuyen en once <em>sprints</em> de desarrollo, precedidos por uno de planificación. La etapa técnica cierra dos meses antes de la defensa. La figura 2 presenta el diagrama de Gantt con la fecha de hoy marcada en color.</p>
-    <div class="gantt" id="gantt" role="img" aria-label="Diagrama de Gantt de los sprints entre agosto de 2026 y abril de 2027."></div>
-    <div class="legend">
-      <span><i style="background:var(--tec)"></i>Desarrollo técnico</span>
-      <span><i style="background:var(--notec)"></i>Planificación y escritura</span>
-      <span><i style="background:var(--pause)"></i>Receso</span>
-      <span><i style="background:var(--ink);transform:rotate(45deg);width:9px;height:9px"></i>Hito</span>
-      <span><i style="background:var(--accent);width:2px;height:12px"></i>Hoy</span>
-    </div>
-    <p style="color:var(--muted);font-size:.88rem;margin-top:.5rem">Figura 2. Diagrama de Gantt de los <em>sprints</em>.</p>
-  </div>
-</section>
-
-<section id="riesgos">
-  <div class="wrap">
-    <h2>Gestión de riesgos</h2>
-    <p class="intro">Cada riesgo se evalúa según su severidad (S) y su probabilidad de ocurrencia (O), en una escala de 1 a 10. El número de prioridad de riesgo (RPN, por su sigla en inglés) es el producto S × O. Se mitigan los riesgos con un RPN mayor que 25. La figura 3 compara el RPN original, en color claro, con el residual tras la mitigación.</p>
-    <div id="risks" style="margin-top:1.5rem"></div>
-    <p style="color:var(--muted);font-size:.88rem;margin-top:.75rem">Figura 3. RPN de cada riesgo antes y después de la mitigación. La línea vertical marca el umbral de 25.</p>
-  </div>
-</section>
-
-<section id="calidad">
-  <div class="wrap">
-    <h2>Gestión de la calidad</h2>
-    <p class="intro">El desarrollo sigue la metodología CRISP-DM dentro de un marco Scrum. Cada historia de usuario tiene criterios de aceptación medibles, que se verifican en la revisión de cada <em>sprint</em>.</p>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Métricas de éxito del negocio</h3>
-        <ul class="clean">
-          <li>Aumento relativo de la tasa de citación del grupo experimental de al menos 20 %, con significación estadística.</li>
-          <li>Ninguna caída de la posición orgánica respecto del grupo de control.</li>
-          <li>Al menos 70 % de sinopsis candidatas aprobadas en la revisión editorial.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Controles técnicos</h3>
-        <ul class="clean">
-          <li>Validación cruzada agrupada por título, sin fuga de información.</li>
-          <li>Error cuadrático medio ponderado y correlación de Spearman frente a un modelo de referencia.</li>
-          <li>Umbral de fidelidad semántica para cada sinopsis candidata.</li>
-          <li>Revisión editorial obligatoria antes de publicar.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
+<main class="wrap">
+  <div class="toc" id="toc"></div>
+  <div id="classes"></div>
+  <p class="empty" id="empty" hidden>Ningún tema coincide con la búsqueda.</p>
 </main>
 
-<footer>
+<section class="resources" id="recursos">
   <div class="wrap">
-    <h2>Cierre</h2>
-    <p>El proyecto busca mejorar la visibilidad del catálogo con información fiel y verificable, no mediante la manipulación de los motores. El plan completo, con la gobernanza de datos y las retrospectivas proyectadas, está disponible en el documento del plan.</p>
-    <div class="cta" style="margin:1.25rem 0 2rem">
-      <a class="btn" href="charter.pdf">Descargar el plan (PDF)</a>
+    <h2>Recursos del curso</h2>
+    <div class="res-grid">
+      <a href="https://sites.google.com/cursoscapse.com/gdp/" target="_blank" rel="noopener">Sitio de la materia<small>Material y recursos oficiales</small></a>
+      <a href="https://campusposgrado.fi.uba.ar/course/view.php?id=359" target="_blank" rel="noopener">Campus virtual<small>Entregas y avisos</small></a>
+      <a href="https://docs.google.com/document/d/1mlvRctnWCP-hjytSuSsJnZvyluvWbMSUdyHn2RMPNRg/edit?tab=t.0" target="_blank" rel="noopener">Pautas para aprobar<small>Condiciones del curso</small></a>
+      <a href="https://github.com/patriciobos/Plantilla-planificacion" target="_blank" rel="noopener">Plantilla LaTeX del plan<small>Repositorio del posgrado</small></a>
+      <a href="https://www.overleaf.com/" target="_blank" rel="noopener">Overleaf<small>Editor de LaTeX en línea</small></a>
+      <a href="https://lse.posgrados.fi.uba.ar/trabajo-final/archivo-historico" target="_blank" rel="noopener">Archivo histórico<small>Trabajos finales de cohortes anteriores</small></a>
     </div>
-    <p>Curso de Gestión de Proyectos · Facultad de Ingeniería, Universidad de Buenos Aires · 2026</p>
   </div>
+</section>
+
+<footer>
+  <div class="wrap">Las notas enlazadas en Notion son personales y requieren acceso a ese espacio de trabajo.</div>
 </footer>
 
 <script>
-// Backlog
-const epics = [
-  { name: "Épica 1: conjunto de datos de citación", hus: [
-    ["HU1", "Medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable.", 21],
-    ["HU2", "Consolidar la posición de las fichas y los datos internos de popularidad para controlar su efecto en la predicción.", 13] ] },
-  { name: "Épica 2: predicción de la probabilidad de citación", hus: [
-    ["HU3", "Entrenar un modelo que aprenda qué características de contenido se asocian con la citación.", 13],
-    ["HU4", "Validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables.", 13] ] },
-  { name: "Épica 3: generación y verificación de sinopsis", hus: [
-    ["HU5", "Sugerir una sinopsis optimizada para aumentar su probabilidad de citación.", 13],
-    ["HU6", "Preservar la fidelidad de la sinopsis original para utilizarla en la tienda en línea.", 13] ] },
-  { name: "Épica 4: piloto y medición de resultados", hus: [
-    ["HU7", "Seguir la citación de las sinopsis publicadas frente a un grupo de control de títulos comparables.", 21],
-    ["HU8", "Entregar un informe claro de los resultados del piloto para decidir la continuidad del proyecto.", 8] ] }
-];
-document.getElementById("backlog").innerHTML = epics.map(e =>
-  `<div class="epic"><h3>${e.name}</h3>` +
-  e.hus.map(([id, txt, sp]) => `<div class="hu"><span class="id">${id}</span><span>${txt}</span><span class="sp">${sp} SP</span></div>`).join("") +
-  `</div>`).join("");
+const N = id => `https://app.notion.com/p/${id}`;
+const AREAS = { gestion: "Gestión", agil: "Ágil", datos: "Datos e IA", redaccion: "Redacción", herramientas: "Herramientas" };
 
-// Gantt
-const START = new Date("2026-08-08"), END = new Date("2027-04-30");
-const span = (END - START) / 864e5;
-const pct = d => ((new Date(d) - START) / 864e5 / span * 100).toFixed(2) + "%";
-const sprints = [
-  ["Sprint 0", "Planificación", "2026-08-08", "2026-10-13", "notec"],
-  ["Sprint 1", "HU1", "2026-10-14", "2026-10-27", "tec"],
-  ["Sprint 2", "HU2 y HU3", "2026-10-28", "2026-11-10", "tec"],
-  ["Sprint 3", "HU3", "2026-11-11", "2026-11-24", "tec"],
-  ["Sprint 4", "HU4 y HU5", "2026-11-25", "2026-12-08", "tec"],
-  ["Sprint 5", "HU5 y HU6", "2026-12-09", "2026-12-22", "tec"],
-  ["Receso", "Fin de año", "2026-12-23", "2026-12-29", "pause"],
-  ["Sprint 6", "HU6 y pruebas", "2026-12-30", "2027-01-12", "tec"],
-  ["Sprint 7", "Pruebas y HU7", "2027-01-13", "2027-01-26", "tec"],
-  ["Sprint 8", "HU7 y documentación", "2027-01-27", "2027-02-23", "tec"],
-  ["Sprint 9", "HU8", "2027-02-24", "2027-03-02", "tec"],
-  ["Sprint 10", "Escritura", "2027-03-03", "2027-04-06", "notec"],
-  ["Sprint 11", "Escritura y defensa", "2027-04-07", "2027-04-30", "notec"]
+const CLASSES = [
+  { n: 1, title: "Presentación del curso", meta: "Innovación, LaTeX y apertura del taller gramatical",
+    notion: "38a25f24dbe2802e911ae1f047b1fd84", plan: [],
+    blocks: [
+      { title: "Innovación en proyectos tecnológicos", area: "gestion",
+        slides: "https://docs.google.com/presentation/d/1VrmvRJJlpiQaO3vRmFs1w9P-uMD7q2S6ti7ABez07Y4/edit?usp=sharing",
+        notes: "3c725f24dbe280b5b385d5f17e529738",
+        topics: ["Innovación frente a invención; método propósito, proyecto y ejecución.",
+                 "Modelo de negocio y modelo Canvas, con foco en la propuesta de valor.",
+                 "Filosofía Lean: ciclo construir, medir y aprender; aprendizaje validado.",
+                 "Mínimo producto viable (MVP) y early adopters.",
+                 "Difusión de las innovaciones; problem/solution fit y product/market fit."] },
+      { title: "Introducción a LaTeX", area: "herramientas",
+        slides: "https://docs.google.com/presentation/d/1a8S4BMqmNquULc4ohop3PF8DiLGHqWbARM0pGPyaFSk/edit?usp=sharing",
+        notes: "3c825f24dbe28001afb0c87f94220aa4",
+        topics: ["Origen de TeX y LaTeX; ciclo de escritura y compilación.",
+                 "Comparación con procesadores de texto en documentos largos.",
+                 "Entornos de trabajo locales y en línea.",
+                 "Plantilla del posgrado para el plan de trabajo."] },
+      { title: "Taller de apoyo gramatical: presentación", area: "redaccion",
+        slides: "https://docs.google.com/document/d/1o8NImkqbHlypZc6pUKAZzV1jWJS73tGMztx8L6IW2yI",
+        topics: ["Objetivos del taller y consigna de escritura sobre la propuesta de valor."] }
+    ] },
+  { n: 2, title: "Etapa inicial y taller gramatical", meta: "Iniciación, alcance y principios de redacción",
+    notion: "38a25f24dbe280b0973af4dbe655f92a",
+    plan: [["Interesados", "interesados"], ["Propósito", "proposito"], ["Alcance", "alcance"]],
+    blocks: [
+      { title: "Gestión de proyectos: etapa inicial", area: "gestion",
+        slides: "https://docs.google.com/presentation/d/1u-hMgZADagStLdnwaiXp8asMn1jByYoyuXq7lS6sq5Q/edit",
+        notes: "3e125f24dbe28055a0d6dd8cb27a9d94",
+        topics: ["Definición de proyecto según el PMI; el arca de Noé como caso de estudio.",
+                 "Fases del proyecto y grupos de procesos.",
+                 "Propósito, justificación y acta de constitución.",
+                 "Identificación de los interesados (stakeholders).",
+                 "Requerimientos funcionales y no funcionales; principio SMART.",
+                 "Definición del alcance y estructura de desglose del trabajo (EDT o WBS)."] },
+      { title: "Principios de redacción", area: "redaccion", notes: "38f25f24dbe280ab9336cbdce1d2305e",
+        topics: ["Claridad, concisión y sencillez; coherencia, cohesión y adecuación.",
+                 "Una idea por párrafo, oraciones cortas y conectores explícitos."] },
+      { title: "Signos de puntuación", area: "redaccion", notes: "38f25f24dbe280198b8aca52a862c746",
+        topics: ["Usos de la coma, el punto, el punto y coma y los dos puntos."] },
+      { title: "Errores frecuentes en documentos ingenieriles", area: "redaccion", notes: "3d425f24dbe2800c92fdfbacd92f4cde",
+        topics: ["Mayúsculas, cursivas y negritas.",
+                 "Gerundio de posterioridad y «el mismo» con valor anafórico.",
+                 "Unidades de medida, siglas y enumeraciones."] }
+    ] },
+  { n: 3, title: "Metodologías ágiles", meta: "Ciclos de vida, CRISP-DM y Scrum",
+    notion: "38a25f24dbe280cea4f6ec919260050e",
+    plan: [["Requerimientos", "requerimientos"], ["Calidad", "calidad"]],
+    blocks: [
+      { title: "Metodologías ágiles, parte 1", area: "agil",
+        slides: "https://docs.google.com/presentation/d/1gwdMBvU7SssT0t_tm5KWrH02dUQORvfg1-ZEBl3O3kY/",
+        notes: "3db25f24dbe2806ebbace5b023f89da7",
+        topics: ["Ciclos de vida: cascada, incremental, evolutivo, espiral y modelo en V.",
+                 "Valores y principios ágiles; iterativo frente a incremental.",
+                 "Modelo Cynefin y matriz de Stacey.",
+                 "Historias de usuario: regla de las 3 C y regla INVEST.",
+                 "User story mapping y estimación con story points."] },
+      { title: "CRISP-DM y CPMAI", area: "datos",
+        slides: "https://docs.google.com/presentation/d/1LWm7v9oGpndvtxphIN0OCnggz-ewfRRr8n9ZMQHJNrU/",
+        notes: "3db25f24dbe280039dd1e16bdfa8498b",
+        topics: ["Por qué adoptar una metodología en proyectos de IA.",
+                 "Las seis fases de CRISP-DM.",
+                 "CPMAI y su gobernanza de datos integrada.",
+                 "Comparación entre ambas y aplicación al trabajo final."] },
+      { title: "Scrum", area: "agil",
+        slides: "https://docs.google.com/presentation/d/1DoVywkyaCWvPrJ4-3YWbsHOs_5pkBGnVCJVXa7pBVe8/edit",
+        notes: "3db25f24dbe280e4849efe4d63cfa421",
+        topics: ["Scrum frente a PMI y su combinación.",
+                 "Casos de éxito en IA, IoT y sistemas embebidos.",
+                 "Épicas, historias de usuario y criterios de aceptación.",
+                 "Scrum en proyectos individuales."] },
+      { title: "Ejemplos de las secciones 6 y 7 de la plantilla", area: "agil",
+        slides: "https://docs.google.com/document/d/1n-jnPMjpFsfFCGyAjvG4FfZrkMxJ0lJU39oFc4nVGl0/edit",
+        topics: ["Product backlog y criterios de aceptación de ejemplo."] }
+    ] },
+  { n: 4, title: "Gestión de recursos", meta: "Clase asincrónica",
+    notion: "38a25f24dbe2806387fcce1d4c07280e",
+    plan: [["Cronograma", "cronograma"]],
+    blocks: [
+      { title: "Gestión del tiempo", area: "gestion",
+        slides: "https://docs.google.com/presentation/d/1_NTWGLYc7uI7xJEdPpv-yZdke7vZEcezehCiJwL2E9A/edit",
+        notes: "3e125f24dbe2801dbc2fd9f0688a9aca",
+        topics: ["Diagrama activity-on-node (AoN) y camino crítico.",
+                 "Tipos de restricciones según el PMBOK y sobreasignación de recursos.",
+                 "Estimación de duraciones y formas de ilustrar el cronograma."] },
+      { title: "Recursos humanos", area: "gestion", notes: "3e125f24dbe2801dbc2fd9f0688a9aca",
+        topics: ["Trabajo en equipo; autoridad frente a responsabilidad.",
+                 "Delegación y micromanagement.",
+                 "Matrices de responsabilidad RAM y RACI."] },
+      { title: "Recursos materiales", area: "gestion", notes: "3e125f24dbe2801dbc2fd9f0688a9aca",
+        topics: ["Armado del presupuesto y tipos de costos.",
+                 "Previsión de gastos y software de gestión de proyectos."] }
+    ] },
+  { n: 5, title: "Etapa final", meta: "Calidad, riesgos, cierre y gobernanza de datos",
+    notion: "38a25f24dbe2808cab97d88c1f6606bd",
+    plan: [["Riesgos", "riesgos"], ["Calidad", "calidad"]],
+    blocks: [
+      { title: "Calidad y riesgos", area: "gestion",
+        slides: "https://docs.google.com/presentation/d/1i9PPR46-rs8xdek5f8pHKZ4_9zalDH3mMqykUj_AmVw/edit",
+        notes: "3e725f24dbe2809ea806fd13e95d0957",
+        topics: ["Calidad frente a grado de calidad; costo de la calidad.",
+                 "Verificación y validación; matriz de verificación cruzada (VCRM).",
+                 "Número de prioridad de riesgo (RPN) y estrategias de gestión de riesgos."] },
+      { title: "Comunicación, compras, seguimiento y cierre", area: "gestion",
+        notes: "3e725f24dbe2809ea806fd13e95d0957",
+        topics: ["Plan de comunicación, reportes escritos y reuniones efectivas.",
+                 "Comprar frente a hacer; statement of work (SOW).",
+                 "Seguimiento con el Gantt, medición del avance y cambios de planes.",
+                 "Procesos de cierre y lecciones aprendidas; liderazgo y motivación."] },
+      { title: "Ética y gobernanza de datos", area: "datos",
+        slides: "https://docs.google.com/document/d/1KF8B27Cj30LZQM5lMeNJD-h2Ag3Gpxtp/",
+        notes: "3e725f24dbe28096a120db24913c505d",
+        topics: ["Cumplimiento normativo: leyes argentinas e internacionales según el tipo de datos.",
+                 "Licencias de conjuntos de datos (MIT, CC BY-NC, Apache 2.0, CC0).",
+                 "Sesgos en los datos, impacto social y medidas de mitigación."] }
+    ] },
+  { n: 6, title: "Metodologías ágiles, parte 2", meta: "Scrum en detalle y pautas de la presentación",
+    notion: "38a25f24dbe28030b810e771cfc59adf",
+    plan: [["Cronograma", "cronograma"]],
+    blocks: [
+      { title: "El proceso de Scrum", area: "agil",
+        slides: "https://docs.google.com/presentation/d/1JNaD3WwrLR0riraIlLhN2TZ-mGmW1kxZV8ww9O27MhI/",
+        notes: "3f025f24dbe280f2b3c6f4b6cfeba45a",
+        topics: ["The Scrum Guide 2020; roles de product owner, scrum master y developers.",
+                 "Product backlog, sprint backlog y burndown charts.",
+                 "Eventos: sprint planning, daily scrum, sprint review y sprint retrospective.",
+                 "Retrospectiva con la técnica de la estrella de mar (starfish)."] },
+      { title: "Otras metodologías ágiles", area: "agil", notes: "3f025f24dbe280f2b3c6f4b6cfeba45a",
+        topics: ["Kanban: principios, prácticas y límites de trabajo en curso (WIP).",
+                 "eXtreme Programming (XP) y Lean software development.",
+                 "Dificultades de adopción: el agilismo es más cultura que proceso."] },
+      { title: "Pautas para la presentación del plan", area: "redaccion",
+        slides: "https://docs.google.com/document/d/1UGLl1-G91Pzx5FyoLaF1Y65fbhAsKoyP72keMGD0nHg/edit",
+        notes: "3f025f24dbe2808b9f66c1750826dc9d",
+        topics: ["Quince minutos y quince diapositivas como máximo.",
+                 "Tópicos obligatorios: interesados, propósito, alcance, AoN, Gantt, riesgos y calidad."] }
+    ] },
+  { n: 7, title: "Presentaciones de las planificaciones (1/2)", meta: "Exposición de los planes de trabajo",
+    notion: "38a25f24dbe28073926ef86625c43698", plan: [["Plan completo", ""]],
+    blocks: [
+      { title: "Primera ronda de exposiciones", area: "gestion",
+        topics: ["Presentación oral del plan de trabajo y devolución de los docentes."] }
+    ] },
+  { n: 8, title: "Presentaciones de las planificaciones (2/2)", meta: "Exposición de los planes de trabajo",
+    notion: "3d325f24dbe280bb84c8cffd7e0f30d0", plan: [["Plan completo", ""]],
+    blocks: [
+      { title: "Segunda ronda de exposiciones", area: "gestion",
+        topics: ["Presentación oral del plan de trabajo y devolución de los docentes."] }
+    ] }
 ];
-const milestones = [
-  ["Entrega final del plan", "2026-10-13"],
-  ["Publicación de las sinopsis", "2027-01-26"],
-  ["Fin de la etapa técnica", "2027-03-02"],
-  ["Entrega de la memoria", "2027-04-16"],
-  ["Defensa pública", "2027-04-30"]
-];
-const months = ["ago","sep","oct","nov","dic","ene","feb","mar","abr"];
-const monthStarts = ["2026-08-08","2026-09-01","2026-10-01","2026-11-01","2026-12-01","2027-01-01","2027-02-01","2027-03-01","2027-04-01"];
-const gridLines = monthStarts.slice(1).map(d => `linear-gradient(var(--line), var(--line)) ${pct(d)} 0 / 1px 100% no-repeat`).join(",");
-const today = new Date();
-const todayMark = today >= START && today <= END ? `<div class="g-today" style="left:${pct(today.toISOString().slice(0,10))}" title="Hoy"></div>` : "";
-let html = `<div class="g-months"><span></span><div class="m">${months.map((m,i)=>`<span style="left:${pct(monthStarts[i])}">${m}</span>`).join("")}</div></div>`;
-html += sprints.map(([n, c, s, e, k]) =>
-  `<div class="g-row"><div class="g-label">${n}<small>${c}</small></div>` +
-  `<div class="g-track" style="background:${gridLines}">${todayMark}<div class="g-bar" style="left:${pct(s)};width:calc(${pct(e)} - ${pct(s)} + 3px);background:var(--${k})" title="${n}: ${s} a ${e}"></div></div></div>`).join("");
-html += `<div class="g-row"><div class="g-label">Hitos</div><div class="g-track" style="background:${gridLines}">${todayMark}` +
-  milestones.map(([n, d]) => `<div class="g-mile" style="left:${pct(d)}" title="${n} (${d})"></div>`).join("") + `</div></div>`;
-document.getElementById("gantt").innerHTML = html;
 
-// Riesgos
-const risks = [
-  ["Escasez de citas de las fichas", "Medición exploratoria y consultas más específicas en el sprint 1.", 54, 24],
-  ["Cambios en los motores o en sus API", "Versiones fijas, módulos independientes y grupo de control.", 48, 20],
-  ["Resultados no concluyentes del piloto", "Análisis de potencia y asignación estratificada.", 42, 20],
-  ["Demoras en la revisión o en la publicación", "Fecha acordada con el cliente y respaldo del codirector.", 40, 18],
-  ["Costo de las API superior al previsto", "Presupuesto por ronda basado en un costo medido.", 30, 12],
-  ["Caída de la posición orgánica", "Por debajo del umbral; se controla en cada ronda.", 21, null],
-  ["Retiro de la autorización de uso de los datos", "Por debajo del umbral; autorización escrita.", 20, null]
-];
-const MAX = 60;
-document.getElementById("risks").innerHTML = risks.map(([n, m, before, after]) =>
-  `<div class="risk"><div class="name">${n}<small>${m}</small></div>` +
-  `<div class="rbar" title="RPN ${before}${after ? " → " + after : ""}">` +
-  `<div class="before" style="width:${before / MAX * 100}%"></div>` +
-  `<div class="after" style="width:${(after ?? before) / MAX * 100}%;${after ? "" : "opacity:.35"}"></div>` +
-  `<div class="thr" style="left:${25 / MAX * 100}%"></div>` +
-  `<span class="val">${after ? before + " → " + after : before}</span></div></div>`).join("");
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function highlight(text, q) {
+  if (!q) return esc(text);
+  const f = fold(text), i = f.indexOf(q);
+  if (i < 0) return esc(text);
+  return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+}
+
+let area = "todas", query = "";
+try { const saved = localStorage.getItem("clases-area"); if (saved && (saved === "todas" || AREAS[saved])) area = saved; } catch (e) {}
+
+const chips = document.getElementById("chips");
+chips.innerHTML = [["todas", "Todas"], ...Object.entries(AREAS)]
+  .map(([k, v]) => `<button class="chip" data-area="${k}" aria-pressed="${k === area}">${v}</button>`).join("");
+chips.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  area = b.dataset.area;
+  chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
+  try { localStorage.setItem("clases-area", area); } catch (e) {}
+  render();
+});
+document.getElementById("q").addEventListener("input", e => { query = fold(e.target.value.trim()); render(); });
+
+function render() {
+  let shownTopics = 0, shownClasses = 0;
+  const toc = [], html = [];
+  for (const c of CLASSES) {
+    const blocks = c.blocks.map(b => {
+      if (area !== "todas" && b.area !== area) return null;
+      const titleHit = query && fold(b.title).includes(query);
+      const topics = b.topics.filter(t => !query || titleHit || fold(t).includes(query));
+      if (!topics.length) return null;
+      shownTopics += topics.length;
+      const links = [
+        b.slides && `<a href="${b.slides}" target="_blank" rel="noopener">Presentación ↗</a>`,
+        b.notes && `<a href="${N(b.notes)}" target="_blank" rel="noopener">Notas ↗</a>`
+      ].filter(Boolean).join("");
+      return `<div class="block"><div class="block-head"><h3>${highlight(b.title, query)}</h3>` +
+        `<span class="tag">${AREAS[b.area]}</span><span class="links">${links}</span></div>` +
+        `<ul class="topics">${topics.map(t => `<li>${highlight(t, query)}</li>`).join("")}</ul></div>`;
+    }).filter(Boolean);
+    const visible = blocks.length > 0;
+    toc.push(`<a href="#clase-${c.n}" class="${visible ? "" : "dim"}"><b>${c.n}</b>${esc(c.title)}</a>`);
+    if (!visible) continue;
+    shownClasses++;
+    const plan = c.plan.length
+      ? `<div class="plan">Aplicado en el plan: ${c.plan.map(([l, h]) => `<a href="plan.html${h ? "#" + h : ""}">${l}</a>`).join("")}</div>` : "";
+    html.push(`<article class="class" id="clase-${c.n}"><div class="num">${String(c.n).padStart(2, "0")}</div><div>` +
+      `<h2>${esc(c.title)}</h2><div class="meta">${esc(c.meta)} · <a href="${N(c.notion)}" target="_blank" rel="noopener">Página de la clase ↗</a></div>` +
+      blocks.join("") + plan + `</div></article>`);
+  }
+  document.getElementById("toc").innerHTML = toc.join("");
+  document.getElementById("classes").innerHTML = html.join("");
+  document.getElementById("empty").hidden = shownClasses > 0;
+  document.getElementById("count").textContent = `${shownTopics} temas en ${shownClasses} clases`;
+}
+render();
 </script>
 </body>
 </html>
