@@ -41,7 +41,7 @@ codirector, % Uncomment to add a codirector to the title page
  
 \fechaINICIO{08 de agosto de 2026}		%Fecha de inicio de la cursada de GdP \fechaInicioName
 \fechaFINALPlan{13 de octubre de 2026} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{30 de abril de 2027}	%Fecha de defensa pública del trabajo final
+\fechaFINALTrabajo{abril de 2027}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -75,6 +75,7 @@ Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios 
 3      & Se completan los puntos 6 a 9 inclusive & 28 de septiembre de 2026 \\ \hline
 4      & Se incorporan las correcciones recibidas sobre los puntos 1 a 9. Se completan los puntos 10 a 12 inclusive & 03 de octubre de 2026 \\ \hline
 5      & Se completa el plan	                                 & {05} de {octubre} de 2026 \\ \hline
+6      & Se incorporan las correcciones recibidas	             & {05} de {octubre} de 2026 \\ \hline
 
 \end{tabularx}
 \end{table}
@@ -92,7 +93,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa. El sistema combina un modelo de aprendizaje automático, que predice la probabilidad de citación de cada título, con un generador basado en un modelo grande de lenguaje, que reescribe las sinopsis conforme a esa predicción. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa. El sistema combina un modelo de aprendizaje automático, que predice la probabilidad de citación de cada título; con un generador basado en un modelo grande de lenguaje, que reescribe las sinopsis conforme a esa predicción. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública en \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -263,25 +264,25 @@ El criterio para calcular los \textit{story points} pondera tres dimensiones y s
 
 La suma de los tres pesos se redondea al número de la serie de Fibonacci igual o inmediatamente superior: 1, 2, 3, 5, 8, 13, 21 o 34. El criterio sobreestima antes que subestimar.
 
-\textbf{Épica 1: construcción del conjunto de datos de citación}
+Épica 1: construcción del conjunto de datos de citación
 
 HU1. Como \textit{machine learning engineer}, quiero medir la citación de los títulos en los motores de búsqueda generativa para construir un conjunto de datos confiable. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 5 e incertidumbre 5. La suma es 15 y se redondea a 21.
 
 HU2. Como \textit{machine learning engineer}, quiero consolidar la posición de las fichas en las búsquedas que realizan los motores y los datos internos de popularidad, para controlar su efecto en la predicción de la citación. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 3. La suma es 11 y se redondea a 13.
 
-\textbf{Épica 2: predicción de la probabilidad de citación}
+Épica 2: predicción de la probabilidad de citación
 
 HU3. Como científico de datos, quiero entrenar un modelo que aprenda, a partir de las fichas citadas por los motores de búsqueda generativa, qué características de contenido se asocian con la citación, para priorizarlas en cada título. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 3 e incertidumbre 5. La suma es 13.
 
 HU4. Como científico de datos, quiero validar el modelo con mediciones repetidas para asegurar que sus predicciones son estables. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 5. La suma es 13.
 
-\textbf{Épica 3: generación y verificación de sinopsis}
+Épica 3: generación y verificación de sinopsis
 
 HU5. Como editor, quiero que el sistema sugiera una sinopsis optimizada para motores de búsqueda generativa para aumentar su probabilidad de citación. Prioridad: alta. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 3. La suma es 11 y se redondea a 13.
 
 HU6. Como editor, quiero que la sinopsis sugerida preserve la fidelidad de la sinopsis original para utilizarla en la tienda en línea. Prioridad: media. \textit{Story points}: dificultad 3, complejidad 5 e incertidumbre 2. La suma es 10 y se redondea a 13.
 
-\textbf{Épica 4: piloto y medición de resultados}
+Épica 4: piloto y medición de resultados
 
 HU7. Como analista de marketing digital, quiero seguir la citación de las sinopsis publicadas en el piloto para medir la mejora frente a un grupo de control de títulos comparables. Prioridad: alta. \textit{Story points}: dificultad 5, complejidad 5 e incertidumbre 5. La suma es 15 y se redondea a 21.
 
@@ -292,7 +293,7 @@ HU8. Como cliente, quiero un informe claro de los resultados del piloto para dec
 
 Cada historia de usuario cuenta con criterios de aceptación medibles y verificables, que definen cuándo la funcionalidad se considera cumplida.
 
-\textbf{Épica 1: construcción del conjunto de datos de citación}
+Épica 1: construcción del conjunto de datos de citación
 
 Criterios de aceptación de la HU1:
 \begin{itemize}
@@ -309,7 +310,7 @@ Criterios de aceptación de la HU2:
 	\item Se documentan el origen y las transformaciones de cada variable.
 \end{itemize}
 
-\textbf{Épica 2: predicción de la probabilidad de citación}
+Épica 2: predicción de la probabilidad de citación
 
 Criterios de aceptación de la HU3:
 \begin{itemize}
@@ -326,7 +327,7 @@ Criterios de aceptación de la HU4:
 	\item Se reporta la variabilidad de las predicciones entre ejecuciones.
 \end{itemize}
 
-\textbf{Épica 3: generación y verificación de sinopsis}
+Épica 3: generación y verificación de sinopsis
 
 Criterios de aceptación de la HU5:
 \begin{itemize}
@@ -342,7 +343,7 @@ Criterios de aceptación de la HU6:
 \end{itemize}
 
 
-\textbf{Épica 4: piloto y medición de resultados}
+Épica 4: piloto y medición de resultados
 
 Criterios de aceptación de la HU7:
 \begin{itemize}
@@ -574,7 +575,7 @@ Sprint 11 & 07/04/2027 & 30/04/2027 & 3,5 & Escritura y defensa & 42 h \\ \hline
 \end{tabularx}
 \end{table}
 
-La defensa pública se prevé para la ultima semana de Abril. Según lo recomendado en la asignatura, se finaliza la etapa técnica dos meses antes de la defensa. Las tareas recaen en un único responsable, por lo que se encadenan en forma secuencial y conforman el camino crítico.
+La defensa pública se prevé para abril. Según lo recomendado en la asignatura, se finaliza la etapa técnica dos meses antes de la defensa. Las tareas recaen en un único responsable, por lo que se encadenan en forma secuencial y conforman el camino crítico.
 
 \begin{figure}[htpb]
 \centering
