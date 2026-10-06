@@ -93,7 +93,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa. El sistema combina un modelo de aprendizaje automático, que predice la probabilidad de citación de cada título; con un generador basado en un modelo grande de lenguaje, que reescribe las sinopsis conforme a esa predicción. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública en \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en el desarrollo de un sistema que optimiza las sinopsis del catálogo para motores de búsqueda generativa. El sistema combina un modelo de aprendizaje automático, que predice la probabilidad de citación de cada título; con un generador basado en un modelo grande de lenguaje, que reescribe las sinopsis conforme a esa predicción. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y un costo estimado de 10000 dólares estadounidenses, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública en \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -858,7 +858,7 @@ Riesgo 2: cada respuesta se registra con la fecha y la versión del modelo utili
 	\item Severidad (S*): 5.\\
 	Un cambio de API se resuelve en un módulo acotado. El registro de versiones permite separar las rondas afectadas.
 	\item Probabilidad de ocurrencia (O*): 4.\\
-	Fijar la versión del modelo reduce los cambios inesperados en el motor de ChatGPT. En AI Overviews no es posible fijar una versión, por lo que la probabilidad no baja más.
+	Fijar la versión del modelo reduce los cambios inesperados en el motor de ChatGPT. En cambio, AI Overviews no permite fijar una versión y puede modificarse sin aviso, por lo que la reducción de la probabilidad es parcial.
 \end{itemize}
 
 Riesgo 3: la medición exploratoria del \textit{sprint}~1 permite estimar el costo por ronda antes de fijar el volumen de consultas. Con esa estimación, se acuerda con el auspiciante un presupuesto por ronda y se configuran alertas de consumo en cada proveedor. Además, las respuestas de DataForSEO se almacenan para evitar consultas repetidas. La cantidad de repeticiones se ajusta según la variabilidad observada.
